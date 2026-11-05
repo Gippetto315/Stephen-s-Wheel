@@ -1,0 +1,16 @@
+{
+  "name": "Stephen’s Wheel",
+  "short_name": "Stephen’s Wheel",
+  "description": "A red, black and green wheel with streak odds, a 10-guess game and all-time stats.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#2b0a22",
+  "theme_color": "#2b0a22",
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png"},
+    {"src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}
