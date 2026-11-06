@@ -178,6 +178,12 @@ main{box-sizing:border-box}
 html{overflow-x:hidden}
 body{overflow-x:clip;max-width:100%}
 html,body{touch-action:pan-y;overscroll-behavior:none}
+#cfm{position:fixed;inset:0;z-index:12;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;padding:16px}
+#cfm .cfp{background:var(--panel);border:2px solid #e8a317;border-radius:16px;padding:18px 18px 16px;max-width:340px;width:100%;box-sizing:border-box;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.6)}
+#cfm p{margin:0 0 14px;font-weight:700}
+#cfm .cfr{display:flex;gap:10px}
+#cfm button{flex:1;font:700 16px "DM Sans",system-ui,sans-serif;padding:11px 0;border-radius:999px;border:2px solid #e8a317;background:rgba(0,0,0,.3);color:var(--ink);cursor:pointer}
+#cfm button.cy{background:linear-gradient(180deg,#fff0a8,#e8a317 60%,#b87800);color:#3b0a2a;border-color:#e8a317}
 .wsel{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;width:100%}
 .wsel button{font:700 13px "DM Sans",system-ui,sans-serif;padding:6px 12px;border-radius:999px;border:2px solid #e8a317;background:rgba(0,0,0,.3);color:var(--ink);cursor:pointer}
 .wsel button.on{background:linear-gradient(180deg,#fff0a8,#e8a317 60%,#b87800);color:#3b0a2a;box-shadow:0 2px 0 #5a2d00}
@@ -335,7 +341,8 @@ function chart(){
 
 function note(f,t0,d,type){if(s.mute)return;try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();const o=ac.createOscillator(),g=ac.createGain(),n=ac.currentTime+t0;o.type=type||"sine";o.frequency.value=f;g.gain.setValueAtTime(.05,n);g.gain.exponentialRampToValueAtTime(.0001,n+d);o.connect(g);g.connect(ac.destination);o.start(n);o.stop(n+d)}catch(e){}}
 const buzz=p=>{try{navigator.vibrate&&navigator.vibrate(p)}catch(e){}};
-function toast(t){const e=$("toast");e.textContent=t;e.hidden=false;clearTimeout(tt);tt=setTimeout(()=>e.hidden=true,2800)}
+function toast(t,ms){const e=$("toast");e.textContent=t;e.hidden=false;clearTimeout(tt);tt=setTimeout(()=>e.hidden=true,ms||2800)}
+$("toast").addEventListener("click",()=>{$("toast").hidden=true;clearTimeout(tt)});
 function pop(c){
   if(reduce)return;
   for(let i=0;i<28;i++){const e=document.createElement("span");e.className="cf";
@@ -497,7 +504,7 @@ function end(i){
   for(let k=0;k<tier;k++)setTimeout(()=>pop(["#e8a317","#ff5a1f","#fff3dd"][k]),250*(k+1));
   if(tier&&!reduce){stage.classList.remove("shake");void stage.offsetWidth;stage.classList.add("shake")}
   if(c==="g"&&L>=2)greenParty(Math.min(L,4));
-  if(fresh.length)setTimeout(()=>toast("Badge unlocked: "+fresh.map(b=>b[1]).join(", ")),600);
+  if(fresh.length)setTimeout(()=>toast("Badge unlocked: "+fresh.map(b=>b[1]).join(", ")+" (tap to close)",7000),600);
   if(demo){demo.left--;if(demo.left>0)setTimeout(()=>{gStop();spin(1,0)},demo.k==="b"?2600:4600);else setTimeout(endDemo,12500)}
 }
 
@@ -511,15 +518,25 @@ cv.addEventListener("pointermove",e=>{if(!dg)return;const a=ang(e),n=performance
 cv.addEventListener("pointerup",()=>{if(!dg)return;const v=performance.now()-dg.t>120?0:dg.v;dg=null;if(Math.abs(v)>.003)spin(v>0?1:-1,Math.min(1,Math.abs(v)/.012))});
 cv.addEventListener("pointercancel",()=>{dg=null});
 
-$("rmem").addEventListener("click",()=>{if(spinning)return;Object.assign(s,{r:0,b:0,g:0,color:null,streak:0,hist:[],log:"",cr:0});save();idle();render();toast("Odds memory cleared. All-time stats kept.")});
+guard("rmem","Reset odds memory? Your all-time stats stay.",()=>{if(spinning)return;Object.assign(s,{r:0,b:0,g:0,color:null,streak:0,hist:[],log:"",cr:0});save();idle();render();toast("Odds memory cleared. All-time stats kept.")});
 const setMode=m=>{if(spinning)return;s.mode=m;pick=null;[...$("calls").children].forEach(x=>x.classList.remove("sel"));save();render()};
 $("tfree").addEventListener("click",()=>setMode("free"));
 $("tgame").addEventListener("click",()=>setMode("game"));
 $("gnew").addEventListener("click",()=>{if(spinning)return;s.game={left:10,score:0,hits:0,newBest:false,color:null,streak:0,combo:0,bonus:0};save();idle();render()});
+function ask(msg,fn){
+  const o=document.createElement("div");o.id="cfm";
+  const p=document.createElement("div");p.className="cfp";
+  const t=document.createElement("p");t.textContent="Are you sure? "+msg;
+  const y=document.createElement("button"),n=document.createElement("button");y.textContent="Yes, reset";n.textContent="Cancel";y.className="cy";
+  const close=()=>o.remove();
+  y.onclick=()=>{close();fn()};n.onclick=close;o.onclick=e=>{if(e.target===o)close()};
+  const r=document.createElement("div");r.className="cfr";r.append(y,n);p.append(t,r);o.appendChild(p);document.body.appendChild(o);n.focus();
+}
+function guard(id,msg,fn){$(id).addEventListener("click",()=>{if(spinning)return;ask(msg,fn)})}
 $("wsel").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;s.cw=+b.dataset.w;save();chart()});
-$("rline").addEventListener("click",()=>{s.cr=s.log.length;save();chart();toast("Luck line reset. All-time stats kept.")});
+guard("rline","Reset the luck line? Your all-time stats stay.",()=>{s.cr=s.log.length;save();chart();toast("Luck line reset. All-time stats kept.")});
 $("snd").addEventListener("click",()=>{s.mute=!s.mute;save();render()});
-$("reset").addEventListener("click",()=>{if(spinning)return;s=Object.assign(D(),{mute:s.mute,badges:s.badges,best:s.best,bestColor:s.bestColor,bestCs:s.bestCs,bestG:s.bestG,gbest:s.gbest,mode:s.mode,cw:s.cw||500});pick=null;[...$("calls").children].forEach(x=>x.classList.remove("sel"));save();idle();render();toast("Daily play reset. All-time stats kept.")});
+guard("reset","Reset daily play? Your all-time stats and badges stay.",()=>{if(spinning)return;s=Object.assign(D(),{mute:s.mute,badges:s.badges,best:s.best,bestColor:s.bestColor,bestCs:s.bestCs,bestG:s.bestG,gbest:s.gbest,mode:s.mode,cw:s.cw||500});pick=null;[...$("calls").children].forEach(x=>x.classList.remove("sel"));save();idle();render();toast("Daily play reset. All-time stats kept.")});
 $("share").addEventListener("click",()=>{
   const c=document.createElement("canvas");c.width=c.height=600;const x=c.getContext("2d"),bc=s.bestColor||"r";
   x.fillStyle="#2b0a22";x.fillRect(0,0,600,600);x.strokeStyle="#e8a317";x.lineWidth=10;x.strokeRect(20,20,560,560);
