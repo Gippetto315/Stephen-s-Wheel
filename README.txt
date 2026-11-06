@@ -27,4 +27,3 @@ GOOD TO KNOW
   - Your stats are saved on the phone itself. They do not come over from the Claude version.
   - Use the app from the home screen icon each time. The Safari tab and the icon keep separate saved stats on iPhone.
   - To push an update later, replace the files, and change the version name at the top of sw.js (for example stephens-wheel-v3 to v4).
-

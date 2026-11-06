@@ -13,6 +13,8 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" href="icon-192.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@500;700&display=swap">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@500;700&display=swap">
 <style>
 :root{--bg:#fbeef0;--ink:#3b0a2a;--panel:#fff;--muted:#7a4a63;--gold:#e8a317;--red:#d7263d;--blk:#17121c;--grn:#0f9d58;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#2b0a22;--ink:#fff3dd;--panel:#431236;--muted:#d9a9c4;color-scheme:dark}}
@@ -259,6 +261,7 @@ details summary{cursor:pointer;color:#f2b632;font-weight:700}
   <div class="links"><button id="rline" type="button">Reset line</button></div>
   <details class="info" id="bdbox" style="display:block"><summary id="bdh">Badges</summary><div class="bd" id="bd" style="margin-top:10px"></div></details>
   <div class="links"><button id="share" type="button">Share my best streak</button><button id="snd" type="button"></button><button id="rmem" type="button">Reset odds memory</button><button id="reset" type="button">Reset daily play</button></div>
+  <details class="info" id="bkbox"><summary>Backup &amp; restore</summary><p class="small">Moving to a new icon? Tap Copy backup, paste it somewhere safe (Notes works), then paste it back here after re-adding the app.</p><textarea id="bkt" rows="3" placeholder="Backup code shows here. To restore, paste a code here." style="width:100%;box-sizing:border-box;margin-top:8px;padding:8px;border-radius:10px;border:1px solid rgba(232,163,23,.5);background:rgba(0,0,0,.35);color:inherit;font:12px monospace"></textarea><div class="links"><button id="bkc" type="button">Copy backup</button><button id="bkr" type="button">Restore from code</button></div></details>
 </main>
 <div id="ov" hidden><img id="shimg" alt="Your best streak card"><p>Press and hold the image to save or share it.</p><div><button id="shs" type="button">Share</button> <button id="cls" type="button">Close</button></div></div>
 <div id="fx" aria-hidden="true"></div>
@@ -523,17 +526,30 @@ const setMode=m=>{if(spinning)return;s.mode=m;pick=null;[...$("calls").children]
 $("tfree").addEventListener("click",()=>setMode("free"));
 $("tgame").addEventListener("click",()=>setMode("game"));
 $("gnew").addEventListener("click",()=>{if(spinning)return;s.game={left:10,score:0,hits:0,newBest:false,color:null,streak:0,combo:0,bonus:0};save();idle();render()});
-function ask(msg,fn){
+function ask(msg,fn,yes){
   const o=document.createElement("div");o.id="cfm";
   const p=document.createElement("div");p.className="cfp";
   const t=document.createElement("p");t.textContent="Are you sure? "+msg;
-  const y=document.createElement("button"),n=document.createElement("button");y.textContent="Yes, reset";n.textContent="Cancel";y.className="cy";
+  const y=document.createElement("button"),n=document.createElement("button");y.textContent=yes||"Yes, reset";n.textContent="Cancel";y.className="cy";
   const close=()=>o.remove();
   y.onclick=()=>{close();fn()};n.onclick=close;o.onclick=e=>{if(e.target===o)close()};
   const r=document.createElement("div");r.className="cfr";r.append(y,n);p.append(t,r);o.appendChild(p);document.body.appendChild(o);n.focus();
 }
 function guard(id,msg,fn){$(id).addEventListener("click",()=>{if(spinning)return;ask(msg,fn)})}
 $("wsel").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;s.cw=+b.dataset.w;save();chart()});
+$("bkc").addEventListener("click",()=>{
+  const t=$("bkt");let code="";
+  try{code="DW1:"+btoa(unescape(encodeURIComponent(JSON.stringify({s:s,l:life}))))}catch(e){}
+  t.value=code;t.focus();t.select();
+  let ok=false;try{navigator.clipboard.writeText(code).then(()=>toast("Backup copied. Paste it somewhere safe.")).catch(()=>toast("Select all and copy the code."));ok=true}catch(e){}
+  if(!ok)toast("Select all and copy the code.");
+});
+$("bkr").addEventListener("click",()=>{
+  if(spinning)return;
+  let o;
+  try{const c=$("bkt").value.trim();if(c.indexOf("DW1:")!==0)throw 0;o=JSON.parse(decodeURIComponent(escape(atob(c.slice(4)))));if(!o||!o.s||!o.l||typeof o.s.r!=="number"||typeof o.l.n!=="number")throw 0}catch(e){toast("That code doesn't look right. Paste the whole thing.");return}
+  ask("This replaces the stats on this device with the backup.",()=>{s=Object.assign(D(),o.s);if(!s.log)s.log=(s.hist||[]).join("");life=o.l;pick=null;save();idle();render();chart();toast("Backup restored.")},"Yes, restore");
+});
 guard("rline","Reset the luck line? Your all-time stats stay.",()=>{s.cr=s.log.length;save();chart();toast("Luck line reset. All-time stats kept.")});
 $("snd").addEventListener("click",()=>{s.mute=!s.mute;save();render()});
 guard("reset","Reset daily play? Your all-time stats and badges stay.",()=>{if(spinning)return;s=Object.assign(D(),{mute:s.mute,badges:s.badges,best:s.best,bestColor:s.bestColor,bestCs:s.bestCs,bestG:s.bestG,gbest:s.gbest,mode:s.mode,cw:s.cw||500});pick=null;[...$("calls").children].forEach(x=>x.classList.remove("sel"));save();idle();render();toast("Daily play reset. All-time stats kept.")});
