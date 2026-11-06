@@ -120,6 +120,37 @@ h1{background:linear-gradient(100deg,#fff6c2 0%,#f2b632 30%,#fff 45%,#f2b632 60%
 #hot.epic{font-size:clamp(34px,11vw,52px);background:linear-gradient(90deg,#ff3b3b,#ffb020,#fff35c,#34e07a,#3bb8ff,#c13bff,#ff3b3b);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;text-shadow:none;filter:drop-shadow(0 0 10px rgba(255,200,80,.9));animation:hotpop .6s cubic-bezier(.2,1.6,.4,1),rbt 1.2s linear infinite}
 @keyframes rbt{to{background-position:200% 0}}
 @media (prefers-reduced-motion:reduce){#fx.fx10,#hot.epic{animation:none}}
+#fx.flash.gf::before{background:#8dffb8}
+#gfx{position:fixed;inset:0;z-index:6;pointer-events:none;overflow:hidden;opacity:0;transition:opacity .4s}
+#gfx.on{opacity:1}
+#gfx.on{pointer-events:auto}
+.gban .godds{font-size:17px;background:rgba(0,40,20,.6);border:2px solid #7dffb0;border-radius:999px;padding:4px 14px}
+.gban .gtap{font-size:12px;opacity:.8}
+.gstrobe{position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;animation:strobe 2.1s steps(1) infinite}
+@keyframes strobe{0%{background:rgba(255,40,200,.5)}17%{background:rgba(40,220,255,.45)}33%{background:rgba(255,230,40,.5)}50%{background:rgba(40,255,120,.5)}67%{background:rgba(255,255,255,.6)}83%{background:rgba(160,60,255,.5)}}
+#gfx.g4 .gban b{font-size:clamp(46px,16vw,84px);background:linear-gradient(90deg,#ff3b3b,#ffb020,#fff35c,#34e07a,#3bb8ff,#c13bff,#ff3b3b);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;animation:gthump .6s ease-in-out infinite,rbt 1.2s linear infinite}
+#gfx.g4 .godds{font-size:19px}
+@media (prefers-reduced-motion:reduce){.gstrobe{display:none}}
+#gfx.g2{background:radial-gradient(circle at 50% 45%,rgba(10,90,50,.55),rgba(0,35,18,.88) 80%);box-shadow:inset 0 0 90px 10px rgba(30,220,120,.55)}
+#gfx.g3 .gban b{background:linear-gradient(180deg,#fffbe0,#ffe27a 45%,#e8a317);-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 3px 0 #5a3a00) drop-shadow(0 0 20px rgba(255,200,60,.95))}
+#gfx.g3{background:radial-gradient(circle at 50% 45%,rgba(120,100,10,.5),rgba(0,40,20,.9) 80%);box-shadow:inset 0 0 150px 30px rgba(255,200,60,.75);animation:gpulse 1s ease-in-out infinite}
+@keyframes gpulse{50%{filter:brightness(1.6)}}
+#gfx.g4{pointer-events:auto;background:radial-gradient(circle at 50% 45%,rgba(25,200,110,.6),rgba(0,50,25,.9) 75%);animation:gparty 1.4s ease-in-out infinite alternate}
+@keyframes gparty{from{filter:hue-rotate(-25deg) brightness(.95)}to{filter:hue-rotate(70deg) brightness(1.3)}}
+#gfx.g4::before{content:"";position:absolute;inset:-50%;background:repeating-conic-gradient(from var(--a) at 50% 50%,rgba(210,255,215,.3) 0 8deg,rgba(0,0,0,0) 8deg 24deg);animation:ray 7s linear infinite}
+#gfx.g4::after{content:"";position:absolute;left:50%;top:45%;width:60vmin;aspect-ratio:1;border-radius:50%;border:6px solid rgba(255,244,170,.85);transform:translate(-50%,-50%);animation:beat .6s ease-out infinite}
+@keyframes beat{from{transform:translate(-50%,-50%) scale(.2);opacity:1}to{transform:translate(-50%,-50%) scale(2.4);opacity:0}}
+.gban{position:absolute;left:0;right:0;top:34%;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;padding:0 16px;z-index:1;animation:hotpop .7s cubic-bezier(.2,1.6,.4,1)}
+.gban b{font:400 clamp(34px,12vw,60px)/1.05 Bungee,Impact,sans-serif;background:linear-gradient(180deg,#fff,#b9ffd3 40%,#1fdc78);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 3px 0 #05391f) drop-shadow(0 0 18px rgba(80,255,160,.9))}
+.gban span{font:700 15px "DM Sans",system-ui,sans-serif;color:#eafff2;text-shadow:0 1px 6px rgba(0,0,0,.7)}
+#gfx.g2 .gban b{font-size:clamp(26px,9vw,40px)}
+#gfx.g4 .gban b{animation:gthump .6s ease-in-out infinite}
+@keyframes gthump{50%{transform:scale(1.12)}}
+.gcl{position:absolute;top:-40px;line-height:1;animation:gfall linear forwards;filter:drop-shadow(0 2px 3px rgba(0,0,0,.5))}
+.gc{position:absolute;top:-24px;border-radius:2px;animation:gfall linear forwards}
+@keyframes gfall{to{transform:translate(var(--dx),115vh) rotate(720deg)}}
+#demo{align-items:center}
+@media (prefers-reduced-motion:reduce){#gfx.g3,#gfx.g4,.gban,.gban b{animation:none}#gfx.g4::before,#gfx.g4::after{animation:none;display:none}}
 .rdy{padding:6px 18px;border-radius:10px;border:3px solid #fff3dd}
 #out span.rdy{background:linear-gradient(180deg,#8a5600,#5a2d00);color:#fff3dd;font-size:22px}
 #hot:empty{display:none}
@@ -146,7 +177,10 @@ h1{background:linear-gradient(100deg,#fff6c2 0%,#f2b632 30%,#fff 45%,#f2b632 60%
 main{box-sizing:border-box}
 html{overflow-x:hidden}
 body{overflow-x:clip;max-width:100%}
-html,body{touch-action:pan-y;overscroll-behavior-x:none}
+html,body{touch-action:pan-y;overscroll-behavior:none}
+.wsel{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;width:100%}
+.wsel button{font:700 13px "DM Sans",system-ui,sans-serif;padding:6px 12px;border-radius:999px;border:2px solid #e8a317;background:rgba(0,0,0,.3);color:var(--ink);cursor:pointer}
+.wsel button.on{background:linear-gradient(180deg,#fff0a8,#e8a317 60%,#b87800);color:#3b0a2a;box-shadow:0 2px 0 #5a2d00}
 #toast{max-width:calc(100vw - 24px);white-space:normal;text-align:center}
 .tabs{display:flex;width:100%;background:rgba(0,0,0,.35);border:2px solid #e8a317;border-radius:999px;padding:3px;box-sizing:border-box}
 .tabs button{flex:1;border:0;border-radius:999px;padding:9px 6px;font:700 15px "DM Sans",system-ui,sans-serif;background:none;color:var(--muted);cursor:pointer}
@@ -176,8 +210,9 @@ details summary{cursor:pointer;color:#f2b632;font-weight:700}
   </div></div>
   <div class="info" id="ghud" hidden>
     <div class="row2"><div class="card"><div class="n" id="gl">10</div><div class="p">Guesses left</div></div><div class="card"><div class="n" id="gs">0</div><div class="p">Score</div></div><div class="card"><div class="n" id="gb">0</div><div class="p">Best round</div></div></div>
-    <p class="small">Pick a color, then spin. A guess pays 1000 ÷ that color’s percentage, so long shots pay big.</p>
-    <details><summary>Payout chart</summary><p class="small">50% pays 20. 25% pays 40. 10% pays 100. 5% pays 200. 1% pays 1,000. 0.1% pays 10,000.</p></details>
+    <p class="big" id="gcombo"></p>
+    <p class="small">Pick a color, then spin. Every right guess pays 100, plus a bonus for lower odds. Right guesses in a row build a combo multiplier, up to x3. A miss resets it.</p>
+    <details><summary>Payout chart</summary><p class="small">50% pays 157. 25% pays 180. 10% pays 226. 5% pays 279. 1% pays 500. Anything under 0.6% pays 600. Combo: x1, x1.25, x1.5 and so on up to x3. End of round: +20 per right guess, +500 for a perfect 10 of 10.</p></details>
     <div id="gover" hidden><p class="big" id="gmsg"></p><button id="gnew" type="button">New round</button></div>
   </div>
   <div class="calls" id="calls"><button type="button" data-c="r">Red</button><button type="button" data-c="b">Black</button><button type="button" data-c="g">Green</button></div>
@@ -213,11 +248,15 @@ details summary{cursor:pointer;color:#f2b632;font-weight:700}
   <div class="info"><p class="big">All time: <span id="ltn">0</span> spins since day one</p><div class="row2"><div class="card r"><div class="n" id="lrn">0</div><div class="p" id="lrp"></div></div><div class="card b"><div class="n" id="lbn">0</div><div class="p" id="lbp"></div></div><div class="card g"><div class="n" id="lgn">0</div><div class="p" id="lgp"></div></div></div><p class="small">These never reset. The reset buttons only clear current play.</p></div>
   <canvas class="lc" id="lc" aria-label="Red share of red and black spins over time"></canvas>
   <p class="small" id="lcs" style="margin:-6px 0 0"></p>
-  <div class="bd" id="bd"></div>
+  <div class="wsel" id="wsel"><button type="button" data-w="100">100</button><button type="button" data-w="250">250</button><button type="button" data-w="500">500</button><button type="button" data-w="1000">1,000</button><button type="button" data-w="2500">2,500</button><button type="button" data-w="5000">5,000</button></div>
+  <p class="small" id="lcc" style="margin:-4px 0 0"></p>
+  <div class="links"><button id="rline" type="button">Reset line</button></div>
+  <details class="info" id="bdbox" style="display:block"><summary id="bdh">Badges</summary><div class="bd" id="bd" style="margin-top:10px"></div></details>
   <div class="links"><button id="share" type="button">Share my best streak</button><button id="snd" type="button"></button><button id="rmem" type="button">Reset odds memory</button><button id="reset" type="button">Reset daily play</button></div>
 </main>
 <div id="ov" hidden><img id="shimg" alt="Your best streak card"><p>Press and hold the image to save or share it.</p><div><button id="shs" type="button">Share</button> <button id="cls" type="button">Close</button></div></div>
 <div id="fx" aria-hidden="true"></div>
+<div id="gfx" aria-hidden="true"></div>
 <div id="toast" hidden></div>
 <script>
 const N=44,TAU=Math.PI*2,seg=TAU/N,C={r:"#d7263d",b:"#17121c",g:"#0f9d58"},P={r:20/44,b:20/44,g:4/44};
@@ -225,11 +264,15 @@ const col=i=>i%11===0?"g":i%11%2?"r":"b",nm=c=>({r:"red",b:"black",g:"green"})[c
 const $=id=>document.getElementById(id),cv=$("wheel"),ctx=cv.getContext("2d"),stage=$("stage"),btn=$("spin");
 const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 const fmt=new Intl.NumberFormat("en",{notation:"compact",maximumFractionDigits:1});
-const D=()=>({r:0,b:0,g:0,color:null,streak:0,best:0,bestColor:null,hist:[],log:"",pts:0,calls:0,wins:0,cs:0,bestCs:0,badges:[],bestG:0,game:{left:10,score:0,hits:0,newBest:false,color:null,streak:0},gbest:0,mode:"free",mute:false});
-const BD=[["first","First spin",s=>life.n>=1],["s5","5 in a row",s=>s.best>=5],["s7","7 in a row",s=>s.best>=7],["s10","10 in a row",s=>s.best>=10],["gg2","2 green in a row",s=>s.bestG>=2],["gg3","3 green in a row",s=>s.bestG>=3],["c5","5 calls in a row",s=>s.bestCs>=5],["n100","100 spins",s=>life.n>=100],["p500","500 points",s=>s.pts>=500]];
+const D=()=>({r:0,b:0,g:0,color:null,streak:0,best:0,bestColor:null,hist:[],log:"",cw:500,cr:0,pts:0,calls:0,wins:0,cs:0,bestCs:0,badges:[],bestG:0,game:{left:10,score:0,hits:0,newBest:false,color:null,streak:0,combo:0,bonus:0},gbest:0,mode:"free",mute:false});
+const BD=[["first","First spin",s=>life.n>=1],["s3","3 in a row: Heating Up",s=>s.best>=3],["s5","5 in a row: Hot Streak",s=>s.best>=5],["s7","7 in a row: On Fire",s=>s.best>=7],["s10","10 in a row: Legendary",s=>s.best>=10],["s13","13 in a row: Bold",s=>s.best>=13],["s15","15 in a row: Mythic",s=>s.best>=15],["s17","17 in a row: Call a Physicist",s=>s.best>=17],["s20","20 in a row: Immortal",s=>s.best>=20],["gg2","2 green in a row",s=>s.bestG>=2],["gg3","3 green in a row: Lucky Clover",s=>s.bestG>=3],["gg4","4 green in a row: Four Leaf",s=>s.bestG>=4],["c5","5 calls in a row",s=>s.bestCs>=5],["n100","100 spins",s=>life.n>=100],["n500","500 spins",s=>life.n>=500],["n1k","1,000 spins",s=>life.n>=1000],["n5k","5,000 spins",s=>life.n>=5000],["n10k","10,000 spins",s=>life.n>=10000],["p500","500 points",s=>s.pts>=500]];
 let s=D(),size=0,rot=0,spinning=false,pick=null,ac,tt,card,life={n:0,r:0,b:0,g:0},ready=false,dbc=null,busy=false,dirty=false,lastP="",lastL="",pend=null,cur={r:45.5,b:45.5,g:9.1};
 try{const v=JSON.parse(localStorage.getItem("dw-v2")||localStorage.getItem("dw-roulette"));if(v&&typeof v.r==="number"){s=Object.assign(D(),v);if(!s.log)s.log=(s.hist||[]).join("")}}catch(e){}
-const save=()=>{try{localStorage.setItem("dw-v2",JSON.stringify(s));localStorage.setItem("dw-life",JSON.stringify(life))}catch(e){}flush()};
+let demo=null;
+function demoSlot(){if(demo.k==="b"){const a=[2,4,6,8,10,13,15,17,19,21,24,26,28,30,32,35,37,39,41,43];return a[rnd(a.length)]}return [0,11,22,33][rnd(4)]}
+function runDemo(k,n){if(spinning||!ready||demo)return;demo={s:JSON.stringify(s),l:JSON.stringify(life),left:n||4,k:k||"g"};s.color=null;s.streak=0;s.mode="free";pick=null;render();spin(1,0)}
+function endDemo(){if(!demo)return;s=Object.assign(D(),JSON.parse(demo.s));life=JSON.parse(demo.l);demo=null;save();idle();render()}
+const save=()=>{if(demo)return;try{localStorage.setItem("dw-v2",JSON.stringify(s));localStorage.setItem("dw-life",JSON.stringify(life))}catch(e){}flush()};
 async function flush(){
   if(!dbc||!ready)return;
   if(busy){dirty=true;return}
@@ -280,7 +323,9 @@ function resize(){size=cv.clientWidth;const d=window.devicePixelRatio||1;cv.widt
 function chart(){
   const c=$("lc"),x=c.getContext("2d"),w=c.clientWidth,h=c.clientHeight,d=window.devicePixelRatio||1;
   c.width=w*d;c.height=h*d;x.setTransform(d,0,0,d,0,0);x.clearRect(0,0,w,h);
-  const L=s.log.replace(/g/g,"");
+  const cw=s.cw||500,W=s.log.slice(s.cr||0).slice(-cw),L=W.replace(/g/g,"");
+  $("lcc").textContent=W.length.toLocaleString()+"/"+cw.toLocaleString()+" spins. Showing your last "+cw.toLocaleString()+" spins.";
+  [...$("wsel").children].forEach(b=>b.classList.toggle("on",+b.dataset.w===cw));
   if(L.length<2){$("lcs").textContent="Spin a few times to start the luck chart.";return}
   x.strokeStyle=getComputedStyle(document.documentElement).getPropertyValue("--muted");x.setLineDash([4,4]);x.beginPath();x.moveTo(0,h/2);x.lineTo(w,h/2);x.stroke();x.setLineDash([]);
   x.strokeStyle="#e8a317";x.lineWidth=2.5;x.beginPath();let r=0;
@@ -298,6 +343,42 @@ function pop(c){
     e.style.background=[c,"#e8a317","#fff3dd"][i%3];stage.appendChild(e);setTimeout(()=>e.remove(),1000)}
 }
 
+let gEnd=null,gTimer=null;
+function gStop(){clearInterval(gTimer);clearTimeout(gEnd);const g=$("gfx");g.onclick=null;g.className="";setTimeout(()=>{if(!g.className)g.replaceChildren()},500)}
+function gConf(k){
+  if(reduce)return;const g=$("gfx");
+  for(let i=0;i<k;i++){const e=document.createElement("i"),z=6+Math.random()*9;e.className="gc";
+    e.style.cssText="left:"+Math.random()*100+"%;width:"+z+"px;height:"+z*1.6+"px;background:"+(g.classList.contains("g4")?["#ff3b3b","#ffb020","#fff35c","#3bb8ff","#c13bff","#34e07a"]:g.classList.contains("g3")?["#ffe27a","#e8a317","#fff3dd","#1fdc78"]:["#1fdc78","#0f9d58","#e8a317","#fff3dd","#7dffb0"])[i%4]+";--dx:"+((Math.random()*2-1)*80)+"px;animation-duration:"+(2+Math.random()*2.2)+"s";
+    g.appendChild(e);setTimeout(()=>e.remove(),4600)}
+}
+function gClover(k){
+  if(reduce)return;const g=$("gfx");
+  for(let i=0;i<k;i++){const e=document.createElement("i");e.className="gcl";e.textContent="\u{1F340}";
+    e.style.cssText="left:"+Math.random()*96+"%;font-size:"+(18+Math.random()*22)+"px;--dx:"+((Math.random()*2-1)*90)+"px;animation-duration:"+(3+Math.random()*2.5)+"s";
+    g.appendChild(e);setTimeout(()=>e.remove(),5800)}
+}
+function greenParty(n){
+  const g=$("gfx"),T={2:["DOUBLE GREEN","2 green in a row",2800],3:["LUCKY CLOVER","3 green in a row",40000],4:["FOUR LEAF","4 green in a row",90000]}[n];
+  clearInterval(gTimer);clearTimeout(gEnd);g.replaceChildren();
+  const b=document.createElement("div"),h=document.createElement("b"),p=document.createElement("span"),o=document.createElement("span"),q=document.createElement("span"),pr=Math.pow(P.g,n)*100;
+  o.className="godds";o.textContent="Odds: "+(pr>=.1?pr.toFixed(2):pr.toFixed(3))+"%, about 1 in "+Math.round(1/Math.pow(P.g,n)).toLocaleString();
+  q.className="gtap";q.textContent="Tap to close";
+  b.className="gban";h.textContent=T[0];p.textContent=T[1];b.append(h,p,o,q);g.appendChild(b);
+  g.className="on g"+n;g.onclick=gStop;
+  if(n>=3&&!reduce){stage.classList.remove("shake");void stage.offsetWidth;stage.classList.add("shake");const F=$("fx");F.classList.add("flash","gf");setTimeout(()=>F.classList.remove("flash","gf"),800)}
+  if(n===4&&!reduce){const sb=document.createElement("div");sb.className="gstrobe";g.insertBefore(sb,b)}
+  if(n===2){gConf(40);gTimer=setInterval(()=>gConf(1),220);[659,784,988].forEach((f,k)=>note(f,k*.1,.2,"triangle"));buzz([60,40,60])}
+  if(n===3){for(let k=0;k<4;k++)setTimeout(()=>gConf(45),k*450);gTimer=setInterval(()=>gClover(1),260);[523,659,784,1047,1319,1568].forEach((f,k)=>note(f,k*.11,.4,"triangle"));buzz([80,40,80,40,80,40,250])}
+  if(n===4){
+    gTimer=setInterval(()=>{gConf(3);if(Math.random()<.35)gClover(1)},70);
+    [523,659,784,1047,1319,1568].forEach((f,k)=>note(f,k*.11,.4,"triangle"));
+    const mel=[523,659,784,659,880,784,659,523];
+    for(let k=0;k<34;k++){note(60,2+k*.3,.2,"sine");note(120,2+k*.3,.12,"sine");if(k%2)note(mel[(k>>1)%8]*2,2+k*.3,.14,"square")}
+    buzz(Array.from({length:17},()=>[60,540]).flat());
+  }
+  gEnd=setTimeout(()=>{clearInterval(gTimer)},T[2]);
+}
+
 function render(){
   const t=total();
   ["r","b","g"].forEach(c=>{
@@ -309,18 +390,33 @@ function render(){
   $("streak").textContent=t&&s.color?"Streak: "+s.streak+" "+nm(s.color)+" in a row"+(s.streak>1?", a 1 in "+fmt.format(Math.pow(1/P[s.color],s.streak))+" run":""):(t?"Fresh start":"No spins yet");
   $("pts").textContent="Points: "+s.pts+". Calls won: "+s.wins+" of "+s.calls+(s.cs?", call streak "+s.cs:"")+".";
   $("best").textContent=t?"Longest streak: "+s.best+" "+nm(s.bestColor)+". Best call streak: "+s.bestCs+".":"";
-  fut(t);gui();$("nreal").textContent="The wheel’s real odds never change: red "+pc(P.r)+", black "+pc(P.b)+", green "+pc(P.g)+" every spin.";
+  fut(t);gui();$("nreal").textContent="The wheel’s real odds never change: red 45.45%, black 45.45%, green 9.10% every spin.";
   {const T=life.n;$("ltn").textContent=T.toLocaleString();["r","b","g"].forEach(c=>{$("l"+c+"n").textContent=life[c].toLocaleString();$("l"+c+"p").textContent=nm(c)[0].toUpperCase()+nm(c).slice(1)+" "+(T?(life[c]/T*100).toFixed(1):"0.0")+"%"})}
   {const L0=t?s.streak:0;$("fx").className=L0>=10?"fx10":L0>=7?"fx7":L0>=5?"fx5":L0>=3?"fx3":""}
   $("hlbl").textContent=t?"History odds, built from all "+t+" spins in memory":"History odds. Spin to start building memory.";
   const lg=s.log.slice(-50);$("hist").replaceChildren(...[...lg].map((c,k)=>{const i=document.createElement("i");i.style.background=C[c];i.textContent=t-lg.length+k+1;return i}));
   const bar=$("bar").children;["r","b","g"].forEach((c,k)=>bar[k].style.flexBasis=(t?s[c]/t*100:0)+"%");
+  $("bdh").textContent="Badges: "+s.badges.length+" of "+BD.length+" earned";
   $("bd").replaceChildren(...BD.map(([id,l])=>{const e=document.createElement("span");e.textContent=l;if(s.badges.includes(id))e.className="on";return e}));
   $("snd").textContent="Sound: "+(s.mute?"off":"on");$("share").disabled=!t;
   chart();
 }
 
 function pc(p){p*=100;return p>=1?p.toFixed(1)+"%":p>=.01?p.toFixed(2)+"%":"<0.01%"}
+const SLK=["Picks up the slack","Was waiting. Rude of you.","Feeling a bit neglected","Not bitter. Much.","Sat this one out, loudly","Has notes on that streak","The wheel doesn't care. It's flattered.","Taking a long lunch","Fine. It'll just wait.","Ready for its close-up","Cleaning up your mess","Heard its name. Still unbothered."];
+let gtI=-1,gtN=0,gtT=-1,gtP=-1;
+function glin(p,t){
+  const ti=p<5?0:p<8?1:p<16?2:p<25?3:4;
+  const L=[
+    ["Barely on the radar","Rounding error with ambition","Still waiting for its moment","Basically a rumor","Whispered about, never seen","Needs a bigger spotlight","Running on hope alone","The wheel forgot it exists"],
+    ["Playing hard to get","Lurking in the back","Practicing patience. Badly.","Fashionably late","Hiding behind the red","Rehearsing its entrance","Not here for small talk","Dodging eye contact"],
+    ["Minding its business","Low-key, as ever","Quiet. Suspiciously quiet.","Sipping tea in the corner","Plotting, probably","Staying humble","Unbothered, hydrated","Pretending not to care","Business as usual"],
+    ["Now it's getting interesting","Climbing. Someone noticed.","Not a long shot anymore","Starting to get ideas","Warming up the victory lap","Awkwardly gaining confidence","Getting a little cocky","Eyeing the exits. And the jackpot."],
+    ["Underdog era: over","Main character now","Long shot? Never heard of her","Officially a contender. Dress code applies.","Look who got promoted","Sending out invitations","Walking in like it owns the place","Plot twist: it's favored"]
+  ][ti];
+  if(t!==gtT){gtT=t;const rising=gtP>=0&&p>gtP+.3&&ti>0,H=["Hopes up. Again.","Maybe this time?","Stretching before the big moment","Picked out an outfit just in case","Practicing the acceptance speech","Telling everyone it might be tonight","This could be it. Probably not. But could.","Getting its hopes up, as usual","Already clearing space on the mantel","Whispering: pick me, pick me"],P2=rising&&Math.random()<.55?H:L;let m;do{m=P2[Math.floor(Math.random()*P2.length)]}while(m===gtN&&P2.length>1);gtN=m;gtI=ti;gtP=p}
+  return t?gtN:"Starting odds";
+}
 function fut(t){
   const gm=s.mode==="game",sc=gm?s.game.color:s.color,sn=gm?s.game.streak:s.streak,act=!!sc&&sn>0,n=act?sn:0,cs=["r","b","g"],w=cs.map(c=>act&&sc===c?Math.pow(P[c],n+1):P[c]),sum=w.reduce((a,b)=>a+b,0),raw=w.map(x=>x/sum*100),r1=raw.map(x=>Math.round(x*10)/10),diff=Math.round((100-r1.reduce((a,b)=>a+b,0))*10)/10;
   if(diff){const q=r1.map((v,i)=>[v,i]).filter(x=>x[0]>=5).sort((a,b)=>a[0]-b[0])[0],m=q?q[1]:r1.indexOf(Math.max(...r1));r1[m]=Math.round((r1[m]+diff)*10)/10}
@@ -329,11 +425,11 @@ function fut(t){
   ["r","b","g"].forEach(c=>{
     const ext=act&&sc===c,k=cs.indexOf(c);
     $("n"+c+"p").textContent=(raw[k]>0&&raw[k]<.1?"<0.1":r1[k].toFixed(1))+"%";
-    $("n"+c+"s").textContent=ext?"Run to "+(n+1)+" in a row is 1 in "+fmt.format(1/Math.pow(P[c],n+1))+"\nThe spin itself: "+pc(P[c]):(n>0?"Picks up the slack":"Starting odds");
+    $("n"+c+"s").textContent=ext?"Run of "+(n+1)+" in a row is 1 in "+fmt.format(1/Math.pow(P[c],n+1)):(c==="g"?glin(r1[k],t):n>0?SLK[(t*7+k*3+n)%SLK.length]:"Starting odds");
     $("n"+c+"p").parentNode.classList.toggle("hotbox",ext&&n>=3);
   });
 }
-const gpts=c=>Math.min(10000,Math.round(1000/Math.max(cur[c],.1)));
+const gbase=c=>Math.min(600,100+Math.round(40*Math.sqrt(100/Math.max(cur[c],.1)))),gmult=()=>Math.min(3,1+.25*(s.game.combo||0)),gpts=c=>Math.round(gbase(c)*gmult());
 function gui(){
   const g=s.game,gm=s.mode==="game";
   $("tfree").classList.toggle("on",!gm);$("tgame").classList.toggle("on",gm);
@@ -341,16 +437,17 @@ function gui(){
   [...$("calls").children].forEach(b=>{const c=b.dataset.c;b.textContent=nm(c)[0].toUpperCase()+nm(c).slice(1)+(gm?" +"+gpts(c).toLocaleString():"")});
   if(gm){$("gl").textContent=g.left;$("gs").textContent=g.score.toLocaleString();$("gb").textContent=(s.gbest||0).toLocaleString();
     $("gover").hidden=g.left>0;
-    if(g.left<=0)$("gmsg").textContent="Round over! "+g.score.toLocaleString()+" points, "+g.hits+" of 10 right."+(g.newBest?" New best!":"")}
+    $("gcombo").textContent=(g.combo||0)>0?"Combo x"+gmult()+" ("+g.combo+" right in a row)":"";
+    if(g.left<=0)$("gmsg").textContent="Round over! "+g.score.toLocaleString()+" points, "+g.hits+" of 10 right"+(g.bonus?", including a +"+g.bonus.toLocaleString()+" round bonus":"")+"."+(g.hits===10?" PERFECT!":"")+(g.newBest?" New best!":"")}
 }
 function chip(t){const o=$("out");o.replaceChildren();const sp=document.createElement("span");sp.className="rdy";sp.textContent=t;o.appendChild(sp)}
 function idle(){chip("READY");$("cm").textContent="Call a color for points, or just spin.";$("hot").textContent="";stage.classList.remove("hot","fire")}
 function spinMsg(){chip("SPINNING");$("cm").textContent="Good luck...";$("hot").textContent=""}
-function lock(on){btn.disabled=on;[...$("calls").children].forEach(b=>b.disabled=on)}
+function lock(on){cv.style.touchAction=spinning?"pan-y":"none";btn.disabled=on;[...$("calls").children].forEach(b=>b.disabled=on)}
 function spin(dir,power){
   if(spinning||!ready)return;if(s.mode==="game"){if(s.game.left<=0){toast("Round over. Start a new round.");return}if(!pick){toast("Pick a color to guess first");return}pend={c:pick,pct:cur[pick],pts:gpts(pick)}}else pend=null;dir=dir||1;power=power||0;spinning=true;lock(true);
   spinMsg();
-  const start=rot,i=rnd(N),tgt=-Math.PI/2-(i+.2+Math.random()*.6)*seg,k=4+Math.floor(Math.random()*2)+Math.round(power*2);
+  const start=rot,i=demo&&demo.left>0?demoSlot():rnd(N),tgt=-Math.PI/2-(i+.2+Math.random()*.6)*seg,k=4+Math.floor(Math.random()*2)+Math.round(power*2);
   const base=dir>0?((((tgt-start)%TAU)+TAU)%TAU):((((start-tgt)%TAU)+TAU)%TAU);
   const delta=dir*(base+k*TAU),dur=reduce?1200:3800+power*1400;let last=idx(rot),t0=null;
   function f(now){
@@ -364,6 +461,7 @@ function spin(dir,power){
   requestAnimationFrame(f);
 }
 
+const STK=[];STK[3]="HEATING UP";STK[4]="GETTING SPICY";STK[5]="HOT STREAK";STK[6]="SMOKING";STK[7]="ON FIRE";STK[8]="SCORCHING";STK[9]="UNREAL";STK[10]="LEGENDARY";STK[11]="ABSURD";STK[12]="UNHOLY";STK[13]="THIRTEEN? BOLD";STK[14]="REALITY IS GLITCHING";STK[15]="MYTHIC";STK[16]="IS THE WHEEL STUCK?";STK[17]="CALL A PHYSICIST";STK[18]="TOTALLY NOT RIGGED";STK[19]="ALMOST A MYTH";STK[20]="IMMORTAL";STK[21]="BEYOND LEGEND";
 function end(i){
   spinning=false;lock(false);
   const c=col(i);s[c]++;life.n++;life[c]++;
@@ -371,10 +469,10 @@ function end(i){
   if(s.streak>s.best){s.best=s.streak;s.bestColor=c}
   if(c==="g"&&s.streak>(s.bestG||0))s.bestG=s.streak;
   s.hist.push(c);if(s.hist.length>30)s.hist.shift();
-  s.log=(s.log+c).slice(-500);
+  {const was=s.log.length;s.log=(s.log+c).slice(-5000);if(was>=5000)s.cr=Math.max(0,(s.cr||0)-1)}
   let cm="";
-  if(pend){const g=s.game;g.left--;if(g.color===c)g.streak=(g.streak||0)+1;else{g.color=c;g.streak=1}if(pend.c===c){g.hits++;g.score+=pend.pts;cm="Called "+nm(c)+" at "+pend.pct+"%: +"+pend.pts.toLocaleString()+" points!"}else{cm="Missed. "+nm(pend.c)+" was at "+pend.pct+"%."}
-    if(g.left<=0){if(g.score>(s.gbest||0)){s.gbest=g.score;g.newBest=true}setTimeout(()=>{pop("#e8a317");toast("Round over: "+g.score.toLocaleString()+" points"+(g.newBest?", new best!":""))},900)}
+  if(pend){const g=s.game;g.left--;if(g.color===c)g.streak=(g.streak||0)+1;else{g.color=c;g.streak=1}if(pend.c===c){const m=gmult(),gain=Math.round(pend.pts);g.combo=(g.combo||0)+1;g.hits++;g.score+=gain;cm="Called "+nm(c)+" at "+pend.pct+"%: +"+gain.toLocaleString()+" points"+(m>1?" (combo x"+m+")":"")+"!"}else{g.combo=0;cm="Missed. "+nm(pend.c)+" was at "+pend.pct+"%."}
+    if(g.left<=0){g.bonus=g.hits*20+(g.hits===10?500:0);g.score+=g.bonus;if(g.score>(s.gbest||0)){s.gbest=g.score;g.newBest=true}setTimeout(()=>{pop("#e8a317");toast("Round over: "+g.score.toLocaleString()+" points"+(g.newBest?", new best!":""))},900)}
     pend=null}else if(pick){s.calls++;if(pick===c){s.wins++;s.cs++;s.bestCs=Math.max(s.bestCs,s.cs);const g=(c==="g"?50:10)+5*(s.cs-1);s.pts+=g;cm="Called it! +"+g+" points"}else{s.cs=0;cm="Missed it. You called "+nm(pick)+"."}}
   pick=null;[...$("calls").children].forEach(x=>x.classList.remove("sel"));
   const fresh=BD.filter(([id,l,f])=>!s.badges.includes(id)&&f(s));
@@ -383,7 +481,7 @@ function end(i){
   const L=s.streak,w=nm(c).toUpperCase(),tier=c==="g"?3:L>=10?3:L>=7?2:L>=5?1:0;
   const o=$("out");o.replaceChildren();const sp=document.createElement("span");sp.textContent=w;sp.style.background=C[c];o.appendChild(sp);
   $("cm").textContent=cm||"Call a color before the next spin for points.";
-  $("hot").textContent=c==="g"?"JACKPOT! GREEN!":L>=15?"MYTHIC! "+L+" "+w+"!":L>=10?"LEGENDARY! "+L+" "+w+"!":L>=7?"ON FIRE! "+L+" "+w+"!":L>=5?"HOT STREAK! "+L+" "+w+"!":L>=3?"Heating up: "+L+" "+w:"";
+  $("hot").textContent=c==="g"?"JACKPOT! GREEN!":L>=3?STK[Math.min(L,21)]+"! "+L+" "+w+"!":"";
   stage.classList.toggle("hot",L>=5&&L<7);stage.classList.toggle("fire",L>=7);
   {const h=$("hot");h.classList.remove("pop","epic");void h.offsetWidth;h.classList.add("pop");if(L>=10&&c!=="g")h.classList.add("epic")}
   if(L>=3&&!reduce){void $("fx").offsetWidth;$("fx").classList.add("sweep")}
@@ -398,7 +496,9 @@ function end(i){
   pop(c==="b"?"#fff3dd":C[c]);
   for(let k=0;k<tier;k++)setTimeout(()=>pop(["#e8a317","#ff5a1f","#fff3dd"][k]),250*(k+1));
   if(tier&&!reduce){stage.classList.remove("shake");void stage.offsetWidth;stage.classList.add("shake")}
+  if(c==="g"&&L>=2)greenParty(Math.min(L,4));
   if(fresh.length)setTimeout(()=>toast("Badge unlocked: "+fresh.map(b=>b[1]).join(", ")),600);
+  if(demo){demo.left--;if(demo.left>0)setTimeout(()=>{gStop();spin(1,0)},demo.k==="b"?2600:4600);else setTimeout(endDemo,12500)}
 }
 
 btn.addEventListener("click",()=>spin(1,0));
@@ -411,13 +511,15 @@ cv.addEventListener("pointermove",e=>{if(!dg)return;const a=ang(e),n=performance
 cv.addEventListener("pointerup",()=>{if(!dg)return;const v=performance.now()-dg.t>120?0:dg.v;dg=null;if(Math.abs(v)>.003)spin(v>0?1:-1,Math.min(1,Math.abs(v)/.012))});
 cv.addEventListener("pointercancel",()=>{dg=null});
 
-$("rmem").addEventListener("click",()=>{if(spinning)return;Object.assign(s,{r:0,b:0,g:0,color:null,streak:0,hist:[],log:""});save();idle();render();toast("Odds memory cleared. All-time stats kept.")});
+$("rmem").addEventListener("click",()=>{if(spinning)return;Object.assign(s,{r:0,b:0,g:0,color:null,streak:0,hist:[],log:"",cr:0});save();idle();render();toast("Odds memory cleared. All-time stats kept.")});
 const setMode=m=>{if(spinning)return;s.mode=m;pick=null;[...$("calls").children].forEach(x=>x.classList.remove("sel"));save();render()};
 $("tfree").addEventListener("click",()=>setMode("free"));
 $("tgame").addEventListener("click",()=>setMode("game"));
-$("gnew").addEventListener("click",()=>{if(spinning)return;s.game={left:10,score:0,hits:0,newBest:false,color:null,streak:0};save();idle();render()});
+$("gnew").addEventListener("click",()=>{if(spinning)return;s.game={left:10,score:0,hits:0,newBest:false,color:null,streak:0,combo:0,bonus:0};save();idle();render()});
+$("wsel").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;s.cw=+b.dataset.w;save();chart()});
+$("rline").addEventListener("click",()=>{s.cr=s.log.length;save();chart();toast("Luck line reset. All-time stats kept.")});
 $("snd").addEventListener("click",()=>{s.mute=!s.mute;save();render()});
-$("reset").addEventListener("click",()=>{if(spinning)return;s=Object.assign(D(),{mute:s.mute,badges:s.badges,best:s.best,bestColor:s.bestColor,bestCs:s.bestCs,bestG:s.bestG,gbest:s.gbest,mode:s.mode});pick=null;[...$("calls").children].forEach(x=>x.classList.remove("sel"));save();idle();render();toast("Daily play reset. All-time stats kept.")});
+$("reset").addEventListener("click",()=>{if(spinning)return;s=Object.assign(D(),{mute:s.mute,badges:s.badges,best:s.best,bestColor:s.bestColor,bestCs:s.bestCs,bestG:s.bestG,gbest:s.gbest,mode:s.mode,cw:s.cw||500});pick=null;[...$("calls").children].forEach(x=>x.classList.remove("sel"));save();idle();render();toast("Daily play reset. All-time stats kept.")});
 $("share").addEventListener("click",()=>{
   const c=document.createElement("canvas");c.width=c.height=600;const x=c.getContext("2d"),bc=s.bestColor||"r";
   x.fillStyle="#2b0a22";x.fillRect(0,0,600,600);x.strokeStyle="#e8a317";x.lineWidth=10;x.strokeRect(20,20,560,560);
