@@ -3,15 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Stephen’s Wheel</title>
+<title>Four Leaf</title>
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#2b0a22">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Stephen’s Wheel">
+<meta name="apple-mobile-web-app-title" content="Four Leaf">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" href="icon-192.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@500;700&display=swap">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@500;700&display=swap">
+
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@500;700&display=swap">
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@500;700&display=swap">
@@ -263,7 +267,7 @@ details summary{cursor:pointer;color:#f2b632;font-weight:700}
   <div class="links"><button id="rline" type="button">Reset line</button></div>
   <details class="info" id="bdbox" style="display:block"><summary id="bdh">Badges</summary><div class="bd" id="bd" style="margin-top:10px"></div></details>
   <div class="links"><button id="share" type="button">Share my best streak</button><button id="snd" type="button"></button><button id="rmem" type="button">Reset odds memory</button><button id="reset" type="button">Reset daily play</button></div>
-  <details class="info" id="bkbox"><summary>Backup &amp; restore</summary><p class="small">Moving to a new icon? Tap Copy backup, paste it somewhere safe (Notes works), then paste it back here after re-adding the app.</p><textarea id="bkt" rows="3" placeholder="Backup code shows here. To restore, paste a code here." style="width:100%;box-sizing:border-box;margin-top:8px;padding:8px;border-radius:10px;border:1px solid rgba(232,163,23,.5);background:rgba(0,0,0,.35);color:inherit;font:12px monospace"></textarea><div class="links"><button id="bkc" type="button">Copy backup</button><button id="bkr" type="button">Restore from code</button></div></details>
+  <details class="info" id="bkbox"><summary>Backup &amp; restore</summary><p class="small">Moving to a new icon? Tap Copy backup, paste it somewhere safe (Notes works), then paste it back here after re-adding the app. <span style="opacity:.6">Version 11</span></p><textarea id="bkt" rows="3" placeholder="Backup code shows here. To restore, paste a code here." style="width:100%;box-sizing:border-box;margin-top:8px;padding:8px;border-radius:10px;border:1px solid rgba(232,163,23,.5);background:rgba(0,0,0,.35);color:inherit;font:16px monospace"></textarea><div class="links"><button id="bkc" type="button">Copy backup</button><button id="bkr" type="button">Restore from code</button></div></details>
 </main>
 <div id="ov" hidden><img id="shimg" alt="Your best streak card"><p>Press and hold the image to save or share it.</p><div><button id="shs" type="button">Share</button> <button id="cls" type="button">Close</button></div></div>
 <div id="fx" aria-hidden="true"></div>
@@ -549,7 +553,14 @@ $("bkc").addEventListener("click",()=>{
 $("bkr").addEventListener("click",()=>{
   if(spinning)return;
   let o;
-  try{const m=$("bkt").value.replace(/\s+/g,"").match(/DW1:([A-Za-z0-9+\/=_-]+)/);if(!m)throw 0;const c=m[1].replace(/-/g,"+").replace(/_/g,"/");o=JSON.parse(decodeURIComponent(escape(atob(c))));if(!o||!o.s||!o.l||typeof o.s.r!=="number"||typeof o.l.n!=="number")throw 0}catch(e){toast("That code doesn't look right. Paste the whole thing.");return}
+  const rawAll=$("bkt").value,raw=rawAll.replace(/[\u200B-\u200D\u2060\uFEFF\s]+/g,"");
+  const at=raw.search(/dw1/i);
+  if(at<0){toast(raw.length?"No backup code found. Box starts with: "+JSON.stringify(raw.slice(0,12)):"Paste your backup code first.");return}
+  let body=raw.slice(at+3).replace(/^[^A-Za-z0-9+\/]+/,"").replace(/[^A-Za-z0-9+\/=_-]/g,"").replace(/-/g,"+").replace(/_/g,"/");
+  for(let n=0;n<400&&body.length>20&&!o;n++){
+    try{const t=body.slice(0,body.length-n),u=JSON.parse(decodeURIComponent(escape(atob(t))));if(u&&u.s&&u.l&&typeof u.s.r==="number"&&typeof u.l.n==="number")o=u}catch(e){}
+  }
+  if(!o){toast("Code got cut off or changed. Got "+body.length+" characters. Copy it again.");return}
   ask("This replaces the stats on this device with the backup.",()=>{s=Object.assign(D(),o.s);if(!s.log)s.log=(s.hist||[]).join("");life=o.l;pick=null;save();idle();render();chart();toast("Backup restored.")},"Yes, restore");
 });
 guard("rline","Reset the luck line? Your all-time stats stay.",()=>{s.cr=s.log.length;save();chart();toast("Luck line reset. All-time stats kept.")});

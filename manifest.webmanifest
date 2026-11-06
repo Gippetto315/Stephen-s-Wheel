@@ -1,6 +1,6 @@
 {
-  "name": "Stephen’s Wheel",
-  "short_name": "Stephen’s Wheel",
+  "name": "Four Leaf",
+  "short_name": "Four Leaf",
   "description": "A red, black and green wheel with streak odds, a 10-guess game and all-time stats.",
   "start_url": "./",
   "scope": "./",
