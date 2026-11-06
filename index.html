@@ -15,6 +15,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@500;700&display=swap">
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@500;700&display=swap">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@500;700&display=swap">
 <style>
 :root{--bg:#fbeef0;--ink:#3b0a2a;--panel:#fff;--muted:#7a4a63;--gold:#e8a317;--red:#d7263d;--blk:#17121c;--grn:#0f9d58;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#2b0a22;--ink:#fff3dd;--panel:#431236;--muted:#d9a9c4;color-scheme:dark}}
@@ -547,7 +549,7 @@ $("bkc").addEventListener("click",()=>{
 $("bkr").addEventListener("click",()=>{
   if(spinning)return;
   let o;
-  try{const c=$("bkt").value.trim();if(c.indexOf("DW1:")!==0)throw 0;o=JSON.parse(decodeURIComponent(escape(atob(c.slice(4)))));if(!o||!o.s||!o.l||typeof o.s.r!=="number"||typeof o.l.n!=="number")throw 0}catch(e){toast("That code doesn't look right. Paste the whole thing.");return}
+  try{const m=$("bkt").value.replace(/\s+/g,"").match(/DW1:([A-Za-z0-9+\/=_-]+)/);if(!m)throw 0;const c=m[1].replace(/-/g,"+").replace(/_/g,"/");o=JSON.parse(decodeURIComponent(escape(atob(c))));if(!o||!o.s||!o.l||typeof o.s.r!=="number"||typeof o.l.n!=="number")throw 0}catch(e){toast("That code doesn't look right. Paste the whole thing.");return}
   ask("This replaces the stats on this device with the backup.",()=>{s=Object.assign(D(),o.s);if(!s.log)s.log=(s.hist||[]).join("");life=o.l;pick=null;save();idle();render();chart();toast("Backup restored.")},"Yes, restore");
 });
 guard("rline","Reset the luck line? Your all-time stats stay.",()=>{s.cr=s.log.length;save();chart();toast("Luck line reset. All-time stats kept.")});
