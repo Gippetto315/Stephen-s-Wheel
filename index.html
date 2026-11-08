@@ -44,6 +44,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@500;700&display=swap">
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@500;700&display=swap">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@500;700&display=swap">
 <style>
 :root{--bg:#fbeef0;--ink:#3b0a2a;--panel:#fff;--muted:#7a4a63;--gold:#e8a317;--red:#d7263d;--blk:#17121c;--grn:#0f9d58;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#2b0a22;--ink:#fff3dd;--panel:#431236;--muted:#d9a9c4;color-scheme:dark}}
@@ -241,6 +243,12 @@ html.ls.lL body{transform:translateY(var(--lh)) rotate(-90deg)}
 html.ls.lR body{transform:translateX(var(--lw)) rotate(90deg)}
 html:root{color-scheme:dark!important}
 @font-face{font-family:"FLA";font-weight:700;font-style:italic;src:url(data:font/ttf;base64,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) format("truetype")}
+#htabs,#hflt{display:flex;gap:6px;justify-content:center;margin:2px 0 10px}
+#htabs button,#hflt button{font:600 13px Inter,system-ui,sans-serif;color:#f2b632;background:rgba(0,0,0,.25);border:1px solid #8a6420;border-radius:999px;padding:7px 14px}
+#htabs button.on,#hflt button.on{background:linear-gradient(#ffe08a,#e0a21d);color:#3a1a00;border-color:#f2b632}
+#hgrid{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;width:100%}
+#hgrid i{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font:700 8px/1 Inter,system-ui,sans-serif;font-style:normal;color:#fff;border-radius:50%;box-shadow:inset 0 2px 2px rgba(255,255,255,.4),0 2px 3px rgba(0,0,0,.5)}
+#hmore{display:block;margin:12px auto 0;font:600 13px Inter,system-ui,sans-serif;color:#f2b632;background:rgba(0,0,0,.25);border:1px solid #8a6420;border-radius:999px;padding:8px 16px}
 </style></head>
 <body>
 <main>
@@ -289,11 +297,14 @@ html:root{color-scheme:dark!important}
     <div class="card b"><div class="n" id="bn">0</div><div class="p" id="bp"></div></div>
     <div class="card g"><div class="n" id="gn">0</div><div class="p" id="gp"></div></div>
   </div>
-  <div class="info"><div class="bar" id="bar"><i></i><i></i><i></i></div><p class="small">Every spin in order, newest last</p><div id="hist" aria-label="Spin history"></div></div>
+  <div class="info" id="hbox"><div class="bar" id="bar"><i></i><i></i><i></i></div>
+<div id="htabs"><button class="on" data-t="50">Last 50</button><button data-t="all">From the start</button></div>
+<div id="h50"><p class="small">Every spin in order, newest last</p><div id="hist" aria-label="Spin history"></div></div>
+<div id="hall" hidden><p class="small" id="hsum"></p><div id="hflt"><button class="on" data-f="">All</button><button data-f="r">Red</button><button data-f="b">Black</button><button data-f="g">Green</button></div><div id="hgrid"></div><button id="hmore">Show 200 more</button></div></div>
   <div class="info">
     <p class="big" id="streak"></p>
     <p id="pts"></p>
-    <p class="small" id="best"></p>
+    <p class="small" id="best"></p><p id="bestg" style="font-weight:700;color:#f2b632;margin:4px 0 0"></p>
     <p class="small">History odds show what the past looks like. The wheel itself starts fresh every spin.</p>
   </div>
   <div class="info"><p class="big">All time: <span id="ltn">0</span> spins since day one</p><div class="row2"><div class="card r"><div class="n" id="lrn">0</div><div class="p" id="lrp"></div></div><div class="card b"><div class="n" id="lbn">0</div><div class="p" id="lbp"></div></div><div class="card g"><div class="n" id="lgn">0</div><div class="p" id="lgp"></div></div></div><p class="small">These never reset. The reset buttons only clear current play.</p></div>
@@ -304,7 +315,7 @@ html:root{color-scheme:dark!important}
   <div class="links"><button id="rline" type="button">Reset line</button></div>
   <details class="info" id="bdbox" style="display:block"><summary id="bdh">Badges</summary><div class="bd" id="bd" style="margin-top:10px"></div></details>
   <div class="links"><button id="share" type="button">Share my best streak</button><button id="snd" type="button"></button><button id="rmem" type="button">Reset odds memory</button><button id="reset" type="button">Reset daily play</button></div>
-  <details class="info" id="bkbox"><summary>Backup &amp; restore</summary><p class="small">Moving to a new icon? Tap Copy backup, paste it somewhere safe (Notes works), then paste it back here after re-adding the app. <span style="opacity:.6">Version 21</span></p><textarea id="bkt" rows="3" placeholder="Backup code shows here. To restore, paste a code here." style="width:100%;box-sizing:border-box;margin-top:8px;padding:8px;border-radius:10px;border:1px solid rgba(232,163,23,.5);background:rgba(0,0,0,.35);color:inherit;font:16px monospace"></textarea><div class="links"><button id="bkc" type="button">Copy backup</button><button id="bkr" type="button">Restore from code</button></div></details>
+  <details class="info" id="bkbox"><summary>Backup &amp; restore</summary><p class="small">Moving to a new icon? Tap Copy backup, paste it somewhere safe (Notes works), then paste it back here after re-adding the app. <span style="opacity:.6">Version 23</span></p><textarea id="bkt" rows="3" placeholder="Backup code shows here. To restore, paste a code here." style="width:100%;box-sizing:border-box;margin-top:8px;padding:8px;border-radius:10px;border:1px solid rgba(232,163,23,.5);background:rgba(0,0,0,.35);color:inherit;font:16px monospace"></textarea><div class="links"><button id="bkc" type="button">Copy backup</button><button id="bkr" type="button">Restore from code</button></div></details>
 </main>
 <div id="ov" hidden><img id="shimg" alt="Your best streak card"><p>Press and hold the image to save or share it.</p><div><button id="shs" type="button">Share</button> <button id="cls" type="button">Close</button></div></div>
 <div id="fx" aria-hidden="true"></div>
@@ -316,10 +327,11 @@ const col=i=>i%11===0?"g":i%11%2?"r":"b",nm=c=>({r:"red",b:"black",g:"green"})[c
 const $=id=>document.getElementById(id),cv=$("wheel"),ctx=cv.getContext("2d"),stage=$("stage"),btn=$("spin");
 const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 const fmt=new Intl.NumberFormat("en",{notation:"compact",maximumFractionDigits:1});
-const D=()=>({r:0,b:0,g:0,color:null,streak:0,best:0,bestColor:null,hist:[],log:"",cw:500,cr:0,pts:0,calls:0,wins:0,cs:0,bestCs:0,badges:[],bestG:0,game:{left:10,score:0,hits:0,newBest:false,color:null,streak:0,combo:0,bonus:0},gbest:0,mode:"free",mute:false});
+const D=()=>({r:0,b:0,g:0,color:null,streak:0,best:0,bestColor:null,hist:[],log:"",all:"",cw:500,cr:0,pts:0,calls:0,wins:0,cs:0,bestCs:0,badges:[],bestG:0,game:{left:10,score:0,hits:0,newBest:false,color:null,streak:0,combo:0,bonus:0},gbest:0,mode:"free",mute:false});
 const BD=[["first","First spin",s=>life.n>=1],["s3","3 in a row: Heating Up",s=>s.best>=3],["s5","5 in a row: Hot Streak",s=>s.best>=5],["s7","7 in a row: On Fire",s=>s.best>=7],["s10","10 in a row: Legendary",s=>s.best>=10],["s13","13 in a row: Bold",s=>s.best>=13],["s15","15 in a row: Mythic",s=>s.best>=15],["s17","17 in a row: Call a Physicist",s=>s.best>=17],["s20","20 in a row: Immortal",s=>s.best>=20],["gg2","2 green in a row",s=>s.bestG>=2],["gg3","Lucky Clover",s=>s.bestG>=3],["gg4","Four Leaf",s=>s.bestG>=4],["c5","5 calls in a row",s=>s.bestCs>=5],["n100","100 spins",s=>life.n>=100],["n500","500 spins",s=>life.n>=500],["n1k","1,000 spins",s=>life.n>=1000],["n5k","5,000 spins",s=>life.n>=5000],["n10k","10,000 spins",s=>life.n>=10000],["p500","500 points",s=>s.pts>=500],["perf","Perfect round",s=>s.perfect]];
 let s=D(),size=0,rot=0,spinning=false,pick=null,ac,tt,card,life={n:0,r:0,b:0,g:0},ready=false,dbc=null,busy=false,dirty=false,lastP="",lastL="",pend=null,cur={r:45.5,b:45.5,g:9.1};
 try{const v=JSON.parse(localStorage.getItem("dw-v2")||localStorage.getItem("dw-roulette"));if(v&&typeof v.r==="number"){s=Object.assign(D(),v);if(!s.log)s.log=(s.hist||[]).join("")}}catch(e){}
+if(s.gbest===1999&&!s.gbestH)s.gbestH=7;
 let demo=null;
 function demoSlot(){if(demo.k==="b"){const a=[2,4,6,8,10,13,15,17,19,21,24,26,28,30,32,35,37,39,41,43];return a[rnd(a.length)]}return [0,11,22,33][rnd(4)]}
 function runDemo(k,n){if(spinning||!ready||demo)return;demo={s:JSON.stringify(s),l:JSON.stringify(life),left:n||4,k:k||"g"};s.color=null;s.streak=0;s.mode="free";pick=null;render();spin(1,0)}
@@ -442,7 +454,7 @@ function render(){
   });
   $("streak").textContent=t&&s.color?"Streak: "+s.streak+" "+nm(s.color)+" in a row"+(s.streak>1?", a 1 in "+fmt.format(Math.pow(1/P[s.color],s.streak))+" run":""):(t?"Fresh start":"No spins yet");
   $("pts").textContent="Points: "+s.pts+". Calls won: "+s.wins+" of "+s.calls+(s.cs?", call streak "+s.cs:"")+".";
-  $("best").textContent=t?"Longest streak: "+s.best+" "+nm(s.bestColor)+". Best call streak: "+s.bestCs+".":"";
+  $("best").textContent=t?"Longest streak: "+s.best+" "+nm(s.bestColor)+". Best call streak: "+s.bestCs+".":"";$("bestg").textContent=s.gbest?"Best 10-guess round: "+s.gbest.toLocaleString()+" points"+(s.gbestH?" ("+s.gbestH+" of 10 right)":""):"";
   fut(t);gui();$("nreal").textContent="The wheel’s real odds never change: red 45.45%, black 45.45%, green 9.10% every spin.";
   {const T=life.n;$("ltn").textContent=T.toLocaleString();["r","b","g"].forEach(c=>{$("l"+c+"n").textContent=life[c].toLocaleString();$("l"+c+"p").textContent=nm(c)[0].toUpperCase()+nm(c).slice(1)+" "+(T?(life[c]/T*100).toFixed(1):"0.0")+"%"})}
   {const L0=t?s.streak:0;$("fx").className=L0>=10?"fx10":L0>=7?"fx7":L0>=5?"fx5":L0>=3?"fx3":""}
@@ -523,9 +535,10 @@ function end(i){
   if(c==="g"&&s.streak>(s.bestG||0))s.bestG=s.streak;
   s.hist.push(c);if(s.hist.length>30)s.hist.shift();
   {const was=s.log.length;s.log=(s.log+c).slice(-5000);if(was>=5000)s.cr=Math.max(0,(s.cr||0)-1)}
+  if(typeof s.all!=="string"||!s.all)s.all=s.log;else s.all+=c;
   let cm="";
   if(pend){const g=s.game;g.left--;if(g.color===c)g.streak=(g.streak||0)+1;else{g.color=c;g.streak=1}if(pend.c===c){const m=gmult(),gain=Math.round(pend.pts);g.combo=(g.combo||0)+1;g.hits++;g.score+=gain;cm="Called "+nm(c)+" at "+pend.pct+"%: +"+gain.toLocaleString()+" points"+(m>1?" (combo x"+m+")":"")+"!"}else{g.combo=0;cm="Missed. "+nm(pend.c)+" was at "+pend.pct+"%."}
-    if(g.left<=0){g.bonus=g.hits*20+(g.hits===10?500:0);if(g.hits===10)s.perfect=true;g.score+=g.bonus;if(g.score>(s.gbest||0)){s.gbest=g.score;g.newBest=true}setTimeout(()=>{pop("#e8a317");toast("Round over: "+g.score.toLocaleString()+" points"+(g.newBest?", new best!":""))},900)}
+    if(g.left<=0){g.bonus=g.hits*20+(g.hits===10?500:0);if(g.hits===10)s.perfect=true;g.score+=g.bonus;if(g.score>(s.gbest||0)){s.gbest=g.score;s.gbestH=g.hits;g.newBest=true}setTimeout(()=>{pop("#e8a317");toast("Round over: "+g.score.toLocaleString()+" points"+(g.newBest?", new best!":""))},900)}
     pend=null}else if(pick){s.calls++;if(pick===c){s.wins++;s.cs++;s.bestCs=Math.max(s.bestCs,s.cs);const g=(c==="g"?50:10)+5*(s.cs-1);s.pts+=g;cm="Called it! +"+g+" points"}else{s.cs=0;cm="Missed it. You called "+nm(pick)+"."}}
   pick=null;[...$("calls").children].forEach(x=>x.classList.remove("sel"));
   const fresh=BD.filter(([id,l,f])=>!s.badges.includes(id)&&f(s));
@@ -602,7 +615,7 @@ $("bkr").addEventListener("click",()=>{
 });
 guard("rline","Reset the luck line? Your all-time stats stay.",()=>{s.cr=s.log.length;save();chart();toast("Luck line reset. All-time stats kept.")});
 $("snd").addEventListener("click",()=>{s.mute=!s.mute;save();render()});
-guard("reset","Reset daily play? Your all-time stats and badges stay.",()=>{if(spinning)return;s=Object.assign(D(),{mute:s.mute,badges:s.badges,best:s.best,bestColor:s.bestColor,bestCs:s.bestCs,bestG:s.bestG,gbest:s.gbest,mode:s.mode,cw:s.cw||500});pick=null;[...$("calls").children].forEach(x=>x.classList.remove("sel"));save();idle();render();toast("Daily play reset. All-time stats kept.")});
+guard("reset","Reset daily play? Your all-time stats and badges stay.",()=>{if(spinning)return;s=Object.assign(D(),{mute:s.mute,badges:s.badges,best:s.best,bestColor:s.bestColor,bestCs:s.bestCs,bestG:s.bestG,gbest:s.gbest,gbestH:s.gbestH,mode:s.mode,cw:s.cw||500});pick=null;[...$("calls").children].forEach(x=>x.classList.remove("sel"));save();idle();render();toast("Daily play reset. All-time stats kept.")});
 $("share").addEventListener("click",()=>{
   const c=document.createElement("canvas");c.width=c.height=600;const x=c.getContext("2d"),bc=s.bestColor||"r";
   x.fillStyle="#2b0a22";x.fillRect(0,0,600,600);x.strokeStyle="#e8a317";x.lineWidth=10;x.strokeRect(20,20,560,560);
@@ -617,6 +630,18 @@ $("cls").addEventListener("click",()=>$("ov").hidden=true);
 if(!navigator.share)$("shs").hidden=true;
 $("shs").addEventListener("click",()=>card.toBlob(b=>{try{const f=new File([b],"streak.png",{type:"image/png"});if(navigator.canShare&&navigator.canShare({files:[f]}))navigator.share({files:[f]}).catch(()=>{})}catch(e){}}));
 addEventListener("resize",resize);
+(function(){
+let flt="",shown=200;const Cm={r:"#c8323f",b:"#1b1b22",g:"#2ea65f"};
+function draw(){const A=(typeof s.all==="string"&&s.all)?s.all:s.log||"",off=Math.max(0,(life.n||0)-A.length),idx=[];
+ for(let i=A.length-1;i>=0;i--)if(!flt||A[i]===flt)idx.push(i);
+ hgrid.replaceChildren(...idx.slice(0,shown).map(i=>{const e=document.createElement("i");e.style.background=Cm[A[i]];e.textContent=off+i+1;return e}));
+ let r=0,b=0,g=0;for(const x of A){if(x==="r")r++;else if(x==="b")b++;else g++}
+ hsum.textContent=A.length.toLocaleString()+" spins saved: "+r.toLocaleString()+" red, "+b.toLocaleString()+" black, "+g.toLocaleString()+" green. Newest first."+(off>0?" Spins before #"+(off+1).toLocaleString()+" are in your all-time totals only.":"");
+ hmore.hidden=idx.length<=shown;hmore.textContent="Show 200 more ("+(idx.length-shown).toLocaleString()+" left)"}
+htabs.addEventListener("click",e=>{const t=e.target.dataset.t;if(!t)return;[...htabs.children].forEach(x=>x.classList.toggle("on",x===e.target));h50.hidden=t!=="50";hall.hidden=t!=="all";if(t==="all"){shown=200;draw()}});
+hflt.addEventListener("click",e=>{const f=e.target.dataset.f;if(f===undefined)return;flt=f;shown=200;[...hflt.children].forEach(x=>x.classList.toggle("on",x===e.target));draw()});
+hmore.addEventListener("click",()=>{shown+=200;draw()});
+})();
 resize();render();lock(true);
 setTimeout(()=>{if(!ready){ready=true;lock(false)}},8000);
 (async()=>{
