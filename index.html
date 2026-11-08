@@ -248,7 +248,7 @@ html:root{color-scheme:dark!important}
 #htabs button.on,#hflt button.on{background:linear-gradient(#ffe08a,#e0a21d);color:#3a1a00;border-color:#f2b632}
 #hgrid{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;width:100%}
 #hgrid i{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font:700 8px/1 Inter,system-ui,sans-serif;font-style:normal;color:#fff;border-radius:50%;box-shadow:inset 0 2px 2px rgba(255,255,255,.4),0 2px 3px rgba(0,0,0,.5)}
-#hmore{display:block;margin:12px auto 0;font:600 13px Inter,system-ui,sans-serif;color:#f2b632;background:rgba(0,0,0,.25);border:1px solid #8a6420;border-radius:999px;padding:8px 16px}
+#hgrid i.dim{opacity:.09;box-shadow:none;color:transparent}
 </style></head>
 <body>
 <main>
@@ -315,7 +315,7 @@ html:root{color-scheme:dark!important}
   <div class="links"><button id="rline" type="button">Reset line</button></div>
   <details class="info" id="bdbox" style="display:block"><summary id="bdh">Badges</summary><div class="bd" id="bd" style="margin-top:10px"></div></details>
   <div class="links"><button id="share" type="button">Share my best streak</button><button id="snd" type="button"></button><button id="rmem" type="button">Reset odds memory</button><button id="reset" type="button">Reset daily play</button></div>
-  <details class="info" id="bkbox"><summary>Backup &amp; restore</summary><p class="small">Moving to a new icon? Tap Copy backup, paste it somewhere safe (Notes works), then paste it back here after re-adding the app. <span style="opacity:.6">Version 23</span></p><textarea id="bkt" rows="3" placeholder="Backup code shows here. To restore, paste a code here." style="width:100%;box-sizing:border-box;margin-top:8px;padding:8px;border-radius:10px;border:1px solid rgba(232,163,23,.5);background:rgba(0,0,0,.35);color:inherit;font:16px monospace"></textarea><div class="links"><button id="bkc" type="button">Copy backup</button><button id="bkr" type="button">Restore from code</button></div></details>
+  <details class="info" id="bkbox"><summary>Backup &amp; restore</summary><p class="small">Moving to a new icon? Tap Copy backup, paste it somewhere safe (Notes works), then paste it back here after re-adding the app. <span style="opacity:.6">Version 24</span></p><textarea id="bkt" rows="3" placeholder="Backup code shows here. To restore, paste a code here." style="width:100%;box-sizing:border-box;margin-top:8px;padding:8px;border-radius:10px;border:1px solid rgba(232,163,23,.5);background:rgba(0,0,0,.35);color:inherit;font:16px monospace"></textarea><div class="links"><button id="bkc" type="button">Copy backup</button><button id="bkr" type="button">Restore from code</button></div></details>
 </main>
 <div id="ov" hidden><img id="shimg" alt="Your best streak card"><p>Press and hold the image to save or share it.</p><div><button id="shs" type="button">Share</button> <button id="cls" type="button">Close</button></div></div>
 <div id="fx" aria-hidden="true"></div>
@@ -632,14 +632,13 @@ $("shs").addEventListener("click",()=>card.toBlob(b=>{try{const f=new File([b],"
 addEventListener("resize",resize);
 (function(){
 let flt="";const Cm={r:"#c8323f",b:"#1b1b22",g:"#2ea65f"};
-function draw(){const A=(typeof s.all==="string"&&s.all)?s.all:s.log||"",off=Math.max(0,(life.n||0)-A.length),idx=[];
- for(let i=A.length-1;i>=0;i--)if(!flt||A[i]===flt)idx.push(i);
- hgrid.replaceChildren(...idx.map(i=>{const e=document.createElement("i");e.style.background=Cm[A[i]];e.textContent=off+i+1;return e}));
+function draw(){const A=(typeof s.all==="string"&&s.all)?s.all:s.log||"",off=Math.max(0,(life.n||0)-A.length),fr=document.createDocumentFragment();
+ for(let i=A.length-1;i>=0;i--){const e=document.createElement("i");e.style.background=Cm[A[i]];e.dataset.c=A[i];e.textContent=off+i+1;if(flt&&A[i]!==flt)e.className="dim";fr.appendChild(e)}
+ hgrid.replaceChildren(fr);
  let r=0,b=0,g=0;for(const x of A){if(x==="r")r++;else if(x==="b")b++;else g++}
- hsum.textContent=A.length.toLocaleString()+" spins saved: "+r.toLocaleString()+" red, "+b.toLocaleString()+" black, "+g.toLocaleString()+" green. Newest first."+(off>0?" Spins before #"+(off+1).toLocaleString()+" are in your all-time totals only.":"");
-}
+ hsum.textContent=A.length.toLocaleString()+" spins saved: "+r.toLocaleString()+" red, "+b.toLocaleString()+" black, "+g.toLocaleString()+" green. Newest first."+(off>0?" Spins before #"+(off+1).toLocaleString()+" are in your all-time totals only.":"")}
 htabs.addEventListener("click",e=>{const t=e.target.dataset.t;if(!t)return;[...htabs.children].forEach(x=>x.classList.toggle("on",x===e.target));h50.hidden=t!=="50";hall.hidden=t!=="all";if(t==="all")draw()});
-hflt.addEventListener("click",e=>{const f=e.target.dataset.f;if(f===undefined)return;flt=f;[...hflt.children].forEach(x=>x.classList.toggle("on",x===e.target));draw()});
+hflt.addEventListener("click",e=>{const f=e.target.dataset.f;if(f===undefined)return;flt=f;[...hflt.children].forEach(x=>x.classList.toggle("on",x===e.target));for(const d of hgrid.children)d.classList.toggle("dim",!!f&&d.dataset.c!==f)});
 })();
 resize();render();lock(true);
 setTimeout(()=>{if(!ready){ready=true;lock(false)}},8000);
