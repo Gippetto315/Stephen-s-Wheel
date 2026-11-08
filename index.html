@@ -300,7 +300,7 @@ html:root{color-scheme:dark!important}
   <div class="info" id="hbox"><div class="bar" id="bar"><i></i><i></i><i></i></div>
 <div id="htabs"><button class="on" data-t="50">Last 50</button><button data-t="all">From the start</button></div>
 <div id="h50"><p class="small">Every spin in order, newest last</p><div id="hist" aria-label="Spin history"></div></div>
-<div id="hall" hidden><p class="small" id="hsum"></p><div id="hflt"><button class="on" data-f="">All</button><button data-f="r">Red</button><button data-f="b">Black</button><button data-f="g">Green</button></div><div id="hgrid"></div><button id="hmore">Show 200 more</button></div></div>
+<div id="hall" hidden><p class="small" id="hsum"></p><div id="hflt"><button class="on" data-f="">All</button><button data-f="r">Red</button><button data-f="b">Black</button><button data-f="g">Green</button></div><div id="hgrid"></div></div></div>
   <div class="info">
     <p class="big" id="streak"></p>
     <p id="pts"></p>
@@ -631,16 +631,15 @@ if(!navigator.share)$("shs").hidden=true;
 $("shs").addEventListener("click",()=>card.toBlob(b=>{try{const f=new File([b],"streak.png",{type:"image/png"});if(navigator.canShare&&navigator.canShare({files:[f]}))navigator.share({files:[f]}).catch(()=>{})}catch(e){}}));
 addEventListener("resize",resize);
 (function(){
-let flt="",shown=200;const Cm={r:"#c8323f",b:"#1b1b22",g:"#2ea65f"};
+let flt="";const Cm={r:"#c8323f",b:"#1b1b22",g:"#2ea65f"};
 function draw(){const A=(typeof s.all==="string"&&s.all)?s.all:s.log||"",off=Math.max(0,(life.n||0)-A.length),idx=[];
  for(let i=A.length-1;i>=0;i--)if(!flt||A[i]===flt)idx.push(i);
- hgrid.replaceChildren(...idx.slice(0,shown).map(i=>{const e=document.createElement("i");e.style.background=Cm[A[i]];e.textContent=off+i+1;return e}));
+ hgrid.replaceChildren(...idx.map(i=>{const e=document.createElement("i");e.style.background=Cm[A[i]];e.textContent=off+i+1;return e}));
  let r=0,b=0,g=0;for(const x of A){if(x==="r")r++;else if(x==="b")b++;else g++}
  hsum.textContent=A.length.toLocaleString()+" spins saved: "+r.toLocaleString()+" red, "+b.toLocaleString()+" black, "+g.toLocaleString()+" green. Newest first."+(off>0?" Spins before #"+(off+1).toLocaleString()+" are in your all-time totals only.":"");
- hmore.hidden=idx.length<=shown;hmore.textContent="Show 200 more ("+(idx.length-shown).toLocaleString()+" left)"}
-htabs.addEventListener("click",e=>{const t=e.target.dataset.t;if(!t)return;[...htabs.children].forEach(x=>x.classList.toggle("on",x===e.target));h50.hidden=t!=="50";hall.hidden=t!=="all";if(t==="all"){shown=200;draw()}});
-hflt.addEventListener("click",e=>{const f=e.target.dataset.f;if(f===undefined)return;flt=f;shown=200;[...hflt.children].forEach(x=>x.classList.toggle("on",x===e.target));draw()});
-hmore.addEventListener("click",()=>{shown+=200;draw()});
+}
+htabs.addEventListener("click",e=>{const t=e.target.dataset.t;if(!t)return;[...htabs.children].forEach(x=>x.classList.toggle("on",x===e.target));h50.hidden=t!=="50";hall.hidden=t!=="all";if(t==="all")draw()});
+hflt.addEventListener("click",e=>{const f=e.target.dataset.f;if(f===undefined)return;flt=f;[...hflt.children].forEach(x=>x.classList.toggle("on",x===e.target));draw()});
 })();
 resize();render();lock(true);
 setTimeout(()=>{if(!ready){ready=true;lock(false)}},8000);
