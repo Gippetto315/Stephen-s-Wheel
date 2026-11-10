@@ -12,40 +12,6 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" href="icon-192.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@500;700&display=swap">
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@500;700&display=swap">
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@500;700&display=swap">
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@500;700&display=swap">
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@500;700&display=swap">
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@500;700&display=swap">
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@500;700&display=swap">
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@500;700&display=swap">
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@500;700&display=swap">
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@500;700&display=swap">
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@500;700&display=swap">
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@500;700&display=swap">
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@500;700&display=swap">
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@500;700&display=swap">
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@500;700&display=swap">
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@500;700&display=swap">
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@500;700&display=swap">
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@500;700&display=swap">
 <style>
 :root{--bg:#fbeef0;--ink:#3b0a2a;--panel:#fff;--muted:#7a4a63;--gold:#e8a317;--red:#d7263d;--blk:#17121c;--grn:#0f9d58;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#2b0a22;--ink:#fff3dd;--panel:#431236;--muted:#d9a9c4;color-scheme:dark}}
@@ -225,6 +191,17 @@ html,body{touch-action:pan-y;overscroll-behavior:none}
 .tabs button{flex:1;border:0;border-radius:999px;padding:9px 6px;font:700 15px "DM Sans",system-ui,sans-serif;background:none;color:var(--muted);cursor:pointer}
 .tabs button.on{background:linear-gradient(180deg,#fff0a8,#e8a317 60%,#b87800);color:#3b0a2a;box-shadow:0 2px 0 #5a2d00}
 .info[hidden],#gover[hidden]{display:none}
+.cfp h2{margin:0 0 10px;font:400 24px/1.1 Bungee,Impact,sans-serif;color:#f2b632}
+.cfp ul{margin:0 0 14px;padding:0 0 0 20px;text-align:left;line-height:1.45}
+.cfp li{margin:0 0 7px}
+#dhow{background:none;border:0;color:#f2b632;text-decoration:underline;font:500 14px "DM Sans",system-ui,sans-serif;cursor:pointer;padding:0}
+#gbar{width:100%;text-align:center;font-weight:700;font-size:14px;color:var(--muted);margin:-2px 0}
+#gtot{display:inline-block;font:400 22px/1 Bungee,Impact,sans-serif;color:#f2b632;text-shadow:0 2px 0 rgba(0,0,0,.45);vertical-align:-2px;margin-left:4px}
+#gtot.bump{animation:gbump .45s cubic-bezier(.2,1.6,.4,1)}
+@keyframes gbump{0%{transform:scale(1)}40%{transform:scale(1.28);color:#fff6c2}100%{transform:scale(1)}}
+#dsh{font:700 16px "DM Sans",system-ui,sans-serif;border:0;border-radius:999px;padding:10px 22px;background:linear-gradient(180deg,#fff0a8,#e8a317 60%,#b87800);color:#3b0a2a;cursor:pointer;box-shadow:0 3px 0 #5a2d00}
+#dgrid{margin:0;white-space:pre-line;font-weight:700;line-height:1.5;-webkit-user-select:text;user-select:text;background:rgba(0,0,0,.3);border:1px solid rgba(232,163,23,.5);border-radius:12px;padding:10px 14px}
+#tdaily.new::after{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#34e07a;margin-left:6px;vertical-align:middle;box-shadow:0 0 6px #34e07a}
 #gover{display:flex;flex-direction:column;gap:8px;align-items:center}
 #gnew{font:700 16px "DM Sans",system-ui,sans-serif;border:0;border-radius:999px;padding:10px 22px;background:linear-gradient(180deg,#fff0a8,#e8a317 60%,#b87800);color:#3b0a2a;cursor:pointer;box-shadow:0 3px 0 #5a2d00}
 details summary{cursor:pointer;color:#f2b632;font-weight:700}
@@ -260,7 +237,8 @@ html:root{color-scheme:dark!important}
 <filter id="tgl" x="-20%" y="-30%" width="140%" height="170%"><feDropShadow dx="0" dy="6" stdDeviation="4" flood-color="#000" flood-opacity=".55"/></filter>
 </defs><g filter="url(#tgl)"><text x="182.80" y="106.40" font-family="FLA,Lora,serif" font-weight="700" font-style="italic" font-size="96" text-anchor="middle" fill="#5a2d00" stroke="#5a2d00" stroke-width="6" stroke-linejoin="round">Four Leaf</text><text x="182.25" y="105.50" font-family="FLA,Lora,serif" font-weight="700" font-style="italic" font-size="96" text-anchor="middle" fill="#5a2d00" stroke="#5a2d00" stroke-width="6" stroke-linejoin="round">Four Leaf</text><text x="181.70" y="104.60" font-family="FLA,Lora,serif" font-weight="700" font-style="italic" font-size="96" text-anchor="middle" fill="#5a2d00" stroke="#5a2d00" stroke-width="6" stroke-linejoin="round">Four Leaf</text><text x="181.15" y="103.70" font-family="FLA,Lora,serif" font-weight="700" font-style="italic" font-size="96" text-anchor="middle" fill="#5a2d00" stroke="#5a2d00" stroke-width="6" stroke-linejoin="round">Four Leaf</text><text x="180.60" y="102.80" font-family="FLA,Lora,serif" font-weight="700" font-style="italic" font-size="96" text-anchor="middle" fill="#5a2d00" stroke="#5a2d00" stroke-width="6" stroke-linejoin="round">Four Leaf</text><text x="180.05" y="101.90" font-family="FLA,Lora,serif" font-weight="700" font-style="italic" font-size="96" text-anchor="middle" fill="#5a2d00" stroke="#5a2d00" stroke-width="6" stroke-linejoin="round">Four Leaf</text><text x="179.50" y="101.00" font-family="FLA,Lora,serif" font-weight="700" font-style="italic" font-size="96" text-anchor="middle" fill="#5a2d00" stroke="#5a2d00" stroke-width="6" stroke-linejoin="round">Four Leaf</text><text x="178.95" y="100.10" font-family="FLA,Lora,serif" font-weight="700" font-style="italic" font-size="96" text-anchor="middle" fill="#5a2d00" stroke="#5a2d00" stroke-width="6" stroke-linejoin="round">Four Leaf</text><text x="178.40" y="99.20" font-family="FLA,Lora,serif" font-weight="700" font-style="italic" font-size="96" text-anchor="middle" fill="#5a2d00" stroke="#5a2d00" stroke-width="6" stroke-linejoin="round">Four Leaf</text><text x="177.85" y="98.30" font-family="FLA,Lora,serif" font-weight="700" font-style="italic" font-size="96" text-anchor="middle" fill="#5a2d00" stroke="#5a2d00" stroke-width="6" stroke-linejoin="round">Four Leaf</text><text x="177.30" y="97.40" font-family="FLA,Lora,serif" font-weight="700" font-style="italic" font-size="96" text-anchor="middle" fill="#5a2d00" stroke="#5a2d00" stroke-width="6" stroke-linejoin="round">Four Leaf</text><text x="176.75" y="96.50" font-family="FLA,Lora,serif" font-weight="700" font-style="italic" font-size="96" text-anchor="middle" fill="#5a2d00" stroke="#5a2d00" stroke-width="6" stroke-linejoin="round">Four Leaf</text><text x="176.20" y="95.60" font-family="FLA,Lora,serif" font-weight="700" font-style="italic" font-size="96" text-anchor="middle" fill="#5a2d00" stroke="#5a2d00" stroke-width="6" stroke-linejoin="round">Four Leaf</text><text x="175.65" y="94.70" font-family="FLA,Lora,serif" font-weight="700" font-style="italic" font-size="96" text-anchor="middle" fill="#5a2d00" stroke="#5a2d00" stroke-width="6" stroke-linejoin="round">Four Leaf</text><text x="175.10" y="93.80" font-family="FLA,Lora,serif" font-weight="700" font-style="italic" font-size="96" text-anchor="middle" fill="#5a2d00" stroke="#5a2d00" stroke-width="6" stroke-linejoin="round">Four Leaf</text><text x="174.55" y="92.90" font-family="FLA,Lora,serif" font-weight="700" font-style="italic" font-size="96" text-anchor="middle" fill="#5a2d00" stroke="#5a2d00" stroke-width="6" stroke-linejoin="round">Four Leaf</text><text x="174" y="92" font-family="FLA,Lora,serif" font-weight="700" font-style="italic" font-size="96" text-anchor="middle" fill="url(#tgd)" stroke="#3a1a00" stroke-width="3" paint-order="stroke" stroke-linejoin="round">Four Leaf</text></g><rect x="64" y="146.8" width="92" height="2.4" rx="1.2" fill="url(#tgd)"/><rect x="204" y="146.8" width="92" height="2.4" rx="1.2" fill="url(#tgd)"/><g transform="translate(180,145) scale(0.5)"><path d="M0,8 C-.5,20 -3,32 -9,44" stroke="#267a1c" stroke-width="2.6" fill="none" stroke-linecap="round"/><g transform="translate(0,0) rotate(-45) scale(.86,1)"><path d="M0,0 C-5,-8.5 -17.5,-11 -16.5,-21.5 C-15.8,-29.5 -6.5,-31.5 -2.2,-27 C-1.3,-26.1 -.5,-25.4 0,-25.4 C.5,-25.4 1.3,-26.1 2.2,-27 C6.5,-31.5 15.8,-29.5 16.5,-21.5 C17.5,-11 5,-8.5 0,0Z" fill="#267a1c"/></g><g transform="translate(0,0) rotate(45) scale(.86,1)"><path d="M0,0 C-5,-8.5 -17.5,-11 -16.5,-21.5 C-15.8,-29.5 -6.5,-31.5 -2.2,-27 C-1.3,-26.1 -.5,-25.4 0,-25.4 C.5,-25.4 1.3,-26.1 2.2,-27 C6.5,-31.5 15.8,-29.5 16.5,-21.5 C17.5,-11 5,-8.5 0,0Z" fill="#267a1c"/></g><g transform="translate(0,0) rotate(135) scale(.86,1)"><path d="M0,0 C-5,-8.5 -17.5,-11 -16.5,-21.5 C-15.8,-29.5 -6.5,-31.5 -2.2,-27 C-1.3,-26.1 -.5,-25.4 0,-25.4 C.5,-25.4 1.3,-26.1 2.2,-27 C6.5,-31.5 15.8,-29.5 16.5,-21.5 C17.5,-11 5,-8.5 0,0Z" fill="#267a1c"/></g><g transform="translate(0,0) rotate(225) scale(.86,1)"><path d="M0,0 C-5,-8.5 -17.5,-11 -16.5,-21.5 C-15.8,-29.5 -6.5,-31.5 -2.2,-27 C-1.3,-26.1 -.5,-25.4 0,-25.4 C.5,-25.4 1.3,-26.1 2.2,-27 C6.5,-31.5 15.8,-29.5 16.5,-21.5 C17.5,-11 5,-8.5 0,0Z" fill="#267a1c"/></g></g></g></svg></h1>
   <p class="sub">Flick the wheel or press Spin. Call a color first for points.</p>
-  <div class="tabs"><button id="tfree" type="button" class="on">Free Spin</button><button id="tgame" type="button">10-Guess Game</button></div>
+  <div class="tabs"><button id="tfree" type="button" class="on">Free Spin</button><button id="tgame" type="button">10-Guess</button><button id="tdaily" type="button">Daily</button></div>
+  <div id="gbar"><span id="glbl">Total World Spins -</span> <b id="gtot">...</b></div>
   <div class="ticker"><div class="tk"><span>GREEN PAYS 50 POINTS</span><span>CALL A COLOR FIRST FOR BONUS POINTS</span><span>10 IN A ROW IS LEGENDARY</span><span>20 RED, 20 BLACK, 4 GREEN</span><span>GREEN PAYS 50 POINTS</span><span>CALL A COLOR FIRST FOR BONUS POINTS</span><span>10 IN A ROW IS LEGENDARY</span><span>20 RED, 20 BLACK, 4 GREEN</span></div></div>
   <div class="arena"><div class="stage" id="stage">
     <i class="ptr"></i>
@@ -268,11 +246,11 @@ html:root{color-scheme:dark!important}
     <button id="spin" type="button">Spin</button>
   </div></div>
   <div class="info" id="ghud" hidden>
-    <div class="row2"><div class="card"><div class="n" id="gl">10</div><div class="p">Guesses left</div></div><div class="card"><div class="n" id="gs">0</div><div class="p">Score</div></div><div class="card"><div class="n" id="gb">0</div><div class="p">Best round</div></div></div>
+    <div class="row2"><div class="card"><div class="n" id="gl">10</div><div class="p">Guesses left</div></div><div class="card"><div class="n" id="gs">0</div><div class="p">Score</div></div><div class="card"><div class="n" id="gb">0</div><div class="p" id="gbl">Best round</div></div></div>
     <p class="big" id="gcombo"></p>
-    <p class="small">Pick a color, then spin. Every right guess pays 100, plus a bonus for lower odds. Right guesses in a row build a combo multiplier, up to x3. A miss resets it.</p>
+    <p class="small" id="gdesc" hidden></p><button id="dhow" type="button" hidden>How the Daily Round works</button><p class="small" id="gdesc0">Pick a color, then spin. Every right guess pays 100, plus a bonus for lower odds. Right guesses in a row build a combo multiplier, up to x3. A miss resets it.</p>
     <details><summary>Payout chart</summary><p class="small">50% pays 157. 25% pays 180. 10% pays 226. 5% pays 279. 1% pays 500. Anything under 0.6% pays 600. Combo: x1, x1.25, x1.5 and so on up to x3. End of round: +20 per right guess, +500 for a perfect 10 of 10.</p></details>
-    <div id="gover" hidden><p class="big" id="gmsg"></p><button id="gnew" type="button">New round</button></div>
+    <div id="gover" hidden><p class="big" id="gmsg"></p><p id="dgrid" hidden></p><button id="gnew" type="button">New round</button><button id="dsh" type="button" hidden>Share my score</button></div>
   </div>
   <div class="calls" id="calls"><button type="button" data-c="r">Red</button><button type="button" data-c="b">Black</button><button type="button" data-c="g">Green</button></div>
   <div id="out" aria-live="polite"><span class="rdy">READY</span></div>
@@ -315,7 +293,7 @@ html:root{color-scheme:dark!important}
   <div class="links"><button id="rline" type="button">Reset line</button></div>
   <details class="info" id="bdbox" style="display:block"><summary id="bdh">Badges</summary><div class="bd" id="bd" style="margin-top:10px"></div></details>
   <div class="links"><button id="share" type="button">Share my best streak</button><button id="snd" type="button"></button><button id="rmem" type="button">Reset odds memory</button><button id="reset" type="button">Reset daily play</button></div>
-  <details class="info" id="bkbox"><summary>Backup &amp; restore</summary><p class="small">Moving to a new icon? Tap Copy backup, paste it somewhere safe (Notes works), then paste it back here after re-adding the app. <span style="opacity:.6">Version 24</span></p><textarea id="bkt" rows="3" placeholder="Backup code shows here. To restore, paste a code here." style="width:100%;box-sizing:border-box;margin-top:8px;padding:8px;border-radius:10px;border:1px solid rgba(232,163,23,.5);background:rgba(0,0,0,.35);color:inherit;font:16px monospace"></textarea><div class="links"><button id="bkc" type="button">Copy backup</button><button id="bkr" type="button">Restore from code</button></div></details>
+  <details class="info" id="bkbox"><summary>Backup &amp; restore</summary><p class="small">Moving to a new icon? Tap Copy backup, paste it somewhere safe (Notes works), then paste it back here after re-adding the app. <span style="opacity:.6">Version 30</span></p><textarea id="bkt" rows="3" placeholder="Backup code shows here. To restore, paste a code here." style="width:100%;box-sizing:border-box;margin-top:8px;padding:8px;border-radius:10px;border:1px solid rgba(232,163,23,.5);background:rgba(0,0,0,.35);color:inherit;font:16px monospace"></textarea><div class="links"><button id="bkc" type="button">Copy backup</button><button id="bkr" type="button">Restore from code</button></div></details>
 </main>
 <div id="ov" hidden><img id="shimg" alt="Your best streak card"><p>Press and hold the image to save or share it.</p><div><button id="shs" type="button">Share</button> <button id="cls" type="button">Close</button></div></div>
 <div id="fx" aria-hidden="true"></div>
@@ -327,7 +305,7 @@ const col=i=>i%11===0?"g":i%11%2?"r":"b",nm=c=>({r:"red",b:"black",g:"green"})[c
 const $=id=>document.getElementById(id),cv=$("wheel"),ctx=cv.getContext("2d"),stage=$("stage"),btn=$("spin");
 const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 const fmt=new Intl.NumberFormat("en",{notation:"compact",maximumFractionDigits:1});
-const D=()=>({r:0,b:0,g:0,color:null,streak:0,best:0,bestColor:null,hist:[],log:"",all:"",cw:500,cr:0,pts:0,calls:0,wins:0,cs:0,bestCs:0,badges:[],bestG:0,game:{left:10,score:0,hits:0,newBest:false,color:null,streak:0,combo:0,bonus:0},gbest:0,mode:"free",mute:false});
+const D=()=>({r:0,b:0,g:0,color:null,streak:0,best:0,bestColor:null,hist:[],log:"",all:"",cw:500,cr:0,pts:0,calls:0,wins:0,cs:0,bestCs:0,badges:[],bestG:0,game:{left:10,score:0,hits:0,newBest:false,color:null,streak:0,combo:0,bonus:0},gbest:0,daily:null,dbest:0,dn:0,mode:"free",mute:false});
 const BD=[["first","First spin",s=>life.n>=1],["s3","3 in a row: Heating Up",s=>s.best>=3],["s5","5 in a row: Hot Streak",s=>s.best>=5],["s7","7 in a row: On Fire",s=>s.best>=7],["s10","10 in a row: Legendary",s=>s.best>=10],["s13","13 in a row: Bold",s=>s.best>=13],["s15","15 in a row: Mythic",s=>s.best>=15],["s17","17 in a row: Call a Physicist",s=>s.best>=17],["s20","20 in a row: Immortal",s=>s.best>=20],["gg2","2 green in a row",s=>s.bestG>=2],["gg3","Lucky Clover",s=>s.bestG>=3],["gg4","Four Leaf",s=>s.bestG>=4],["c5","5 calls in a row",s=>s.bestCs>=5],["n100","100 spins",s=>life.n>=100],["n500","500 spins",s=>life.n>=500],["n1k","1,000 spins",s=>life.n>=1000],["n5k","5,000 spins",s=>life.n>=5000],["n10k","10,000 spins",s=>life.n>=10000],["p500","500 points",s=>s.pts>=500],["perf","Perfect round",s=>s.perfect]];
 let s=D(),size=0,rot=0,spinning=false,pick=null,ac,tt,card,life={n:0,r:0,b:0,g:0},ready=false,dbc=null,busy=false,dirty=false,lastP="",lastL="",pend=null,cur={r:45.5,b:45.5,g:9.1};
 try{const v=JSON.parse(localStorage.getItem("dw-v2")||localStorage.getItem("dw-roulette"));if(v&&typeof v.r==="number"){s=Object.assign(D(),v);if(!s.log)s.log=(s.hist||[]).join("")}}catch(e){}
@@ -350,6 +328,26 @@ async function flush(){
 const total=()=>s.r+s.b+s.g,pct=(a,t)=>t?Math.round(a/t*100):0,est=(k,n,c)=>(k+4*P[c])/(n+4);
 try{const L=JSON.parse(localStorage.getItem("dw-life"));life=L&&typeof L.n==="number"?L:{n:total(),r:s.r,b:s.b,g:s.g}}catch(e){life={n:total(),r:s.r,b:s.b,g:s.g}}
 const idx=r=>Math.floor(((((-Math.PI/2-r)%TAU)+TAU)%TAU)/seg);
+const dkey=()=>{const d=new Date();return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate()},dnice=()=>new Date().toLocaleDateString("en",{month:"short",day:"numeric"});
+function dseq(k){let h=2166136261;for(const ch of "FourLeaf:"+k){h^=ch.charCodeAt(0);h=Math.imul(h,16777619)}let a=h>>>0;const o=[];for(let i=0;i<10;i++){a=(a+0x6D2B79F5)|0;let t=Math.imul(a^(a>>>15),1|a);t=(t+Math.imul(t^(t>>>7),61|t))^t;o.push(Math.floor(((t^(t>>>14))>>>0)/4294967296*N))}return o}
+function dchk(){const k=dkey();if(!s.daily||s.daily.d!==k)s.daily={d:k,left:10,score:0,hits:0,newBest:false,color:null,streak:0,combo:0,bonus:0,res:""};return s.daily}
+const G=()=>s.mode==="daily"?dchk():s.game;
+function dtext(){const g=dchk();return "Four Leaf Daily, "+dnice()+"\n"+g.score.toLocaleString()+" points, "+g.hits+" of 10 right\n"+[...g.res].map(x=>x==="1"?"\u{1F7E9}":"\u2B1C").join("")+(location.hostname.endsWith("github.io")?"\n"+location.origin+location.pathname:"")}
+const GON=location.hostname.endsWith("github.io"),GU="https://abacus.jasoncameron.dev/",GK="four-leaf-wheel/total-spins";
+let gtot=null,gq=0,gbusy=false;
+try{gq=+localStorage.getItem("fl-gq")||0}catch(e){}
+function gset(v){if(typeof v!=="number"||!(v>=0))return;if(gtot!==null&&v<=gtot)return;const first=gtot===null;gtot=v;const e=$("gtot");e.textContent=v.toLocaleString();if(!first&&!reduce){e.classList.remove("bump");void e.offsetWidth;e.classList.add("bump")}}
+const gsave=()=>{try{localStorage.setItem("fl-gq",gq)}catch(e){}};
+async function gflush(){if(!GON||gbusy||gq<=0)return;gbusy=true;try{while(gq>0){const r=await fetch(GU+"hit/"+GK,{cache:"no-store"});if(!r.ok)break;const j=await r.json();gq--;gsave();gset(j.value);if(gq>0)await new Promise(z=>setTimeout(z,450))}}catch(e){}gbusy=false}
+function gspin(){if(demo)return;if(!GON){gset((gtot||0)+1);return}gq++;gsave();gflush()}
+function gget(){fetch(GU+"get/"+GK,{cache:"no-store"}).then(r=>r.status===404?{value:0}:r.ok?r.json():null).then(j=>{if(j)gset(j.value)}).catch(()=>{})}
+function glive(){
+  if(!GON){gset(1234);return}
+  try{if(!localStorage.getItem("fl-gb")){gq+=Math.max(0,life.n||0);gsave();localStorage.setItem("fl-gb","1")}}catch(e){}
+  const tick=()=>{if(!document.hidden){gget();gflush()}};tick();
+  try{const es=new EventSource(GU+"stream/"+GK);es.onmessage=e=>{try{gset(JSON.parse(e.data).value)}catch(_){}}}catch(e){}
+  setInterval(tick,20000);addEventListener("online",tick);document.addEventListener("visibilitychange",tick);
+}
 function rnd(n){const a=new Uint32Array(1),lim=Math.floor(4294967296/n)*n;do{crypto.getRandomValues(a)}while(a[0]>=lim);return a[0]%n}
 
 function draw(t){
@@ -457,7 +455,7 @@ function render(){
   $("best").textContent=t?"Longest streak: "+s.best+" "+nm(s.bestColor)+". Best call streak: "+s.bestCs+".":"";$("bestg").textContent=s.gbest?"Best 10-guess round: "+s.gbest.toLocaleString()+" points"+(s.gbestH?" ("+s.gbestH+" of 10 right)":""):"";
   fut(t);gui();$("nreal").textContent="The wheel’s real odds never change: red 45.45%, black 45.45%, green 9.10% every spin.";
   {const T=life.n;$("ltn").textContent=T.toLocaleString();["r","b","g"].forEach(c=>{$("l"+c+"n").textContent=life[c].toLocaleString();$("l"+c+"p").textContent=nm(c)[0].toUpperCase()+nm(c).slice(1)+" "+(T?(life[c]/T*100).toFixed(1):"0.0")+"%"})}
-  {const L0=t?s.streak:0;$("fx").className=L0>=10?"fx10":L0>=7?"fx7":L0>=5?"fx5":L0>=3?"fx3":""}
+  {const L0=s.mode==="daily"?dchk().streak:t?s.streak:0;$("fx").className=L0>=10?"fx10":L0>=7?"fx7":L0>=5?"fx5":L0>=3?"fx3":""}
   $("hlbl").textContent=t?"History odds, built from all "+t+" spins in memory":"History odds. Spin to start building memory.";
   const lg=s.log.slice(-50);$("hist").replaceChildren(...[...lg].map((c,k)=>{const i=document.createElement("i");i.style.background=C[c];i.textContent=t-lg.length+k+1;return i}));
   const bar=$("bar").children;["r","b","g"].forEach((c,k)=>bar[k].style.flexBasis=(t?s[c]/t*100:0)+"%");
@@ -483,7 +481,7 @@ function glin(p,t){
   return t?gtN:"Starting odds";
 }
 function fut(t){
-  const gm=s.mode==="game",sc=gm?s.game.color:s.color,sn=gm?s.game.streak:s.streak,act=!!sc&&sn>0,n=act?sn:0,cs=["r","b","g"],w=cs.map(c=>act&&sc===c?Math.pow(P[c],n+1):P[c]),sum=w.reduce((a,b)=>a+b,0),raw=w.map(x=>x/sum*100),r1=raw.map(x=>Math.round(x*10)/10),diff=Math.round((100-r1.reduce((a,b)=>a+b,0))*10)/10;
+  const gm=s.mode!=="free",sc=gm?G().color:s.color,sn=gm?G().streak:s.streak,act=!!sc&&sn>0,n=act?sn:0,cs=["r","b","g"],w=cs.map(c=>act&&sc===c?Math.pow(P[c],n+1):P[c]),sum=w.reduce((a,b)=>a+b,0),raw=w.map(x=>x/sum*100),r1=raw.map(x=>Math.round(x*10)/10),diff=Math.round((100-r1.reduce((a,b)=>a+b,0))*10)/10;
   if(diff){const q=r1.map((v,i)=>[v,i]).filter(x=>x[0]>=5).sort((a,b)=>a[0]-b[0])[0],m=q?q[1]:r1.indexOf(Math.max(...r1));r1[m]=Math.round((r1[m]+diff)*10)/10}
   cur={r:r1[0],b:r1[1],g:r1[2]};
   $("nlbl").textContent=n>=1?"Next spin, adjusted for the "+n+" in a row":"Next spin odds";
@@ -494,25 +492,27 @@ function fut(t){
     $("n"+c+"p").parentNode.classList.toggle("hotbox",ext&&n>=3);
   });
 }
-const gbase=c=>Math.min(600,100+Math.round(40*Math.sqrt(100/Math.max(cur[c],.1)))),gmult=()=>Math.min(3,1+.25*(s.game.combo||0)),gpts=c=>Math.round(gbase(c)*gmult());
+const gbase=c=>Math.min(600,100+Math.round(40*Math.sqrt(100/Math.max(cur[c],.1)))),gmult=()=>Math.min(3,1+.25*(G().combo||0)),gpts=c=>Math.round(gbase(c)*gmult());
 function gui(){
-  const g=s.game,gm=s.mode==="game";
-  $("tfree").classList.toggle("on",!gm);$("tgame").classList.toggle("on",gm);
-  $("ghud").hidden=!gm;
-  [...$("calls").children].forEach(b=>{const c=b.dataset.c;b.textContent=nm(c)[0].toUpperCase()+nm(c).slice(1)+(gm?" +"+gpts(c).toLocaleString():"")});
-  if(gm){$("gl").textContent=g.left;$("gs").textContent=g.score.toLocaleString();$("gb").textContent=(s.gbest||0).toLocaleString();
-    $("gover").hidden=g.left>0;
+  const dl=s.mode==="daily",gm=s.mode!=="free",g=G(),dd=s.daily&&s.daily.d===dkey()&&s.daily.left<=0;
+  $("tfree").classList.toggle("on",!gm);$("tgame").classList.toggle("on",s.mode==="game");$("tdaily").classList.toggle("on",dl);$("tdaily").classList.toggle("new",!dd);
+  $("ghud").hidden=!gm;document.querySelector(".sub").textContent=dl?"Daily Round, "+dnice()+". Everyone gets the same 10 spins today. One try. Call a color before each spin.":"Flick the wheel or press Spin. Call a color first for points.";
+  [...$("calls").children].forEach(b=>{const c=b.dataset.c;b.textContent=nm(c)[0].toUpperCase()+nm(c).slice(1)+(gm&&g.left>0?" +"+gpts(c).toLocaleString():"")});
+  if(gm){$("gl").textContent=g.left;$("gs").textContent=g.score.toLocaleString();$("gb").textContent=((dl?s.dbest:s.gbest)||0).toLocaleString();$("gbl").textContent=dl?"Best daily":"Best round";
+    $("gdesc").hidden=true;$("dhow").hidden=!dl;$("gdesc0").hidden=dl;$("gdesc").textContent="Daily Round, "+dnice()+". Same 10 spins for everyone. One try.";
+    $("gover").hidden=g.left>0;$("gnew").hidden=dl;$("dsh").hidden=!dl;$("dgrid").hidden=!dl;
     $("gcombo").textContent=(g.combo||0)>0?"Combo x"+gmult()+" ("+g.combo+" right in a row)":"";
-    if(g.left<=0)$("gmsg").textContent="Round over! "+g.score.toLocaleString()+" points, "+g.hits+" of 10 right"+(g.bonus?", including a +"+g.bonus.toLocaleString()+" round bonus":"")+"."+(g.hits===10?" PERFECT!":"")+(g.newBest?" New best!":"")}
+    if(g.left<=0){if(dl){$("dgrid").textContent=dtext();$("gmsg").textContent="Daily done!"+(g.hits===10?" PERFECT!":"")+(g.newBest?" New best daily!":"")+" New round at midnight."}
+      else $("gmsg").textContent="Round over! "+g.score.toLocaleString()+" points, "+g.hits+" of 10 right"+(g.bonus?", including a +"+g.bonus.toLocaleString()+" round bonus":"")+"."+(g.hits===10?" PERFECT!":"")+(g.newBest?" New best!":"")}}
 }
 function chip(t){const o=$("out");o.replaceChildren();const sp=document.createElement("span");sp.className="rdy";sp.textContent=t;o.appendChild(sp)}
-function idle(){chip("READY");$("cm").textContent=s.mode==="game"?"Pick a color first. Each guess uses one spin.":"Call a color for points, or just spin.";$("hot").textContent="";stage.classList.remove("hot","fire")}
+function idle(){chip("READY");$("cm").textContent=s.mode==="daily"&&dchk().left<=0?"Today\u2019s round is done. New one at midnight.":s.mode!=="free"?"Pick a color first. Each guess uses one spin.":"Call a color for points, or just spin.";$("hot").textContent="";stage.classList.remove("hot","fire")}
 function spinMsg(){chip("SPINNING");$("cm").textContent="Good luck...";$("hot").textContent=""}
 function lock(on){cv.style.touchAction=spinning?"pan-y":"none";btn.disabled=on;[...$("calls").children].forEach(b=>b.disabled=on)}
 function spin(dir,power){
-  if(spinning||!ready)return;if(s.mode==="game"){if(s.game.left<=0){toast("Round over. Start a new round.");return}if(!pick){toast("Pick Red, Black or Green first");chip("PICK A COLOR");$("cm").textContent="Pick a color first. Each guess uses one spin.";return}pend={c:pick,pct:cur[pick],pts:gpts(pick)}}else pend=null;dir=dir||1;power=power||0;spinning=true;lock(true);
+  if(spinning||!ready)return;if(s.mode!=="free"){const dl=s.mode==="daily";if(G().left<=0){toast(dl?"Today\u2019s round is done. New one at midnight.":"Round over. Start a new round.");return}if(!pick){toast("Pick Red, Black or Green first");chip("PICK A COLOR");$("cm").textContent="Pick a color first. Each guess uses one spin.";return}pend={c:pick,pct:cur[pick],pts:gpts(pick),d:dl}}else pend=null;dir=dir||1;power=power||0;spinning=true;lock(true);
   spinMsg();
-  const start=rot,i=demo&&demo.left>0?demoSlot():rnd(N),tgt=-Math.PI/2-(i+.2+Math.random()*.6)*seg,k=4+Math.floor(Math.random()*2)+Math.round(power*2);
+  const start=rot,i=demo&&demo.left>0?demoSlot():pend&&pend.d?dseq(s.daily.d)[10-s.daily.left]:rnd(N),tgt=-Math.PI/2-(i+.2+Math.random()*.6)*seg,k=4+Math.floor(Math.random()*2)+Math.round(power*2);
   const base=dir>0?((((tgt-start)%TAU)+TAU)%TAU):((((start-tgt)%TAU)+TAU)%TAU);
   const delta=dir*(base+k*TAU),dur=reduce?1200:3800+power*1400;let last=idx(rot),t0=null;
   function f(now){
@@ -528,25 +528,26 @@ function spin(dir,power){
 
 const STK=[];STK[3]="HEATING UP";STK[4]="GETTING SPICY";STK[5]="HOT STREAK";STK[6]="SMOKING";STK[7]="ON FIRE";STK[8]="SCORCHING";STK[9]="UNREAL";STK[10]="LEGENDARY";STK[11]="ABSURD";STK[12]="UNHOLY";STK[13]="THIRTEEN? BOLD";STK[14]="REALITY IS GLITCHING";STK[15]="MYTHIC";STK[16]="IS THE WHEEL STUCK?";STK[17]="CALL A PHYSICIST";STK[18]="TOTALLY NOT RIGGED";STK[19]="ALMOST A MYTH";STK[20]="IMMORTAL";STK[21]="BEYOND LEGEND";
 function end(i){
-  spinning=false;lock(false);
-  const c=col(i);s[c]++;life.n++;life[c]++;
+  spinning=false;lock(false);gspin();
+  const c=col(i),dly=!!(pend&&pend.d);
+  if(!dly){s[c]++;life.n++;life[c]++;
   if(s.color===c)s.streak++;else{s.color=c;s.streak=1}
   if(s.streak>s.best){s.best=s.streak;s.bestColor=c}
   if(c==="g"&&s.streak>(s.bestG||0))s.bestG=s.streak;
   s.hist.push(c);if(s.hist.length>30)s.hist.shift();
   {const was=s.log.length;s.log=(s.log+c).slice(-5000);if(was>=5000)s.cr=Math.max(0,(s.cr||0)-1)}
-  if(typeof s.all!=="string"||!s.all)s.all=s.log;else s.all+=c;
+  if(typeof s.all!=="string"||!s.all)s.all=s.log;else s.all+=c}
   let cm="";
-  if(pend){const g=s.game;g.left--;if(g.color===c)g.streak=(g.streak||0)+1;else{g.color=c;g.streak=1}if(pend.c===c){const m=gmult(),gain=Math.round(pend.pts);g.combo=(g.combo||0)+1;g.hits++;g.score+=gain;cm="Called "+nm(c)+" at "+pend.pct+"%: +"+gain.toLocaleString()+" points"+(m>1?" (combo x"+m+")":"")+"!"}else{g.combo=0;cm="Missed. "+nm(pend.c)+" was at "+pend.pct+"%."}
-    if(g.left<=0){g.bonus=g.hits*20+(g.hits===10?500:0);if(g.hits===10)s.perfect=true;g.score+=g.bonus;if(g.score>(s.gbest||0)){s.gbest=g.score;s.gbestH=g.hits;g.newBest=true}setTimeout(()=>{pop("#e8a317");toast("Round over: "+g.score.toLocaleString()+" points"+(g.newBest?", new best!":""))},900)}
+  if(pend){const g=dly?s.daily:s.game;g.left--;if(dly)g.res+=pend.c===c?"1":"0";if(g.color===c)g.streak=(g.streak||0)+1;else{g.color=c;g.streak=1}if(pend.c===c){const m=gmult(),gain=Math.round(pend.pts);g.combo=(g.combo||0)+1;g.hits++;g.score+=gain;cm="Called "+nm(c)+" at "+pend.pct+"%: +"+gain.toLocaleString()+" points"+(m>1?" (combo x"+m+")":"")+"!"}else{g.combo=0;cm="Missed. "+nm(pend.c)+" was at "+pend.pct+"%."}
+    if(g.left<=0){g.bonus=g.hits*20+(g.hits===10?500:0);g.score+=g.bonus;if(dly){s.dn=(s.dn||0)+1;if(g.score>(s.dbest||0)){s.dbest=g.score;g.newBest=s.dn>1}}else{if(g.hits===10)s.perfect=true;if(g.score>(s.gbest||0)){s.gbest=g.score;s.gbestH=g.hits;g.newBest=true}}setTimeout(()=>{pop("#e8a317");toast((dly?"Daily done: ":"Round over: ")+g.score.toLocaleString()+" points"+(g.newBest?", new best!":""))},900)}
     pend=null}else if(pick){s.calls++;if(pick===c){s.wins++;s.cs++;s.bestCs=Math.max(s.bestCs,s.cs);const g=(c==="g"?50:10)+5*(s.cs-1);s.pts+=g;cm="Called it! +"+g+" points"}else{s.cs=0;cm="Missed it. You called "+nm(pick)+"."}}
   pick=null;[...$("calls").children].forEach(x=>x.classList.remove("sel"));
-  const fresh=BD.filter(([id,l,f])=>!s.badges.includes(id)&&f(s));
+  const fresh=dly?[]:BD.filter(([id,l,f])=>!s.badges.includes(id)&&f(s));
   fresh.forEach(b=>s.badges.push(b[0]));
   save();render();
-  const L=s.streak,w=nm(c).toUpperCase(),tier=c==="g"?3:L>=10?3:L>=7?2:L>=5?1:0;
+  const L=dly?s.daily.streak:s.streak,w=nm(c).toUpperCase(),tier=c==="g"?3:L>=10?3:L>=7?2:L>=5?1:0;
   const o=$("out");o.replaceChildren();const sp=document.createElement("span");sp.textContent=w;sp.style.background=C[c];o.appendChild(sp);
-  $("cm").textContent=cm||"Call a color before the next spin for points.";
+  $("cm").textContent=cm||"Call a color before the next spin for points.";if(dly&&s.daily.left<=0)$("cm").textContent=cm+" Today\u2019s round is done.";
   $("hot").textContent=c==="g"?"JACKPOT! GREEN!":L>=3?STK[Math.min(L,21)]+"! "+L+" "+w+"!":"";
   stage.classList.toggle("hot",L>=5&&L<7);stage.classList.toggle("fire",L>=7);
   {const h=$("hot");h.classList.remove("pop","epic");void h.offsetWidth;h.classList.add("pop");if(L>=10&&c!=="g")h.classList.add("epic")}
@@ -581,6 +582,17 @@ guard("rmem","Reset odds memory? Your all-time stats stay.",()=>{if(spinning)ret
 const setMode=m=>{if(spinning)return;s.mode=m;pick=null;[...$("calls").children].forEach(x=>x.classList.remove("sel"));save();idle();render()};
 $("tfree").addEventListener("click",()=>setMode("free"));
 $("tgame").addEventListener("click",()=>setMode("game"));
+function dinfo(){
+  if(document.getElementById("cfm"))return;
+  const o=document.createElement("div");o.id="cfm";const p=document.createElement("div");p.className="cfp";
+  const h=document.createElement("h2");h.textContent="Daily Round";const u=document.createElement("ul");
+  ["Everyone who plays today gets the same 10 spins, in the same order.","Pick a color before each spin. Right guesses score, and long shots and combos pay more.","You get one try a day. A new round shows up at midnight.","When you finish, share your score and see who called it best.","These spins stay out of your stats and badges."].forEach(t=>{const l=document.createElement("li");l.textContent=t;u.appendChild(l)});
+  const y=document.createElement("button");y.textContent="Got it";y.className="cy";const close=()=>o.remove();y.onclick=close;o.onclick=e=>{if(e.target===o)close()};
+  const r=document.createElement("div");r.className="cfr";r.appendChild(y);p.append(h,u,r);o.appendChild(p);document.body.appendChild(o);y.focus();
+}
+$("tdaily").addEventListener("click",()=>{if(spinning)return;setMode("daily");const g=dchk();if(!g.seen){g.seen=1;save();dinfo()}});
+$("dhow").addEventListener("click",dinfo);
+$("dsh").addEventListener("click",async()=>{const t=dtext();try{if(navigator.share){await navigator.share({text:t});return}}catch(e){if(e&&e.name==="AbortError")return}try{await navigator.clipboard.writeText(t);toast("Score copied. Paste it in a text.")}catch(e){toast("Press and hold the score to copy it.")}});
 $("gnew").addEventListener("click",()=>{if(spinning)return;s.game={left:10,score:0,hits:0,newBest:false,color:null,streak:0,combo:0,bonus:0};save();idle();render()});
 function ask(msg,fn,yes){
   const o=document.createElement("div");o.id="cfm";
@@ -615,7 +627,7 @@ $("bkr").addEventListener("click",()=>{
 });
 guard("rline","Reset the luck line? Your all-time stats stay.",()=>{s.cr=s.log.length;save();chart();toast("Luck line reset. All-time stats kept.")});
 $("snd").addEventListener("click",()=>{s.mute=!s.mute;save();render()});
-guard("reset","Reset daily play? Your all-time stats and badges stay.",()=>{if(spinning)return;s=Object.assign(D(),{mute:s.mute,badges:s.badges,best:s.best,bestColor:s.bestColor,bestCs:s.bestCs,bestG:s.bestG,gbest:s.gbest,gbestH:s.gbestH,mode:s.mode,cw:s.cw||500});pick=null;[...$("calls").children].forEach(x=>x.classList.remove("sel"));save();idle();render();toast("Daily play reset. All-time stats kept.")});
+guard("reset","Reset daily play? Your all-time stats and badges stay.",()=>{if(spinning)return;s=Object.assign(D(),{mute:s.mute,badges:s.badges,best:s.best,bestColor:s.bestColor,bestCs:s.bestCs,bestG:s.bestG,gbest:s.gbest,gbestH:s.gbestH,daily:s.daily,dbest:s.dbest,dn:s.dn,mode:s.mode,cw:s.cw||500});pick=null;[...$("calls").children].forEach(x=>x.classList.remove("sel"));save();idle();render();toast("Daily play reset. All-time stats kept.")});
 $("share").addEventListener("click",()=>{
   const c=document.createElement("canvas");c.width=c.height=600;const x=c.getContext("2d"),bc=s.bestColor||"r";
   x.fillStyle="#2b0a22";x.fillRect(0,0,600,600);x.strokeStyle="#e8a317";x.lineWidth=10;x.strokeRect(20,20,560,560);
@@ -640,7 +652,7 @@ function draw(){const A=(typeof s.all==="string"&&s.all)?s.all:s.log||"",off=Mat
 htabs.addEventListener("click",e=>{const t=e.target.dataset.t;if(!t)return;[...htabs.children].forEach(x=>x.classList.toggle("on",x===e.target));h50.hidden=t!=="50";hall.hidden=t!=="all";if(t==="all")draw()});
 hflt.addEventListener("click",e=>{const f=e.target.dataset.f;if(f===undefined)return;flt=f;[...hflt.children].forEach(x=>x.classList.toggle("on",x===e.target));for(const d of hgrid.children)d.classList.toggle("dim",!!f&&d.dataset.c!==f)});
 })();
-resize();render();lock(true);
+resize();render();lock(true);glive();
 setTimeout(()=>{if(!ready){ready=true;lock(false)}},8000);
 (async()=>{
   try{
