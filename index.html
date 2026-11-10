@@ -244,6 +244,25 @@ html:root{color-scheme:dark!important}
 @keyframes lShake{0%,100%{transform:rotate(-4deg)}25%{transform:rotate(-4deg) translateX(-10px)}75%{transform:rotate(-4deg) translateX(10px)}}
 @media (prefers-reduced-motion:reduce){#loser,#loser .lr,#loser .lzc .lzw{animation:none}}
 </style>
+<style id="sndcss">
+#sndfab{position:absolute;right:10px;top:20px;z-index:6;width:40px;height:40px;border:0;background:none;color:#2fd16a;font:900 32px/1 sans-serif;display:grid;place-items:center;text-shadow:0 0 2px #0a3a1a,0 0 2px #0a3a1a,0 2px 8px rgba(0,0,0,.8);cursor:pointer;padding:0}
+#sndpan{position:absolute;right:10px;top:70px;z-index:7;width:min(220px,70vw);padding:10px;border-radius:14px;border:2px solid #e8a317;background:#0c3320;box-shadow:0 10px 30px rgba(0,0,0,.6);display:grid;grid-template-columns:1fr 1fr;gap:6px}
+#sndpan p{grid-column:1/-1;margin:0 0 2px;font:700 12px "DM Sans",sans-serif;color:#e8c46a;text-transform:uppercase;letter-spacing:.08em;text-align:center}
+#sndpan button{padding:9px 6px;border-radius:10px;border:1px solid rgba(232,163,23,.45);background:#164a2c;color:#e9e2c8;font:700 13px "DM Sans",sans-serif;cursor:pointer}
+#sndpan button.on{background:linear-gradient(180deg,#2fae5a,#0f7a35);color:#fff8e0;border-color:#e8a317}
+</style>
+<style id="obcss">
+.ob{position:fixed;inset:0;z-index:8000;display:grid;place-items:center;padding:20px max(16px,env(safe-area-inset-left,0px));background:rgba(10,4,10,.82);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.ob .obc{box-sizing:border-box;width:calc(100vw - 32px);max-width:360px;max-height:calc(100vh - 40px);overflow:auto;border-radius:20px;border:2px solid #e8a317;background:linear-gradient(180deg,#0f4a2a,#0a2e1b);color:#fff3dd;padding:22px 20px 18px;box-shadow:0 20px 60px rgba(0,0,0,.6);font:500 15px/1.45 "DM Sans",sans-serif}
+.ob h2{margin:0 0 4px;font:italic 700 30px/1.1 FLA,Lora,Georgia,serif;color:#f6c443;text-align:center;text-shadow:0 2px 0 #5a2d00}
+.ob .obs{margin:0 0 14px;text-align:center;color:#cfe8d6;font-size:14px}
+.ob ol,.ob ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.ob li{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(232,163,23,.3);border-radius:12px;padding:9px 10px}
+.ob li b{color:#ffd76a}
+.ob .obi{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#e8a317;color:#2b0a22;font:900 16px/1 sans-serif}
+.ob .obgo{display:block;width:100%;margin-top:16px;padding:12px;border:0;border-radius:12px;background:linear-gradient(180deg,#fff0a8,#e8a317 55%,#b8730a);color:#2b0a22;font:800 16px "DM Sans",sans-serif;cursor:pointer}
+.ob .obskip{display:block;margin:10px auto 0;background:none;border:0;color:#9fc4ab;font:600 13px "DM Sans",sans-serif;text-decoration:underline;cursor:pointer}
+</style>
 <style id="spcss">
 #splash{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;overflow:hidden;background:radial-gradient(circle at 50% 42%,#0c7a47 0,#075a35 38%,#032a1a 100%);transition:opacity .5s ease .1s}
 #splash.out{opacity:0;pointer-events:none}
@@ -281,7 +300,8 @@ html:root{color-scheme:dark!important}
     <i class="ptr"></i>
     <canvas id="wheel" aria-label="Roulette wheel with red, black and one green slot"></canvas>
     <button id="spin" type="button">Spin</button>
-  </div></div>
+  </div><button id="sndfab" type="button" aria-label="Pick spin sound">♪</button><div id="sndpan" hidden><p>Spin sound</p></div></div>
+
   <div class="info" id="ghud" hidden>
     <div class="row2"><div class="card"><div class="n" id="gl">10</div><div class="p">Guesses left</div></div><div class="card"><div class="n" id="gs">0</div><div class="p">Score</div></div><div class="card"><div class="n" id="gb">0</div><div class="p" id="gbl">Best round</div></div></div>
     <p class="big" id="gcombo"></p>
@@ -330,7 +350,7 @@ html:root{color-scheme:dark!important}
   <div class="links"><button id="rline" type="button">Reset line</button></div>
   <details class="info" id="bdbox" style="display:block"><summary id="bdh">Badges</summary><p class="bdn" style="margin:10px 0 0;font-size:13px;color:var(--muted)">Only <b>Called It</b>, <b>5 calls in a row</b>, <b>10 calls in a row</b>, <b>500 points</b>, <b>High Roller</b> and <b>Perfect Round</b> need you to pick a color before spinning. Tap any badge to see how to earn it.</p><div class="bd" id="bd" style="margin-top:10px"></div></details>
   <div class="links"><button id="share" type="button">Share my best streak</button><button id="snd" type="button"></button><button id="rmem" type="button">Reset odds memory</button><button id="reset" type="button">Reset daily play</button></div>
-  <details class="info" id="bkbox"><summary>Backup &amp; restore</summary><p class="small">Moving to a new icon? Tap Copy backup, paste it somewhere safe (Notes works), then paste it back here after re-adding the app. <span style="opacity:.6">Version 38</span></p><textarea id="bkt" rows="3" placeholder="Backup code shows here. To restore, paste a code here." style="width:100%;box-sizing:border-box;margin-top:8px;padding:8px;border-radius:10px;border:1px solid rgba(232,163,23,.5);background:rgba(0,0,0,.35);color:inherit;font:16px monospace"></textarea><div class="links"><button id="bkc" type="button">Copy backup</button><button id="bkr" type="button">Restore from code</button></div></details>
+  <details class="info" id="bkbox"><summary>Backup &amp; restore</summary><p class="small">Moving to a new icon? Tap Copy backup, paste it somewhere safe (Notes works), then paste it back here after re-adding the app. <span style="opacity:.6">Version 39</span></p><textarea id="bkt" rows="3" placeholder="Backup code shows here. To restore, paste a code here." style="width:100%;box-sizing:border-box;margin-top:8px;padding:8px;border-radius:10px;border:1px solid rgba(232,163,23,.5);background:rgba(0,0,0,.35);color:inherit;font:16px monospace"></textarea><div class="links"><button id="bkc" type="button">Copy backup</button><button id="bkr" type="button">Restore from code</button></div></details>
 </main>
 <div id="ov" hidden><img id="shimg" alt="Your best streak card"><p>Press and hold the image to save or share it.</p><div><button id="shs" type="button">Share</button> <button id="cls" type="button">Close</button></div></div>
 <div id="fx" aria-hidden="true"></div>
@@ -358,7 +378,7 @@ try{const v=JSON.parse(localStorage.getItem("dw-v2")||localStorage.getItem("dw-r
 if(s.gbest===1999&&!s.gbestH)s.gbestH=7;
 let demo=null;
 function demoSlot(){if(demo.k==="b"){const a=[2,4,6,8,10,13,15,17,19,21,24,26,28,30,32,35,37,39,41,43];return a[rnd(a.length)]}return [0,11,22,33][rnd(4)]}
-function runDemo(k,n){if(spinning||!ready||demo)return;demo={s:JSON.stringify(s),l:JSON.stringify(life),left:n||4,k:k||"g"};s.color=null;s.streak=0;s.mode="free";pick=null;render();spin(1,0)}
+function runDemo(k,n){if(spinning||!ready||demo)return;demo={s:JSON.stringify(s),l:JSON.stringify(life),left:n||4,k:k||"g"};s.color=null;s.streak=0;s.mode="free";pick=null;render();spin(-1,0)}
 function endDemo(){if(!demo)return;s=Object.assign(D(),JSON.parse(demo.s));life=JSON.parse(demo.l);demo=null;save();idle();render()}
 const save=()=>{if(demo)return;try{localStorage.setItem("dw-v2",JSON.stringify(s));localStorage.setItem("dw-life",JSON.stringify(life))}catch(e){}flush()};
 async function flush(){
@@ -446,7 +466,51 @@ function chart(){
   x.stroke();$("lcs").textContent="Red share of red and black spins: "+Math.round(r/L.length*100)+"%. Dashed line is 50%.";
 }
 
-function note(f,t0,d,type){if(s.mute)return;try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();const o=ac.createOscillator(),g=ac.createGain(),n=ac.currentTime+t0;o.type=type||"sine";o.frequency.value=f;g.gain.setValueAtTime(.05,n);g.gain.exponentialRampToValueAtTime(.0001,n+d);o.connect(g);g.connect(ac.destination);o.start(n);o.stop(n+d)}catch(e){}}
+let nzb=null,SND=1,tk=0,rl=null;const SNDS=["Zen wave","Kalimba","Marimba","Piano","Glass","Lofi keys"];
+function actx(){return ac=ac||new(window.AudioContext||window.webkitAudioContext)()}
+function clk(n,v,fc){const src=ac.createBufferSource(),hp=ac.createBiquadFilter(),bp=ac.createBiquadFilter(),g=ac.createGain();src.buffer=nzb2();hp.type="highpass";hp.frequency.value=1800;bp.type="peaking";bp.frequency.value=fc;bp.Q.value=5;bp.gain.value=14;g.gain.value=v;src.connect(hp);hp.connect(bp);bp.connect(g);g.connect(ac.destination);src.start(n)}
+let nzc=null;function nzb2(){if(!nzc){nzc=ac.createBuffer(1,Math.floor(ac.sampleRate*.012),ac.sampleRate);const d=nzc.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/d.length,8)}return nzc}
+function casino(){const n=ac.currentTime;clk(n,.5,3400+Math.random()*900);if(Math.random()<.35)clk(n+.012+Math.random()*.02,.18,3000+Math.random()*800)}
+function rollStart(){if(s.mute||s.snd!==99)return;try{actx();const len=ac.sampleRate*2,b=ac.createBuffer(1,len,ac.sampleRate),d=b.getChannelData(0);let x=0;for(let i=0;i<len;i++){x=x*.97+(Math.random()*2-1)*.03;d[i]=x*6}
+const src=ac.createBufferSource(),lp=ac.createBiquadFilter(),g=ac.createGain();src.buffer=b;src.loop=true;lp.type="bandpass";lp.frequency.value=900;lp.Q.value=.8;g.gain.value=.0001;src.connect(lp);lp.connect(g);g.connect(ac.destination);src.start();rl={src,lp,g}}catch(e){}}
+function rollSet(v){if(!rl)return;const n=ac.currentTime;rl.g.gain.setTargetAtTime(.22*v+.0001,n,.05);rl.lp.frequency.setTargetAtTime(350+900*v,n,.05)}
+function rollStop(){if(!rl)return;const r=rl;rl=null;const n=ac.currentTime;r.g.gain.setTargetAtTime(.0001,n,.04);r.src.stop(n+.3);[0,.07,.16,.24,.31].forEach((d,k)=>clk(n+d+Math.random()*.02,.5-k*.08,3200+Math.random()*900))}
+function tick(){if(s.mute)return;const m=s.snd||1;try{actx();SND={1:1,2:4,3:7,4:11,5:9,6:10}[m]||1;return zen()}catch(e){}}
+function arcade(){const n=ac.currentTime,o=ac.createOscillator(),g=ac.createGain(),lp=ac.createBiquadFilter();lp.type="lowpass";lp.frequency.value=1600;o.type="square";o.frequency.setValueAtTime(660,n);o.frequency.setValueAtTime(880,n+.025);g.gain.setValueAtTime(.05,n);g.gain.exponentialRampToValueAtTime(.0001,n+.06);o.connect(lp);lp.connect(g);g.connect(ac.destination);o.start(n);o.stop(n+.07)}
+function wood(){try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();const n=ac.currentTime;
+if(!nzb){nzb=ac.createBuffer(1,Math.floor(ac.sampleRate*.04),ac.sampleRate);const d=nzb.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/d.length,6)}
+const src=ac.createBufferSource(),bp=ac.createBiquadFilter(),g=ac.createGain();src.buffer=nzb;bp.type="bandpass";bp.frequency.value=2600+Math.random()*700;bp.Q.value=3.5;g.gain.value=.55;src.connect(bp);bp.connect(g);g.connect(ac.destination);src.start(n);
+const o=ac.createOscillator(),og=ac.createGain();o.type="sine";o.frequency.setValueAtTime(420,n);o.frequency.exponentialRampToValueAtTime(140,n+.03);og.gain.setValueAtTime(.09,n);og.gain.exponentialRampToValueAtTime(.0001,n+.04);o.connect(og);og.connect(ac.destination);o.start(n);o.stop(n+.05)}catch(e){}}
+const ZEN={1:{n:[262,220,247,220,196,175],p:[[1,1,"sine"],[1.008,1,"sine"],[1.5,.25,"sine"]],w:2.2,r:1.3},
+2:{n:[220,247,262,247,220,196],p:[[1,1,"sine"],[2.71,.35,"sine"],[5.4,.12,"sine"]],w:.8,r:2},
+3:{n:[196,220,196,175,165,175],p:[[1,1,"triangle"],[1.006,1,"triangle"],[.5,.4,"sine"]],w:1.5,r:1.1,lp:700},
+4:{n:[262],p:[[1,1,"sine"],[3,.25,"sine"],[6.2,.06,"sine"]],w:0,r:.55},
+5:{n:[330,370,392,440,392,370],p:[[1,.8,"sine"],[2.76,.18,"sine"],[1.004,.6,"sine"]],w:1,r:2.2},
+7:{n:[131],p:[[1,1,"sine"],[4,.55,"sine"],[9.8,.12,"sine"]],w:0,r:.22},
+8:{n:[262],p:[[1,.6,"sine"],[2,.28,"sine"],[3,.14,"sine"],[4,.07,"sine"],[1.003,.25,"sine"]],w:0,r:1.6,lp:2400,pk:1},
+9:{n:[523],p:[[1,.8,"sine"],[2.76,.3,"sine"],[5.4,.1,"sine"]],w:.5,r:1.8},
+10:{n:[131],p:[[1,.8,"square"],[1.005,.6,"square"],[.5,.5,"sine"]],w:1.4,r:.7,lp:800},
+11:{n:[262],p:[],w:0,r:1.4,piano:1,oct:2},
+6:{n:[147,165,175,165,147,131],p:[[1,1,"sine"],[1.01,1,"sine"],[2,.3,"triangle"]],w:3.5,r:1.6,lp:500}};
+function zenEnd(){if(s.mute)return;try{actx();const Z=ZEN[{1:1,2:4,3:7,4:8,5:9,6:10}[s.snd||1]],n=ac.currentTime+.06,f=Z.n[0],rel=Z.r*1.6+.6;
+const out=ac.createGain();out.gain.setValueAtTime(.0001,n);out.gain.exponentialRampToValueAtTime(.12,n+.03);out.gain.exponentialRampToValueAtTime(.0001,n+rel);let dst=ac.destination;if(Z.lp){const l=ac.createBiquadFilter();l.type="lowpass";l.frequency.value=Z.lp;l.connect(dst);dst=l}out.connect(dst);
+[[1,1],[1.5,.45],[2,.3]].forEach(([iv,a])=>Z.p.forEach(([m,pa,ty])=>{const o=ac.createOscillator(),g=ac.createGain();o.type=ty;o.frequency.value=f*iv*m;g.gain.value=a*pa*.6;o.connect(g);g.connect(out);o.start(n+(iv>1?.05:0));o.stop(n+rel+.1)}))}catch(e){}}
+let zrem=99,zoff=0,zT=0,zsm=-1;function sample(){[0,180,400,620].forEach((d,k)=>setTimeout(()=>{zsm=k;window._lt=0;tick();zsm=-1},d))}let pnoRev=null;function pnoBus(){if(pnoRev)return pnoRev;const len=Math.floor(ac.sampleRate*1.8),ir=ac.createBuffer(2,len,ac.sampleRate);for(let ch=0;ch<2;ch++){const d=ir.getChannelData(ch);for(let i=0;i<len;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/len,3)*.5}
+const cv=ac.createConvolver();cv.buffer=ir;const wet=ac.createGain();wet.gain.value=.22;const dry=ac.createGain();dry.gain.value=1;const inp=ac.createGain();inp.connect(dry);inp.connect(cv);cv.connect(wet);dry.connect(ac.destination);wet.connect(ac.destination);return pnoRev=inp}
+function pno(f,n,v,q){const bus=pnoBus(),vel=.75+Math.random()*.15,B=.00035,lite=q<.45,dec=Math.max(.6,3.2*Math.pow(262/f,.5))*(lite?.35:1),H=lite?3:5;
+const tone=ac.createBiquadFilter();tone.type="lowpass";tone.frequency.setValueAtTime(Math.min(9000,f*9*vel),n);tone.frequency.exponentialRampToValueAtTime(Math.max(600,f*2.5),n+dec*.6);tone.Q.value=.3;
+const out=ac.createGain();out.gain.value=v*1.4*vel;tone.connect(out);out.connect(bus);
+for(let h=1;h<=H;h++){const fh=f*h*Math.sqrt(1+B*h*h);if(fh>12000)break;const amp=Math.pow(.62,h-1)*(h===1?1:h===2?.8:1);
+(h<=2&&!lite?[-1.4,1.4]:[0]).forEach((ct,si)=>{const o=ac.createOscillator(),g=ac.createGain();o.type="sine";o.frequency.value=fh*Math.pow(2,ct/1200);const d1=dec/(.6+h*.5),pk=amp/2;
+g.gain.setValueAtTime(.0001,n);g.gain.exponentialRampToValueAtTime(pk,n+.004);g.gain.exponentialRampToValueAtTime(pk*.35,n+.12+d1*.15);g.gain.exponentialRampToValueAtTime(.0001,n+.12+d1);o.connect(g);g.connect(tone);o.start(n);o.stop(n+.2+d1)})}
+if(lite)return;const ns=ac.createBufferSource();ns.buffer=nzb2();const hb=ac.createBiquadFilter();hb.type="bandpass";hb.frequency.value=Math.min(4000,f*4);hb.Q.value=1.2;const hg=ac.createGain();hg.gain.value=v*.5;ns.connect(hb);hb.connect(hg);hg.connect(bus);ns.start(n)}
+function zen(){const rm=zrem,zo=zoff;zrem=99;zoff=0;try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();const n=ac.currentTime+zo,Z=ZEN[SND];const now=performance.now(),dt=now-(window._lt||0);window._lt=now;tk++;
+const q=Math.max(.15,Math.min(1,dt/220)),v=.07,rel=.35+Z.r*q,k=Z.n.length,U=[...new Set(Z.n)].sort((a,b)=>a-b),ri=U.indexOf(Z.n[0]);const PM=[16,12,14,12,9,12,7,12,16,12,14,12,9,12,7,12,16,12,14,12,9,12,7,12,4,12,2,12,0,0,0];const L=PM.length,c=zT-1-rm,sw=zT>=80?20:0,st=zsm>=0?PM[zsm]:PM[rm>=99?tk%L:c<sw?c%L:((L-1-rm)%L+L)%L],smp=zsm>=0;zsm=-1;let f=Z.n[0]*Math.pow(2,st/12);if(Z.oct){let sh=smp?0:Z.oct;if(rm<99&&c>=sw){const ps=((L-1-rm)%L+L)%L;sh=Math.min(Z.oct,Math.round((rm-(L-1-ps))/L))}f*=Math.pow(2,sh)}
+if(Z.piano)return pno(f,n,v,q);
+const out=ac.createGain();out.gain.setValueAtTime(.0001,n);out.gain.exponentialRampToValueAtTime(v,n+.025);out.gain.exponentialRampToValueAtTime(.0001,n+rel);let dst=ac.destination;if(Z.lp){const l=ac.createBiquadFilter();l.type="lowpass";l.frequency.value=Z.lp;l.connect(dst);dst=l}out.connect(dst);
+let lg=null;if(Z.w){const lfo=ac.createOscillator();lg=ac.createGain();lfo.frequency.value=3;lg.gain.value=Z.w;lfo.connect(lg);lfo.start(n);lfo.stop(n+rel+.05)}
+Z.p.forEach(([m,a,ty])=>{const o=ac.createOscillator(),g=ac.createGain();o.type=ty;o.frequency.value=f*m;if(lg)lg.connect(o.frequency);if(Z.pk){g.gain.setValueAtTime(a,n);g.gain.exponentialRampToValueAtTime(.0001,n+Math.max(.08,rel/m))}else g.gain.value=a;o.connect(g);g.connect(out);o.start(n);o.stop(n+rel+.05)})}catch(e){}}
+let ndl=0;function note(f,t0,d,type){if(s.mute)return;try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();const o=ac.createOscillator(),g=ac.createGain(),n=ac.currentTime+t0+ndl;o.type=type||"sine";o.frequency.value=f;g.gain.setValueAtTime(.05,n);g.gain.exponentialRampToValueAtTime(.0001,n+d);o.connect(g);g.connect(ac.destination);o.start(n);o.stop(n+d)}catch(e){}}
 const buzz=p=>{try{navigator.vibrate&&navigator.vibrate(p)}catch(e){}};
 function toast(t,ms){const e=$("toast");e.textContent=t;e.hidden=false;clearTimeout(tt);tt=setTimeout(()=>e.hidden=true,ms||2800)}
 $("toast").addEventListener("click",()=>{$("toast").hidden=true;clearTimeout(tt)});
@@ -565,14 +629,14 @@ function spin(dir,power){
   spinMsg();
   const start=rot,i=demo&&demo.left>0?demoSlot():pend&&pend.d?dseq(s.daily.d)[10-s.daily.left]:rnd(N),tgt=-Math.PI/2-(i+.2+Math.random()*.6)*seg,k=4+Math.floor(Math.random()*2)+Math.round(power*2);
   const base=dir>0?((((tgt-start)%TAU)+TAU)%TAU):((((start-tgt)%TAU)+TAU)%TAU);
-  const delta=dir*(base+k*TAU),dur=reduce?1200:3800+power*1400;let last=idx(rot),t0=null;
+  const delta=dir*(base+k*TAU),dur=reduce?1200:3800+power*1400;let last=idx(rot),t0=null;rollStart();const XR=[];{let pj=idx(start);const stp=seg/24,ns=Math.ceil(Math.abs(delta)/stp);for(let q=1;q<=ns;q++){const r=start+dir*Math.min(q*stp,Math.abs(delta)),jj=idx(r);if(jj!==pj){XR.push(r);pj=jj}}}let cn=0;zT=XR.length;
   function f(now){
     if(t0===null)t0=now;
     const p=Math.min((now-t0)/dur,1),e=1-Math.pow(1-p,4);
     rot=start+delta*e;
-    const j=idx(rot);if(j!==last){last=j;note(900,0,.03,"square")}
+    rollSet(Math.pow(1-p,3));let bt=0;while(cn<XR.length&&dir*(rot-XR[cn])>=0){zrem=XR.length-1-cn;zoff=bt*.012;tick();cn++;bt++}if(p>=1)while(cn<XR.length){zrem=XR.length-1-cn;zoff=bt*.012;tick();cn++;bt++}
     draw(now);
-    if(p<1)requestAnimationFrame(f);else end(idx(rot));
+    if(p<1)requestAnimationFrame(f);else{rollStop();ndl=.7;setTimeout(()=>ndl=0,1500);end(idx(rot))}
   }
   requestAnimationFrame(f);
 }
@@ -617,10 +681,10 @@ function end(i){
   if(tier&&!reduce){stage.classList.remove("shake");void stage.offsetWidth;stage.classList.add("shake")}
   if(c==="g"&&L>=2)greenParty(Math.min(L,4));
   if(fresh.length)setTimeout(()=>toast("Badge unlocked: "+fresh.map(b=>b[1]).join(", ")+" (tap to close)",7000),600);
-  if(demo){demo.left--;if(demo.left>0)setTimeout(()=>{gStop();spin(1,0)},demo.k==="b"?2600:4600);else setTimeout(endDemo,12500)}
+  if(demo){demo.left--;if(demo.left>0)setTimeout(()=>{gStop();spin(-1,0)},demo.k==="b"?2600:4600);else setTimeout(endDemo,12500)}
 }
 
-btn.addEventListener("click",()=>spin(1,0));
+btn.addEventListener("click",()=>spin(-1,0));
 $("calls").addEventListener("click",e=>{const b=e.target.closest("button");if(!b||spinning)return;pick=pick===b.dataset.c?null:b.dataset.c;[...$("calls").children].forEach(x=>x.classList.toggle("sel",x.dataset.c===pick))});
 
 let dg=null;
@@ -679,7 +743,7 @@ $("bkr").addEventListener("click",()=>{
 });
 guard("rline","Reset the luck line? Your all-time stats stay.",()=>{s.cr=s.log.length;save();chart();toast("Luck line reset. All-time stats kept.")});
 $("snd").addEventListener("click",()=>{s.mute=!s.mute;save();render()});
-guard("reset","Reset daily play? Your all-time stats and badges stay.",()=>{if(spinning)return;s=Object.assign(D(),{mute:s.mute,badges:s.badges,calledG:s.calledG,best:s.best,bestColor:s.bestColor,bestCs:s.bestCs,bestG:s.bestG,gbest:s.gbest,gbestH:s.gbestH,daily:s.daily,dbest:s.dbest,dn:s.dn,mode:s.mode,cw:s.cw||500});pick=null;[...$("calls").children].forEach(x=>x.classList.remove("sel"));save();idle();render();toast("Daily play reset. All-time stats kept.")});
+guard("reset","Reset daily play? Your all-time stats and badges stay.",()=>{if(spinning)return;s=Object.assign(D(),{mute:s.mute,badges:s.badges,calledG:s.calledG,snd:s.snd,best:s.best,bestColor:s.bestColor,bestCs:s.bestCs,bestG:s.bestG,gbest:s.gbest,gbestH:s.gbestH,daily:s.daily,dbest:s.dbest,dn:s.dn,mode:s.mode,cw:s.cw||500});pick=null;[...$("calls").children].forEach(x=>x.classList.remove("sel"));save();idle();render();toast("Daily play reset. All-time stats kept.")});
 $("share").addEventListener("click",()=>{
   const c=document.createElement("canvas");c.width=c.height=600;const x=c.getContext("2d"),bc=s.bestColor||"r";
   x.fillStyle="#2b0a22";x.fillRect(0,0,600,600);x.strokeStyle="#e8a317";x.lineWidth=10;x.strokeRect(20,20,560,560);
@@ -722,5 +786,25 @@ setTimeout(()=>{if(!ready){ready=true;lock(false)}},8000);
 })();
 if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));</script>
 <script>(function(){var r=document.documentElement;function f(){var w=innerWidth,H=innerHeight,l=w>H&&H<=520&&matchMedia("(pointer:coarse)").matches;if(l){var o=typeof window.orientation==="number"?window.orientation:(screen.orientation&&screen.orientation.angle===270?-90:90);r.style.setProperty("--lw",w+"px");r.style.setProperty("--lh",H+"px");r.classList.add("ls");r.classList.toggle("lR",o===-90||o===270);r.classList.toggle("lL",!(o===-90||o===270))}else r.classList.remove("ls","lL","lR")}f();addEventListener("resize",f);addEventListener("orientationchange",function(){setTimeout(f,60)})})()</script>
+
+
+<script>(function(){const fab=document.getElementById("sndfab"),pan=document.getElementById("sndpan");SNDS.forEach((nm,i)=>{const b=document.createElement("button");b.type="button";b.textContent=nm;b.dataset.n=i+1;pan.appendChild(b)});
+const hl=()=>[...pan.querySelectorAll("button")].forEach(x=>x.classList.toggle("on",+x.dataset.n===(s.snd||1)));
+fab.onclick=e=>{e.stopPropagation();hl();pan.hidden=!pan.hidden};
+pan.onclick=e=>{e.stopPropagation();const b=e.target.closest("button");if(!b)return;s.snd=+b.dataset.n;save();hl();if(!s.mute)sample()};
+document.addEventListener("click",()=>{pan.hidden=true})})()</script>
+<script>(function(){
+const SA=(navigator.standalone===true)||matchMedia("(display-mode: standalone)").matches;
+const LS=(k,v)=>{try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){}};
+function box(html,onClose){const o=document.createElement("div");o.className="ob";o.innerHTML='<div class="obc">'+html+'</div>';document.body.appendChild(o);o.addEventListener("click",e=>{if(e.target.closest("[data-x]")){o.remove();onClose&&onClose(e.target.closest("[data-x]").dataset.x)}});return o}
+const NOPEB=["Okay, just play here", "I don't want to. Play here", "Not doing that. Play here", "I'll keep hitting this. Play here", "Nope. Play here", "Pretty please, play here", "I said play here", "Let me in. Play here", "My thumb is fine. Play here", "I have all day. Play here", "Just this once, play here", "Fine, I'll beg. Play here", "Make me. Play here", "Still no. Play here", "You can't stop me. Play here", "I'm not adding anything. Play here", "Rules are for other people. Play here", "Open sesame. Play here", "I know my rights. Play here", "Seriously, play here", "I'll wait. Play here", "Try me. Play here", "One more time. Play here", "Didn't read it. Play here", "Too many steps. Play here", "I'm busy. Play here", "My Home Screen is full. Play here", "Not today. Play here", "I'm the customer. Play here", "Please and thank you. Play here", "I'm a rebel. Play here", "Watch me tap. Play here", "Nice try. Play here", "Okay, now play here", "Last chance. Play here", "I'm telling the manager. Play here", "Just let me spin. Play here", "I can do this forever. Play here", "Wow. Rude. Play here", "That's it, play here", "My lawyer says play here", "I'll leave a bad review. Play here", "I paid nothing. Play here", "Who even reads steps. Play here", "I'm allergic to Home Screens. Play here", "Share button scares me. Play here", "Hurry up. Play here", "Pleeeease. Play here", "I'll be quick. Play here", "Just one spin. Play here", "Okay but what if: Play here", "I demand to play here", "I'm not budging. Play here", "Tap. Tap. Play here", "Still tapping. Play here", "Is this thing on? Play here", "Hello? Play here", "Knock knock. Play here", "Pretty pretty please, play here", "I'll cry. Play here", "I'm already crying. Play here", "Fine, I'm sorry. Play here", "Can we compromise? Play here", "Counteroffer: Play here", "Final answer: Play here", "I'm the boss. Play here", "I own this phone. Play here", "Doesn't apply to me. Play here", "I'm special. Play here", "Exception please. Play here", "VIP coming through. Play here", "Do you know who I am? Play here", "Don't make me tap again. Play here", "Okay I'm tapping again. Play here", "Not giving up. Play here", "Stubborn mode on. Play here", "I'll outlast you. Play here", "Battery's full. Play here", "I've got snacks. Play here", "Bring it on. Play here", "Just play here already", "Play here, I'm begging", "Let's skip the steps. Play here", "Steps are optional. Play here", "I'll add it later. Play here", "Pinky promise. Play here", "Cross my heart. Play here", "I'll add it tomorrow. Play here", "I swear. Play here", "It's my birthday. Play here", "Doctor's orders: Play here", "My horoscope says play here", "The clover wants me to play here", "I'm feeling lucky. Play here", "Shhh, play here", "Nobody's watching. Play here", "Between us: Play here", "Just play here, okay?", "Sigh. Play here", "Ugh. Play here", "Unbelievable. Play here", "Whatever. Play here"];
+const NOPE=["If you want to play here, seek legal counsel.", "Our lawyers have advised us to ignore that button.", "Please hold. Your request is being reviewed by nobody.", "Request denied by the Department of Home Screens.", "The wheel has filed a restraining order against Safari.", "That button is decorative. Like your hopes.", "You have the right to remain on this screen.", "Error 404: Patience not found.", "Tapping harder does not help. We checked.", "Somewhere a Home Screen is crying because of you.", "Your phone is literally begging you.", "Three steps. You've done harder things. Probably.", "This is a Home Screen-only establishment.", "The bouncer says no. The bouncer is me.", "We can do this all day. We are a computer.", "Your thumb is tired. The answer is still no.", "Fun fact: you could have added it by now.", "This button has been reported to the authorities.", "The clover refuses to grow in Safari soil.", "Have you tried, and hear me out, doing the steps?", "I'm not mad. I'm just disappointed.", "Every tap adds one year to your sentence.", "The judge has ruled: Home Screen or nothing.", "Safari called. It doesn't want you either.", "Imagine explaining this to your grandkids.", "Your stubbornness is noted and admired. Still no.", "Plot twist: the button never worked.", "The Share button misses you. Go say hi.", "Legally, we cannot let you do that. Morally, we just won't.", "Tap count logged. Your therapist will hear about this.", "You're not getting in without a Home Screen VIP pass.", "Please consult your nearest teenager for help.", "Even your toaster could follow these steps.", "The wheel is spinning in its grave. And it's not even dead.", "This is the part where you give up and add it.", "Your persistence would be inspiring if it weren't wrong.", "The only thing you're winning here is a sore thumb.", "Achievement unlocked: Professional Button Tapper.", "We've notified your emergency contact.", "Customer service is closed. Forever. For this.", "This button runs on denial. Yours.", "Would you like to file an appeal? Also no.", "The odds of this working are worse than four greens.", "Every tap makes a clover wilt.", "You're one tap closer to nothing.", "Your Screen Time report is going to be embarrassing.", "The developer is watching. He's shaking his head.", "Bold of you to assume this button has feelings. It doesn't care.", "Fine. Let's negotiate. My terms: do the steps.", "I have a very particular set of skills. Saying no is one of them.", "Insert coin to continue. Just kidding. Do the steps.", "This is a toll road. The toll is three taps.", "Breaking news: local person refuses simple instructions.", "Your request has been forwarded to the trash.", "Ask again later. Then do the steps anyway.", "This app only speaks Home Screen.", "You can't sit with us. Unless you add the app.", "The wheel doesn't do house calls in Safari.", "Please stop. The button is starting to bruise.", "We have reached peak tapping. Results: none.", "Even the sad trombone is tired of this.", "Your future self is facepalming right now.", "Somewhere, a Share button sits unpressed and lonely.", "It's three steps. Not a mortgage application.", "Are you doing this on purpose? Be honest.", "The wheel has entered do-not-disturb mode for Safari users.", "Statistically, you are now the most stubborn player ever.", "Our records show zero people have won this argument.", "Your thumb has filed for workers' comp.", "This screen will self-destruct. Kidding. It will stay forever.", "A wise person once said: just add it to the Home Screen.", "You've tapped more times than the steps would take.", "New rule: every tap costs one imaginary dollar. You're broke.", "Plot armor does not protect you from this screen.", "The Home Screen is a lovely place this time of year.", "We'll leave the light on for you. On the Home Screen.", "This is not a choose-your-own-adventure. There is one ending.", "Call your lawyer. Then call your lawyer's lawyer.", "The clover council has voted. It was unanimous. No.", "Your browser history will remember this.", "Nice try. The Home Screen is the only door.", "You're like a moth to the wrong flame.", "Somebody get this person a tutorial video.", "Please read step one out loud. Slowly.", "This button is just here to test your character.", "You failed the character test. Try the steps.", "Sir or madam, this is a Home Screen.", "We admire the hustle. Redirect it to the Share button.", "Tapping this is the cardio nobody asked for.", "Plot hole: you still haven't added the app.", "Your fingers are writing checks your patience can't cash.", "In a parallel universe, you already did the steps.", "The Safari version was banned for being too sad.", "Spinning the wheel in Safari is like swimming in a sweater.", "Our insurance does not cover Safari spins.", "This message was approved by the Home Screen lobby.", "Go ahead. Tap again. See what happens. (Nothing.)", "A clover told me you'd do the right thing eventually.", "Don't make me get the sad trombone.", "Your stubbornness has been entered into the badge system. No badge.", "At this point, the steps are the easy way out.", "Imagine the spins you could be spinning right now.", "Three taps to freedom. You know what to do.", "This is your sign. Literally. It's on the screen.", "The wheel is ready. Are you? Then add it."];
+window.obInstall=function(again){const steps='<ol><li><span class="obi">1</span><span>Tap the <b>Share</b> button <b>\u2b06\ufe0e</b> at the bottom of Safari.</span></li><li><span class="obi">2</span><span>Scroll down and tap <b>Add to Home Screen</b>.</span></li><li><span class="obi">3</span><span>Tap <b>Add</b>, then open <b>Four Leaf</b> from your Home Screen.</span></li></ol>';
+if(!again)box('<h2>Four Leaf</h2><p class="obs">Play it like a real app. Add it to your Home Screen first. It takes 10 seconds.</p>'+steps+'<button class="obskip" type="button" data-x="skip">Just play here for now</button>',x=>{if(x==="skip")setTimeout(()=>obInstall(1),150)});
+else{const o=box('<h2>Come on.</h2><p class="obs" id="nope">Just do what it says.</p>'+steps+'<button class="obskip" type="button" id="nopeb">Not doing that. Play here</button>',null);let bag=[],bb=[];o.querySelector('#nopeb').onclick=e=>{e.stopPropagation();if(!bag.length){bag=NOPE.slice();for(let i=bag.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[bag[i],bag[j]]=[bag[j],bag[i]]}}if(!bb.length){bb=NOPEB.slice();for(let i=bb.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[bb[i],bb[j]]=[bb[j],bb[i]]}}e.currentTarget.textContent=bb.pop();const m=o.querySelector('#nope');m.textContent=bag.pop();m.animate([{transform:'scale(1.08)'},{transform:'none'}],{duration:250})}}};
+window.obWelcome=function(){box('<h2>Welcome!</h2><p class="obs">Here is everything you need.</p><ul><li><span class="obi">↻</span><span><b>Flick the wheel</b> or tap <b>Spin</b>.</span></li><li><span class="obi">✓</span><span><b>Pick a color</b> for points, or just <b>Free Spin</b>.</span></li><li><span class="obi">\u2600</span><span>Don\u2019t miss the <b>Daily</b> round: same 10 spins for everyone, once a day.</span></li><li><span class="obi">♪</span><span>Tap the <b>♪</b> by the wheel to change the spin sound.</span></li><li><span class="obi">★</span><span>Earn <b>badges</b> just by spinning. Tap one to see how.</span></li></ul><button class="obgo" type="button" data-x="go">Let’s spin</button>',()=>LS("fl-wel","1"))};
+const live=location.hostname.endsWith("github.io");
+setTimeout(()=>{if(!live)return;const ios=/iPhone|iPad|iPod/.test(navigator.userAgent);if(!SA&&ios)obInstall();else if(!LS("fl-wel"))obWelcome()},3000);
+})()</script>
 </body>
 </html>
