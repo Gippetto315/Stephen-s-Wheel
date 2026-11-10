@@ -311,9 +311,9 @@ html:root{color-scheme:dark!important}
   <div class="wsel" id="wsel"><button type="button" data-w="100">100</button><button type="button" data-w="250">250</button><button type="button" data-w="500">500</button><button type="button" data-w="1000">1,000</button><button type="button" data-w="2500">2,500</button><button type="button" data-w="5000">5,000</button></div>
   <p class="small" id="lcc" style="margin:-4px 0 0"></p>
   <div class="links"><button id="rline" type="button">Reset line</button></div>
-  <details class="info" id="bdbox" style="display:block"><summary id="bdh">Badges</summary><div class="bd" id="bd" style="margin-top:10px"></div></details>
+  <details class="info" id="bdbox" style="display:block"><summary id="bdh">Badges</summary><p class="bdn" style="margin:10px 0 0;font-size:13px;color:var(--muted)">Only <b>Called It</b>, <b>5 calls in a row</b>, <b>10 calls in a row</b>, <b>500 points</b>, <b>High Roller</b> and <b>Perfect Round</b> need you to pick a color before spinning. Tap any badge to see how to earn it.</p><div class="bd" id="bd" style="margin-top:10px"></div></details>
   <div class="links"><button id="share" type="button">Share my best streak</button><button id="snd" type="button"></button><button id="rmem" type="button">Reset odds memory</button><button id="reset" type="button">Reset daily play</button></div>
-  <details class="info" id="bkbox"><summary>Backup &amp; restore</summary><p class="small">Moving to a new icon? Tap Copy backup, paste it somewhere safe (Notes works), then paste it back here after re-adding the app. <span style="opacity:.6">Version 36</span></p><textarea id="bkt" rows="3" placeholder="Backup code shows here. To restore, paste a code here." style="width:100%;box-sizing:border-box;margin-top:8px;padding:8px;border-radius:10px;border:1px solid rgba(232,163,23,.5);background:rgba(0,0,0,.35);color:inherit;font:16px monospace"></textarea><div class="links"><button id="bkc" type="button">Copy backup</button><button id="bkr" type="button">Restore from code</button></div></details>
+  <details class="info" id="bkbox"><summary>Backup &amp; restore</summary><p class="small">Moving to a new icon? Tap Copy backup, paste it somewhere safe (Notes works), then paste it back here after re-adding the app. <span style="opacity:.6">Version 37</span></p><textarea id="bkt" rows="3" placeholder="Backup code shows here. To restore, paste a code here." style="width:100%;box-sizing:border-box;margin-top:8px;padding:8px;border-radius:10px;border:1px solid rgba(232,163,23,.5);background:rgba(0,0,0,.35);color:inherit;font:16px monospace"></textarea><div class="links"><button id="bkc" type="button">Copy backup</button><button id="bkr" type="button">Restore from code</button></div></details>
 </main>
 <div id="ov" hidden><img id="shimg" alt="Your best streak card"><p>Press and hold the image to save or share it.</p><div><button id="shs" type="button">Share</button> <button id="cls" type="button">Close</button></div></div>
 <div id="fx" aria-hidden="true"></div>
@@ -326,7 +326,8 @@ const $=id=>document.getElementById(id),cv=$("wheel"),ctx=cv.getContext("2d"),st
 const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 const fmt=new Intl.NumberFormat("en",{notation:"compact",maximumFractionDigits:1});
 const D=()=>({r:0,b:0,g:0,color:null,streak:0,best:0,bestColor:null,hist:[],log:"",all:"",cw:500,cr:0,pts:0,calls:0,wins:0,cs:0,bestCs:0,badges:[],bestG:0,game:{left:10,score:0,hits:0,newBest:false,color:null,streak:0,combo:0,bonus:0},gbest:0,daily:null,dbest:0,dn:0,mode:"free",mute:false});
-const BD=[["first","First spin",s=>life.n>=1],["s3","3 in a row: Heating Up",s=>s.best>=3],["s5","5 in a row: Hot Streak",s=>s.best>=5],["s7","7 in a row: On Fire",s=>s.best>=7],["s10","10 in a row: Legendary",s=>s.best>=10],["s13","13 in a row: Bold",s=>s.best>=13],["s15","15 in a row: Mythic",s=>s.best>=15],["s17","17 in a row: Call a Physicist",s=>s.best>=17],["s20","20 in a row: Immortal",s=>s.best>=20],["gg2","2 green in a row",s=>s.bestG>=2],["gg3","Lucky Clover",s=>s.bestG>=3],["gg4","Four Leaf",s=>s.bestG>=4],["c5","5 calls in a row",s=>s.bestCs>=5],["n100","100 spins",s=>life.n>=100],["n500","500 spins",s=>life.n>=500],["n1k","1,000 spins",s=>life.n>=1000],["n5k","5,000 spins",s=>life.n>=5000],["n10k","10,000 spins",s=>life.n>=10000],["p500","500 points",s=>s.pts>=500],["perf","Perfect round",s=>s.perfect]];
+const BDX={first:"Spin the wheel once.",s3:"Land the same color 3 times in a row.",s5:"Land the same color 5 times in a row.",s7:"Land the same color 7 times in a row.",s10:"Land the same color 10 times in a row.",s13:"Land the same color 13 times in a row.",s15:"Land the same color 15 times in a row.",s17:"Land the same color 17 times in a row.",s20:"Land the same color 20 times in a row.",gg2:"Land green 2 times in a row.",gg3:"Land green 3 times in a row.",gg4:"Land green 4 times in a row.",cg:"Pick green before a spin and have it land green.",g100:"Land green 100 times, all-time.",c5:"Call the right color 5 spins in a row.",c10:"Call the right color 10 spins in a row.",n100:"Spin 100 times.",n500:"Spin 500 times.",n1k:"Spin 1,000 times.",n5k:"Spin 5,000 times.",n10k:"Spin 10,000 times.",p500:"Score 500 points from calling colors.",p1k:"Score 1,000 points from calling colors.",even:"After 500+ spins, have your all-time reds and blacks exactly tied.",perf:"Get all 10 right in a 10-Guess round."};
+const BD=[["first","First spin",s=>life.n>=1],["s3","3 in a row: Heating Up",s=>s.best>=3],["s5","5 in a row: Hot Streak",s=>s.best>=5],["s7","7 in a row: On Fire",s=>s.best>=7],["s10","10 in a row: Legendary",s=>s.best>=10],["s13","13 in a row: Bold",s=>s.best>=13],["s15","15 in a row: Mythic",s=>s.best>=15],["s17","17 in a row: Call a Physicist",s=>s.best>=17],["s20","20 in a row: Immortal",s=>s.best>=20],["gg2","2 green in a row",s=>s.bestG>=2],["gg3","Lucky Clover",s=>s.bestG>=3],["gg4","Four Leaf",s=>s.bestG>=4],["cg","Called It",s=>!!s.calledG],["g100","Clover Field",s=>life.g>=100],["c5","5 calls in a row",s=>s.bestCs>=5],["c10","10 calls in a row",s=>s.bestCs>=10],["n100","100 spins",s=>life.n>=100],["n500","500 spins",s=>life.n>=500],["n1k","1,000 spins",s=>life.n>=1000],["n5k","5,000 spins",s=>life.n>=5000],["n10k","10,000 spins",s=>life.n>=10000],["even","Even Stephen",s=>life.n>=500&&life.r===life.b],["p500","500 points",s=>s.pts>=500],["p1k","High Roller",s=>s.pts>=1000],["perf","Perfect Round",s=>s.perfect]];
 let s=D(),size=0,rot=0,spinning=false,pick=null,ac,tt,card,life={n:0,r:0,b:0,g:0},ready=false,dbc=null,busy=false,dirty=false,lastP="",lastL="",pend=null,cur={r:45.5,b:45.5,g:9.1};
 try{const v=JSON.parse(localStorage.getItem("dw-v2")||localStorage.getItem("dw-roulette"));if(v&&typeof v.r==="number"){s=Object.assign(D(),v);if(!s.log)s.log=(s.hist||[]).join("")}}catch(e){}
 if(s.gbest===1999&&!s.gbestH)s.gbestH=7;
@@ -370,6 +371,7 @@ function glive(){
 }
 function rnd(n){const a=new Uint32Array(1),lim=Math.floor(4294967296/n)*n;do{crypto.getRandomValues(a)}while(a[0]>=lim);return a[0]%n}
 
+const LEAF=new Path2D("M0,0 C-5,-8.5 -17.5,-11 -16.5,-21.5 C-15.8,-29.5 -6.5,-31.5 -2.2,-27 C-1.3,-26.1 -.5,-25.4 0,-25.4 C.5,-25.4 1.3,-26.1 2.2,-27 C6.5,-31.5 15.8,-29.5 16.5,-21.5 C17.5,-11 5,-8.5 0,0Z");
 function draw(t){
   t=t||0;const c=size/2,R=c-4,r=R*.86;
   ctx.clearRect(0,0,size,size);ctx.save();ctx.translate(c,c);
@@ -378,6 +380,10 @@ function draw(t){
   for(let i=0;i<20;i++){const a=i/20*TAU;ctx.beginPath();ctx.arc(Math.cos(a)*R*.93,Math.sin(a)*R*.93,R*.022,0,TAU);ctx.fillStyle=(i+ph)%2?"#fff3dd":"#b8730a";ctx.fill()}
   ctx.rotate(rot);
   for(let i=0;i<N;i++){ctx.beginPath();ctx.moveTo(0,0);ctx.arc(0,0,r,i*seg,(i+1)*seg);ctx.closePath();ctx.fillStyle=C[col(i)];ctx.fill();ctx.strokeStyle="#e8a317";ctx.lineWidth=1.2;ctx.stroke()}
+  for(let i=0;i<N;i+=11){ctx.save();ctx.rotate((i+.5)*seg+Math.PI/2);ctx.translate(0,-r*.83);const k=r*.0021;ctx.scale(k,k);ctx.lineJoin="round";ctx.lineCap="round";
+    const st=new Path2D("M0,8 C-.5,20 -3,32 -9,44");ctx.strokeStyle="#fff3dd";ctx.lineWidth=6.5;ctx.stroke(st);ctx.strokeStyle="#0a4a1c";ctx.lineWidth=2.8;ctx.stroke(st);
+    for(const d of [-45,45,135,225]){ctx.save();ctx.rotate(d*Math.PI/180);ctx.scale(.86,1);ctx.strokeStyle="#fff3dd";ctx.lineWidth=4;ctx.stroke(LEAF);ctx.fillStyle="#0a4a1c";ctx.fill(LEAF);ctx.restore()}
+    ctx.restore()}
   let g=ctx.createRadialGradient(0,0,r*.2,0,0,r);g.addColorStop(0,"rgba(255,255,255,.14)");g.addColorStop(.6,"rgba(0,0,0,0)");g.addColorStop(1,"rgba(0,0,0,.45)");ctx.beginPath();ctx.arc(0,0,r,0,TAU);ctx.fillStyle=g;ctx.fill();
   g=ctx.createRadialGradient(-r*.08,-r*.08,2,0,0,r*.3);g.addColorStop(0,"#fff0a8");g.addColorStop(.6,"#e8a317");g.addColorStop(1,"#8a5600");ctx.beginPath();ctx.arc(0,0,r*.3,0,TAU);ctx.fillStyle=g;ctx.fill();
   ctx.restore();
@@ -480,7 +486,7 @@ function render(){
   const lg=s.log.slice(-50);$("hist").replaceChildren(...[...lg].map((c,k)=>{const i=document.createElement("i");i.style.background=C[c];i.textContent=t-lg.length+k+1;return i}));
   const bar=$("bar").children;["r","b","g"].forEach((c,k)=>bar[k].style.flexBasis=(t?s[c]/t*100:0)+"%");
   $("bdh").textContent="Badges: "+s.badges.length+" of "+BD.length+" earned";
-  $("bd").replaceChildren(...BD.map(([id,l])=>{const e=document.createElement("span");e.textContent=l;if(s.badges.includes(id))e.className="on";return e}));
+  $("bd").replaceChildren(...BD.map(([id,l])=>{const e=document.createElement("span");e.textContent=l;if(s.badges.includes(id))e.className="on";e.style.cursor="pointer";e.onclick=()=>toast(l+": "+(BDX[id]||""),4000);return e}));
   $("snd").textContent="Sound: "+(s.mute?"off":"on");$("share").disabled=!t;
   chart();
 }
@@ -558,9 +564,9 @@ function end(i){
   {const was=s.log.length;s.log=(s.log+c).slice(-5000);if(was>=5000)s.cr=Math.max(0,(s.cr||0)-1)}
   if(typeof s.all!=="string"||!s.all)s.all=s.log;else s.all+=c}
   let cm="";
-  if(pend){const g=dly?s.daily:s.game;g.left--;if(dly)g.res+=pend.c===c?"1":"0";if(g.color===c)g.streak=(g.streak||0)+1;else{g.color=c;g.streak=1}if(pend.c===c){const m=gmult(),gain=Math.round(pend.pts);g.combo=(g.combo||0)+1;g.hits++;g.score+=gain;cm="Called "+nm(c)+" at "+pend.pct+"%: +"+gain.toLocaleString()+" points"+(m>1?" (combo x"+m+")":"")+"!"}else{g.combo=0;cm="Missed. "+nm(pend.c)+" was at "+pend.pct+"%."}
+  if(pend){const g=dly?s.daily:s.game;g.left--;if(dly)g.res+=pend.c===c?"1":"0";if(g.color===c)g.streak=(g.streak||0)+1;else{g.color=c;g.streak=1}if(pend.c===c){const m=gmult(),gain=Math.round(pend.pts);if(c==="g"&&!dly)s.calledG=1;g.combo=(g.combo||0)+1;g.hits++;g.score+=gain;cm="Called "+nm(c)+" at "+pend.pct+"%: +"+gain.toLocaleString()+" points"+(m>1?" (combo x"+m+")":"")+"!"}else{g.combo=0;cm="Missed. "+nm(pend.c)+" was at "+pend.pct+"%."}
     if(g.left<=0){g.bonus=g.hits*20+(g.hits===10?500:0);g.score+=g.bonus;if(dly){s.dn=(s.dn||0)+1;if(g.score>(s.dbest||0)){s.dbest=g.score;g.newBest=s.dn>1}}else{if(g.hits===10)s.perfect=true;if(g.score>(s.gbest||0)){s.gbest=g.score;s.gbestH=g.hits;g.newBest=true}}setTimeout(()=>{pop("#e8a317");toast((dly?"Daily done: ":"Round over: ")+g.score.toLocaleString()+" points"+(g.newBest?", new best!":""))},900)}
-    pend=null}else if(pick){s.calls++;if(pick===c){s.wins++;s.cs++;s.bestCs=Math.max(s.bestCs,s.cs);const g=(c==="g"?50:10)+5*(s.cs-1);s.pts+=g;cm="Called it! +"+g+" points"}else{s.cs=0;cm="Missed it. You called "+nm(pick)+"."}}
+    pend=null}else if(pick){s.calls++;if(pick===c){s.wins++;if(c==="g")s.calledG=1;s.cs++;s.bestCs=Math.max(s.bestCs,s.cs);const g=(c==="g"?50:10)+5*(s.cs-1);s.pts+=g;cm="Called it! +"+g+" points"}else{s.cs=0;cm="Missed it. You called "+nm(pick)+"."}}
   pick=null;[...$("calls").children].forEach(x=>x.classList.remove("sel"));
   const fresh=dly?[]:BD.filter(([id,l,f])=>!s.badges.includes(id)&&f(s));
   fresh.forEach(b=>s.badges.push(b[0]));
@@ -647,7 +653,7 @@ $("bkr").addEventListener("click",()=>{
 });
 guard("rline","Reset the luck line? Your all-time stats stay.",()=>{s.cr=s.log.length;save();chart();toast("Luck line reset. All-time stats kept.")});
 $("snd").addEventListener("click",()=>{s.mute=!s.mute;save();render()});
-guard("reset","Reset daily play? Your all-time stats and badges stay.",()=>{if(spinning)return;s=Object.assign(D(),{mute:s.mute,badges:s.badges,best:s.best,bestColor:s.bestColor,bestCs:s.bestCs,bestG:s.bestG,gbest:s.gbest,gbestH:s.gbestH,daily:s.daily,dbest:s.dbest,dn:s.dn,mode:s.mode,cw:s.cw||500});pick=null;[...$("calls").children].forEach(x=>x.classList.remove("sel"));save();idle();render();toast("Daily play reset. All-time stats kept.")});
+guard("reset","Reset daily play? Your all-time stats and badges stay.",()=>{if(spinning)return;s=Object.assign(D(),{mute:s.mute,badges:s.badges,calledG:s.calledG,best:s.best,bestColor:s.bestColor,bestCs:s.bestCs,bestG:s.bestG,gbest:s.gbest,gbestH:s.gbestH,daily:s.daily,dbest:s.dbest,dn:s.dn,mode:s.mode,cw:s.cw||500});pick=null;[...$("calls").children].forEach(x=>x.classList.remove("sel"));save();idle();render();toast("Daily play reset. All-time stats kept.")});
 $("share").addEventListener("click",()=>{
   const c=document.createElement("canvas");c.width=c.height=600;const x=c.getContext("2d"),bc=s.bestColor||"r";
   x.fillStyle="#2b0a22";x.fillRect(0,0,600,600);x.strokeStyle="#e8a317";x.lineWidth=10;x.strokeRect(20,20,560,560);
