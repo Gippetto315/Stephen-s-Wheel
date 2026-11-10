@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="color-scheme" content="dark"><title>Four Leaf</title><link rel="manifest" href="manifest.webmanifest">
+<meta name="color-scheme" content="dark"><title>Four Leaf</title>
+<link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#2b0a22">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -248,8 +249,8 @@ html:root{color-scheme:dark!important}
   <div class="info" id="ghud" hidden>
     <div class="row2"><div class="card"><div class="n" id="gl">10</div><div class="p">Guesses left</div></div><div class="card"><div class="n" id="gs">0</div><div class="p">Score</div></div><div class="card"><div class="n" id="gb">0</div><div class="p" id="gbl">Best round</div></div></div>
     <p class="big" id="gcombo"></p>
-    <p class="small" id="gdesc" hidden></p><button id="dhow" type="button" hidden>How the Daily Round works</button><p class="small" id="gdesc0">Pick a color, then spin. Every right guess pays 100, plus a bonus for lower odds. Right guesses in a row build a combo multiplier, up to x3. A miss resets it.</p>
-    <details><summary>Payout chart</summary><p class="small">50% pays 157. 25% pays 180. 10% pays 226. 5% pays 279. 1% pays 500. Anything under 0.6% pays 600. Combo: x1, x1.25, x1.5 and so on up to x3. End of round: +20 per right guess, +500 for a perfect 10 of 10.</p></details>
+    <p class="small" id="gdesc" hidden></p><button id="dhow" type="button" hidden>How the Daily Round works</button><p class="small" id="gdesc0">Pick a color, then spin. A right guess pays 100 at normal odds, and much more for long shots like green. Right guesses in a row build a combo multiplier, up to x3. A miss resets it.</p>
+    <details><summary>Payout chart</summary><p class="small">45% pays 100. 35% pays 122. 25% pays 157. 20% pays 185. 15% pays 230. 10% pays 311. 5% pays 524. 3% pays 768. Anything under 3% pays 800. Combo: x1, x1.25, x1.5 and so on up to x3. End of round: +20 per right guess, +500 for a perfect 10 of 10.</p></details>
     <div id="gover" hidden><p class="big" id="gmsg"></p><p id="dgrid" hidden></p><button id="gnew" type="button">New round</button><button id="dsh" type="button" hidden>Share my score</button></div>
   </div>
   <div class="calls" id="calls"><button type="button" data-c="r">Red</button><button type="button" data-c="b">Black</button><button type="button" data-c="g">Green</button></div>
@@ -293,7 +294,7 @@ html:root{color-scheme:dark!important}
   <div class="links"><button id="rline" type="button">Reset line</button></div>
   <details class="info" id="bdbox" style="display:block"><summary id="bdh">Badges</summary><div class="bd" id="bd" style="margin-top:10px"></div></details>
   <div class="links"><button id="share" type="button">Share my best streak</button><button id="snd" type="button"></button><button id="rmem" type="button">Reset odds memory</button><button id="reset" type="button">Reset daily play</button></div>
-  <details class="info" id="bkbox"><summary>Backup &amp; restore</summary><p class="small">Moving to a new icon? Tap Copy backup, paste it somewhere safe (Notes works), then paste it back here after re-adding the app. <span style="opacity:.6">Version 30</span></p><textarea id="bkt" rows="3" placeholder="Backup code shows here. To restore, paste a code here." style="width:100%;box-sizing:border-box;margin-top:8px;padding:8px;border-radius:10px;border:1px solid rgba(232,163,23,.5);background:rgba(0,0,0,.35);color:inherit;font:16px monospace"></textarea><div class="links"><button id="bkc" type="button">Copy backup</button><button id="bkr" type="button">Restore from code</button></div></details>
+  <details class="info" id="bkbox"><summary>Backup &amp; restore</summary><p class="small">Moving to a new icon? Tap Copy backup, paste it somewhere safe (Notes works), then paste it back here after re-adding the app. <span style="opacity:.6">Version 32</span></p><textarea id="bkt" rows="3" placeholder="Backup code shows here. To restore, paste a code here." style="width:100%;box-sizing:border-box;margin-top:8px;padding:8px;border-radius:10px;border:1px solid rgba(232,163,23,.5);background:rgba(0,0,0,.35);color:inherit;font:16px monospace"></textarea><div class="links"><button id="bkc" type="button">Copy backup</button><button id="bkr" type="button">Restore from code</button></div></details>
 </main>
 <div id="ov" hidden><img id="shimg" alt="Your best streak card"><p>Press and hold the image to save or share it.</p><div><button id="shs" type="button">Share</button> <button id="cls" type="button">Close</button></div></div>
 <div id="fx" aria-hidden="true"></div>
@@ -332,7 +333,7 @@ const dkey=()=>{const d=new Date();return d.getFullYear()+"-"+(d.getMonth()+1)+"
 function dseq(k){let h=2166136261;for(const ch of "FourLeaf:"+k){h^=ch.charCodeAt(0);h=Math.imul(h,16777619)}let a=h>>>0;const o=[];for(let i=0;i<10;i++){a=(a+0x6D2B79F5)|0;let t=Math.imul(a^(a>>>15),1|a);t=(t+Math.imul(t^(t>>>7),61|t))^t;o.push(Math.floor(((t^(t>>>14))>>>0)/4294967296*N))}return o}
 function dchk(){const k=dkey();if(!s.daily||s.daily.d!==k)s.daily={d:k,left:10,score:0,hits:0,newBest:false,color:null,streak:0,combo:0,bonus:0,res:""};return s.daily}
 const G=()=>s.mode==="daily"?dchk():s.game;
-function dtext(){const g=dchk();return "Four Leaf Daily, "+dnice()+"\n"+g.score.toLocaleString()+" points, "+g.hits+" of 10 right\n"+[...g.res].map(x=>x==="1"?"\u{1F7E9}":"\u2B1C").join("")+(location.hostname.endsWith("github.io")?"\n"+location.origin+location.pathname:"")}
+function dtext(){const g=dchk();return "Four Leaf Daily, "+dnice()+"\n"+g.score.toLocaleString()+" points, "+g.hits+" of 10 right\n"+[...g.res].map(x=>x==="1"?"\u{1F7E9}":"\u2B1C").join("")}
 const GON=location.hostname.endsWith("github.io"),GU="https://abacus.jasoncameron.dev/",GK="four-leaf-wheel/total-spins";
 let gtot=null,gq=0,gbusy=false;
 try{gq=+localStorage.getItem("fl-gq")||0}catch(e){}
@@ -492,7 +493,7 @@ function fut(t){
     $("n"+c+"p").parentNode.classList.toggle("hotbox",ext&&n>=3);
   });
 }
-const gbase=c=>Math.min(600,100+Math.round(40*Math.sqrt(100/Math.max(cur[c],.1)))),gmult=()=>Math.min(3,1+.25*(G().combo||0)),gpts=c=>Math.round(gbase(c)*gmult());
+const gbase=c=>Math.min(800,Math.max(100,Math.round(100*Math.pow(45.45/Math.max(cur[c],.1),.75)))),gmult=()=>Math.min(3,1+.25*(G().combo||0)),gpts=c=>Math.round(gbase(c)*gmult());
 function gui(){
   const dl=s.mode==="daily",gm=s.mode!=="free",g=G(),dd=s.daily&&s.daily.d===dkey()&&s.daily.left<=0;
   $("tfree").classList.toggle("on",!gm);$("tgame").classList.toggle("on",s.mode==="game");$("tdaily").classList.toggle("on",dl);$("tdaily").classList.toggle("new",!dd);
