@@ -294,7 +294,7 @@ html:root{color-scheme:dark!important}
   <div class="links"><button id="rline" type="button">Reset line</button></div>
   <details class="info" id="bdbox" style="display:block"><summary id="bdh">Badges</summary><div class="bd" id="bd" style="margin-top:10px"></div></details>
   <div class="links"><button id="share" type="button">Share my best streak</button><button id="snd" type="button"></button><button id="rmem" type="button">Reset odds memory</button><button id="reset" type="button">Reset daily play</button></div>
-  <details class="info" id="bkbox"><summary>Backup &amp; restore</summary><p class="small">Moving to a new icon? Tap Copy backup, paste it somewhere safe (Notes works), then paste it back here after re-adding the app. <span style="opacity:.6">Version 32</span></p><textarea id="bkt" rows="3" placeholder="Backup code shows here. To restore, paste a code here." style="width:100%;box-sizing:border-box;margin-top:8px;padding:8px;border-radius:10px;border:1px solid rgba(232,163,23,.5);background:rgba(0,0,0,.35);color:inherit;font:16px monospace"></textarea><div class="links"><button id="bkc" type="button">Copy backup</button><button id="bkr" type="button">Restore from code</button></div></details>
+  <details class="info" id="bkbox"><summary>Backup &amp; restore</summary><p class="small">Moving to a new icon? Tap Copy backup, paste it somewhere safe (Notes works), then paste it back here after re-adding the app. <span style="opacity:.6">Version 33</span></p><textarea id="bkt" rows="3" placeholder="Backup code shows here. To restore, paste a code here." style="width:100%;box-sizing:border-box;margin-top:8px;padding:8px;border-radius:10px;border:1px solid rgba(232,163,23,.5);background:rgba(0,0,0,.35);color:inherit;font:16px monospace"></textarea><div class="links"><button id="bkc" type="button">Copy backup</button><button id="bkr" type="button">Restore from code</button></div></details>
 </main>
 <div id="ov" hidden><img id="shimg" alt="Your best streak card"><p>Press and hold the image to save or share it.</p><div><button id="shs" type="button">Share</button> <button id="cls" type="button">Close</button></div></div>
 <div id="fx" aria-hidden="true"></div>
@@ -334,9 +334,9 @@ function dseq(k){let h=2166136261;for(const ch of "FourLeaf:"+k){h^=ch.charCodeA
 function dchk(){const k=dkey();if(!s.daily||s.daily.d!==k)s.daily={d:k,left:10,score:0,hits:0,newBest:false,color:null,streak:0,combo:0,bonus:0,res:""};return s.daily}
 const G=()=>s.mode==="daily"?dchk():s.game;
 function dtext(){const g=dchk();return "Four Leaf Daily, "+dnice()+"\n"+g.score.toLocaleString()+" points, "+g.hits+" of 10 right\n"+[...g.res].map(x=>x==="1"?"\u{1F7E9}":"\u2B1C").join("")}
-const GON=location.hostname.endsWith("github.io"),GU="https://abacus.jasoncameron.dev/",GK="four-leaf-wheel/total-spins";
+const GON=location.hostname.endsWith("github.io"),GU="https://abacus.jasoncameron.dev/",GK="four-leaf-wheel/world-spins";
 let gtot=null,gq=0,gbusy=false;
-try{gq=+localStorage.getItem("fl-gq")||0}catch(e){}
+try{gq=+localStorage.getItem("fl-gq")||0;if(localStorage.getItem("fl-gk")!==GK){gq=0;localStorage.setItem("fl-gq",0);localStorage.setItem("fl-gk",GK);localStorage.setItem("fl-gb","1")}}catch(e){}
 function gset(v){if(typeof v!=="number"||!(v>=0))return;if(gtot!==null&&v<=gtot)return;const first=gtot===null;gtot=v;const e=$("gtot");e.textContent=v.toLocaleString();if(!first&&!reduce){e.classList.remove("bump");void e.offsetWidth;e.classList.add("bump")}}
 const gsave=()=>{try{localStorage.setItem("fl-gq",gq)}catch(e){}};
 async function gflush(){if(!GON||gbusy||gq<=0)return;gbusy=true;try{while(gq>0){const r=await fetch(GU+"hit/"+GK,{cache:"no-store"});if(!r.ok)break;const j=await r.json();gq--;gsave();gset(j.value);if(gq>0)await new Promise(z=>setTimeout(z,450))}}catch(e){}gbusy=false}
