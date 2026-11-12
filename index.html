@@ -203,6 +203,35 @@ html,body{touch-action:pan-y;overscroll-behavior:none}
 #dsh{font:700 16px "DM Sans",system-ui,sans-serif;border:0;border-radius:999px;padding:10px 22px;background:linear-gradient(180deg,#fff0a8,#e8a317 60%,#b87800);color:#3b0a2a;cursor:pointer;box-shadow:0 3px 0 #5a2d00}
 #dgrid{margin:0;white-space:pre-line;font-weight:700;line-height:1.5;-webkit-user-select:text;user-select:text;background:rgba(0,0,0,.3);border:1px solid rgba(232,163,23,.5);border-radius:12px;padding:10px 14px}
 #tdaily.new::after{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#34e07a;margin-left:6px;vertical-align:middle;box-shadow:0 0 6px #34e07a}
+#dpl{width:100%;box-sizing:border-box;border-radius:20px;padding:16px 16px 12px;text-align:left;background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);box-shadow:0 12px 30px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.08);backdrop-filter:blur(8px)}
+#dpl[hidden]{display:none}
+#dpl .sum{text-align:center}
+#dpl .sum .k{font-size:11px;font-weight:700;letter-spacing:.18em;color:#f2b632;display:flex;justify-content:center;align-items:center;gap:8px}
+#dpl .tag{font-size:10px;letter-spacing:.12em;color:#1d0a18;background:#f2b632;border-radius:999px;padding:2px 8px}
+#dpl .sc{font:400 46px/1 Bungee,Impact,sans-serif;color:#fff;margin-top:8px;text-shadow:0 2px 0 rgba(0,0,0,.45)}
+#dpl .sc small{font:700 13px "DM Sans",sans-serif;letter-spacing:.12em;color:var(--muted);margin-left:6px}
+#dpl .pips{display:flex;justify-content:center;gap:6px;margin-top:12px}
+#dpl .pips i{width:20px;height:20px;border-radius:50%;border:2px solid rgba(255,255,255,.22)}
+#dpl .pips i.hit{border-color:#3fd08a;background:radial-gradient(circle at 35% 30%,#8ff0bd,#2e8b57);box-shadow:0 0 10px rgba(63,208,138,.45)}
+#dpl .sum .n{font-size:13px;color:var(--muted);margin-top:8px}
+#dpl .sep{height:1px;background:rgba(255,255,255,.1);margin:16px 0}
+#dpl .tt .n b{color:#fff}
+#dpl .nx{text-align:center;font-size:12px;color:var(--muted);margin-top:14px;letter-spacing:.04em}
+#dpl .top{display:flex;align-items:center;gap:14px}
+#dpl .ring{--p:0;flex:none;width:78px;height:78px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(#f2b632 calc(var(--p)*1%),rgba(255,255,255,.1) 0);position:relative}
+#dpl .ring::before{content:"";position:absolute;inset:7px;border-radius:50%;background:#1d0a18}
+#dpl .ring b{position:relative;font:400 20px/1 Bungee,Impact,sans-serif;color:#fff;text-shadow:0 2px 0 rgba(0,0,0,.45)}
+#dpl .ring b small{font-size:11px;opacity:.75}
+#dpl .tt{min-width:0}#dpl .tt .k{font-size:11px;font-weight:700;letter-spacing:.18em;color:#f2b632}
+#dpl .tt .h{font-size:19px;font-weight:700;color:#fff;line-height:1.15;margin-top:2px}
+#dpl .tt .n{font-size:13px;color:var(--muted);margin-top:3px}
+#dpl .cols{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;align-items:end;height:92px;margin-top:16px;padding-top:18px;position:relative}
+#dpl .col{position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center}
+#dpl .col i{display:block;width:100%;min-height:4px;border-radius:7px 7px 3px 3px;background:linear-gradient(180deg,rgba(80,200,140,.85),rgba(46,139,87,.55))}
+#dpl .col.me i{background:linear-gradient(180deg,#ffe27a,#e8a317);box-shadow:0 0 16px rgba(242,182,50,.55)}
+#dpl .col .you{position:absolute;top:-18px;font-size:10px;font-weight:700;letter-spacing:.12em;color:#1d0a18;background:#f2b632;border-radius:999px;padding:2px 7px}
+#dpl .labs{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:6px;font-size:10px;color:var(--muted);text-align:center;font-weight:600}
+#dpl .labs .me{color:#f2b632}
 #gover{display:flex;flex-direction:column;gap:8px;align-items:center}
 #gnew{font:700 16px "DM Sans",system-ui,sans-serif;border:0;border-radius:999px;padding:10px 22px;background:linear-gradient(180deg,#fff0a8,#e8a317 60%,#b87800);color:#3b0a2a;cursor:pointer;box-shadow:0 3px 0 #5a2d00}
 details summary{cursor:pointer;color:#f2b632;font-weight:700}
@@ -308,7 +337,7 @@ html:root{color-scheme:dark!important}
     <p class="big" id="gcombo"></p>
     <p class="small" id="gdesc" hidden></p><button id="dhow" type="button" hidden>How the Daily Round works</button><p class="small" id="gdesc0">Pick a color, then spin. A right guess pays 100 at normal odds, and much more for long shots like green. Right guesses in a row build a combo multiplier, up to x3. A miss resets it.</p>
     <details><summary>Payout chart</summary><p class="small">45% pays 100. 35% pays 122. 25% pays 157. 20% pays 185. 15% pays 230. 10% pays 311. 5% pays 524. 3% pays 768. Anything under 3% pays 800. Combo: x1, x1.25, x1.5 and so on up to x3. End of round: +20 per right guess, +500 for a perfect 10 of 10.</p></details>
-    <div id="gover" hidden><p class="big" id="gmsg"></p><p id="dgrid" hidden></p><button id="gnew" type="button">New round</button><button id="dsh" type="button" hidden>Share my score</button></div>
+    <div id="gover" hidden><p class="big" id="gmsg"></p><p id="dgrid" hidden></p><div id="dpl" hidden></div><button id="gnew" type="button">New round</button><button id="dsh" type="button" hidden>Share my score</button></div>
   </div>
   <div class="calls" id="calls"><button type="button" data-c="r">Red</button><button type="button" data-c="b">Black</button><button type="button" data-c="g">Green</button></div>
   <div id="out" aria-live="polite"><span class="rdy">READY</span></div>
@@ -406,6 +435,29 @@ try{gq=+localStorage.getItem("fl-gq")||0;if(localStorage.getItem("fl-gk")!==GK){
 function gset(v){if(typeof v!=="number"||!(v>=0))return;if(gtot!==null&&v<=gtot)return;const first=gtot===null;gtot=v;const e=$("gtot");e.textContent=(v+(GON?1177:0)).toLocaleString();if(!first&&!reduce){e.classList.remove("bump");void e.offsetWidth;e.classList.add("bump")}}
 const gsave=()=>{try{localStorage.setItem("fl-gq",gq)}catch(e){}};
 async function gflush(){if(!GON||gbusy||gq<=0)return;gbusy=true;try{while(gq>0){const r=await fetch(GU+"hit/"+GK,{cache:"no-store"});if(!r.ok)break;const j=await r.json();gq--;gsave();gset(j.value);if(gq>0)await new Promise(z=>setTimeout(z,450))}}catch(e){}gbusy=false}
+// Daily: see how everyone else scored today. Each finished daily drops one tally into a score bucket on the same counter service.
+const DB=[0,500,1000,1500,2000,3000,5000],DBL=["Under 500","500–999","1,000–1,499","1,500–1,999","2,000–2,999","3,000–4,999","5,000+"];
+const dbk=sc=>{let i=0;while(i+1<DB.length&&sc>=DB[i+1])i++;return i},dck=i=>"four-leaf-wheel/d"+dkey().replace(/-/g,"_")+"b"+i;
+let dplC=null,dplBusy=false;
+const DBS=["0","500","1K","1.5K","2K","3K","5K+"];
+function dplDraw(){const g=s.daily;if(!g||g.d!==dkey()||g.left>0){$("dpl").hidden=true;return}
+  const now=new Date(),mid=new Date(now.getFullYear(),now.getMonth(),now.getDate()+1),mins=Math.max(1,Math.round((mid-now)/60000)),left=(mins>=60?Math.floor(mins/60)+"h ":"")+(mins%60)+"m";
+  const tag=g.hits===10?'<span class="tag">PERFECT</span>':g.newBest?'<span class="tag">NEW BEST</span>':"";
+  let h='<div class="sum"><div class="k">DAILY ROUND · '+dnice().toUpperCase()+tag+'</div><div class="sc">'+g.score.toLocaleString()+'<small>PTS</small></div>'
+   +'<div class="pips">'+[...g.res].map(x=>'<i class="'+(x==="1"?"hit":"")+'"></i>').join("")+'</div><div class="n">'+g.hits+" of 10 right</div></div>";
+  if(dplC){const me=dbk(g.score),tot=dplC.reduce((a,b)=>a+b,0)||1,max=Math.max(...dplC,1),below=dplC.slice(0,me).reduce((a,b)=>a+b,0),same=Math.max(0,dplC[me]-1),others=Math.max(0,tot-1);
+    const pct=others>0?Math.round((below+same/2)/others*100):100;
+    h+='<div class="sep"></div><div class="top"><div class="ring" style="--p:'+pct+'"><b>'+pct+'<small>%</small></b></div><div class="tt"><div class="k">TODAY’S FIELD</div><div class="h">'+(others>0?"You beat "+pct+"% of them":"You’re first today!")+'</div><div class="n"><b>'+others.toLocaleString()+"</b> other player"+(others===1?"":"s")+" played today</div></div></div>"
+     +'<div class="cols">'+dplC.map((c,i)=>'<div class="col'+(i===me?" me":"")+'">'+(i===me?'<span class="you">YOU</span>':"")+'<i style="height:'+Math.max(4,Math.round(c/max*100))+'%"></i></div>').join("")+"</div>"
+     +'<div class="labs">'+DBS.map((l,i)=>'<span'+(i===me?' class="me"':"")+">"+l+"</span>").join("")+"</div>"}
+  h+='<div class="nx">Next round in '+left+"</div>";
+  $("dpl").innerHTML=h;$("dpl").hidden=false}
+async function dplLoad(){if(dplBusy)return;dplBusy=true;try{
+  if(!GON){const g=s.daily;dplC=[3,9,14,11,6,3,1];if(g&&g.left<=0)dplC[dbk(g.score)]++}
+  else dplC=await Promise.all(DB.map((_,i)=>fetch(GU+"get/"+dck(i),{cache:"no-store"}).then(r=>r.status===404?{value:0}:r.ok?r.json():{value:0}).then(j=>+j.value||0).catch(()=>0)))}catch(e){}
+  dplBusy=false;dplDraw()}
+async function dplPost(){const g=s.daily;if(!g||g.left>0||g.posted)return;g.posted=true;save();
+  if(GON){try{await fetch(GU+"hit/"+dck(dbk(g.score)),{cache:"no-store"})}catch(e){}}dplLoad()}
 function gspin(){if(demo)return;if(!GON){gset((gtot||0)+1);return}gq++;gsave();gflush()}
 function gget(){fetch(GU+"get/"+GK,{cache:"no-store"}).then(r=>r.status===404?{value:0}:r.ok?r.json():null).then(j=>{if(j)gset(j.value)}).catch(()=>{})}
 function glive(){
@@ -616,9 +668,9 @@ function gui(){
   [...$("calls").children].forEach(b=>{const c=b.dataset.c;b.textContent=nm(c)[0].toUpperCase()+nm(c).slice(1)+(gm&&g.left>0?" +"+gpts(c).toLocaleString():"")});
   if(gm){$("gl").textContent=g.left;$("gs").textContent=g.score.toLocaleString();$("gb").textContent=((dl?s.dbest:s.gbest)||0).toLocaleString();$("gbl").textContent=dl?"Best daily":"Best round";
     $("gdesc").hidden=true;$("dhow").hidden=!dl;$("gdesc0").hidden=dl;$("gdesc").textContent="Daily Round, "+dnice()+". Same 10 spins for everyone. One try.";
-    $("gover").hidden=g.left>0;$("gnew").hidden=dl;$("dsh").hidden=!dl;$("dgrid").hidden=!dl;
+    $("gover").hidden=g.left>0;$("gnew").hidden=dl;$("dsh").hidden=!dl;$("dgrid").hidden=true;$("gmsg").hidden=dl;
     $("gcombo").textContent=(g.combo||0)>0?"Combo x"+gmult()+" ("+g.combo+" right in a row)":"";
-    if(g.left<=0){if(dl){$("dgrid").textContent=dtext();$("gmsg").textContent="Daily done!"+(g.hits===10?" PERFECT!":"")+(g.newBest?" New best daily!":"")+" New round at midnight."}
+    $("dpl").hidden=true;if(g.left<=0){if(dl){$("dgrid").textContent=dtext();dplDraw();if(!g.posted)dplPost();else if(!dplC)dplLoad();$("gmsg").textContent=""}
       else $("gmsg").textContent="Round over! "+g.score.toLocaleString()+" points, "+g.hits+" of 10 right"+(g.bonus?", including a +"+g.bonus.toLocaleString()+" round bonus":"")+"."+(g.hits===10?" PERFECT!":"")+(g.newBest?" New best!":"")}}
 }
 function chip(t){const o=$("out");o.replaceChildren();const sp=document.createElement("span");sp.className="rdy";sp.textContent=t;o.appendChild(sp)}
@@ -655,7 +707,7 @@ function end(i){
   if(typeof s.all!=="string"||!s.all)s.all=s.log;else s.all+=c}
   let cm="";
   if(pend){const g=dly?s.daily:s.game;g.left--;if(dly)g.res+=pend.c===c?"1":"0";if(g.color===c)g.streak=(g.streak||0)+1;else{g.color=c;g.streak=1}if(pend.c===c){const m=gmult(),gain=Math.round(pend.pts);if(c==="g"&&!dly)s.calledG=1;g.combo=(g.combo||0)+1;g.hits++;s.ws=0;g.score+=gain;cm="Called "+nm(c)+" at "+pend.pct+"%: +"+gain.toLocaleString()+" points"+(m>1?" (combo x"+m+")":"")+"!"}else{g.combo=0;s.ws=(s.ws||0)+1;cm="Missed. "+nm(pend.c)+" was at "+pend.pct+"%."}
-    if(g.left<=0){g.bonus=g.hits*20+(g.hits===10?500:0);g.score+=g.bonus;if(dly){s.dn=(s.dn||0)+1;if(g.score>(s.dbest||0)){s.dbest=g.score;g.newBest=s.dn>1}}else{if(g.hits===10)s.perfect=true;if(g.score>(s.gbest||0)){s.gbest=g.score;s.gbestH=g.hits;g.newBest=true}}setTimeout(()=>{pop("#e8a317");toast((dly?"Daily done: ":"Round over: ")+g.score.toLocaleString()+" points"+(g.newBest?", new best!":""))},900)}
+    if(g.left<=0){g.bonus=g.hits*20+(g.hits===10?500:0);g.score+=g.bonus;if(dly){setTimeout(dplPost,0);s.dn=(s.dn||0)+1;if(g.score>(s.dbest||0)){s.dbest=g.score;g.newBest=s.dn>1}}else{if(g.hits===10)s.perfect=true;if(g.score>(s.gbest||0)){s.gbest=g.score;s.gbestH=g.hits;g.newBest=true}}setTimeout(()=>{pop("#e8a317");toast((dly?"Daily done: ":"Round over: ")+g.score.toLocaleString()+" points"+(g.newBest?", new best!":""))},900)}
     pend=null}else if(pick){s.calls++;if(pick===c){s.wins++;s.ws=0;if(c==="g")s.calledG=1;s.cs++;s.bestCs=Math.max(s.bestCs,s.cs);const g=(c==="g"?50:10)+5*(s.cs-1);s.pts+=g;cm="Called it! +"+g+" points"}else{s.cs=0;s.ws=(s.ws||0)+1;cm="Missed it. You called "+nm(pick)+"."}}
   pick=null;[...$("calls").children].forEach(x=>x.classList.remove("sel"));
   const fresh=dly?[]:BD.filter(([id,l,f])=>!s.badges.includes(id)&&f(s));
