@@ -14,7 +14,7 @@
 <link rel="icon" type="image/png" href="icon-192.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@500;700&display=swap">
 <style>
-:root{--bg:#fbeef0;--ink:#3b0a2a;--panel:#fff;--muted:#7a4a63;--gold:#e8a317;--red:#d7263d;--blk:#17121c;--grn:#0f9d58;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{--bg:#fbeef0;--ink:#3b0a2a;--panel:#fff;--muted:#7a4a63;--gold:#e8a317;--red:#d7263d;--blk:#17121c;--grn:#0f9d58;color-scheme:light;box-sizing:border-box;padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#2b0a22;--ink:#fff3dd;--panel:#431236;--muted:#d9a9c4;color-scheme:dark}}
 :root[data-theme="dark"]{--bg:#2b0a22;--ink:#fff3dd;--panel:#431236;--muted:#d9a9c4;color-scheme:dark}
 html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
@@ -69,8 +69,8 @@ button:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
 .cf{position:absolute;left:50%;top:50%;width:8px;height:8px;border-radius:2px;pointer-events:none;animation:cf .9s ease-out forwards}
 @keyframes cf{to{transform:translate(var(--x),calc(var(--y) + 120px)) rotate(360deg);opacity:0}}
 :root,:root:not([data-theme="light"]),:root[data-theme="dark"]{--bg:#1a0616;--ink:#fff3dd;--panel:#3a0f2f;--muted:#e3b8d0;color-scheme:dark}
-html{background:radial-gradient(ellipse 120% 60% at 50% 0%,#7a1a5c 0%,rgba(122,26,92,0) 70%),repeating-linear-gradient(45deg,rgba(255,255,255,.03) 0 2px,transparent 2px 12px),linear-gradient(#2b0a22,#14040f);background-color:#2b0a22}
-body{background:transparent}
+html{background:#2b0a22}
+body{background:radial-gradient(ellipse 120% 60% at 50% 0%,#7a1a5c 0%,rgba(122,26,92,0) 70%),repeating-linear-gradient(45deg,rgba(255,255,255,.03) 0 2px,transparent 2px 12px),linear-gradient(#2b0a22,#14040f);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);min-height:100vh}
 main{gap:10px;padding:14px 12px 32px}
 h1{font-size:clamp(32px,10vw,46px);margin:4px 0 0;background:linear-gradient(180deg,#fff6c2 0%,#f2b632 45%,#9a5f00 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 3px 0 #5a2d00) drop-shadow(0 6px 8px rgba(0,0,0,.6))}
 .sub{font-size:14px}
@@ -370,7 +370,7 @@ html:root{color-scheme:dark!important}
   <div class="links"><button id="rline" type="button">Reset line</button></div>
   <details class="info" id="bdbox" style="display:block"><summary id="bdh">Badges</summary><p class="bdn" style="margin:10px 0 0;font-size:13px;color:var(--muted)">Only <b>Called It</b>, <b>5 calls in a row</b>, <b>10 calls in a row</b>, <b>500 points</b>, <b>High Roller</b> and <b>Perfect Round</b> need you to pick a color before spinning. Tap any badge to see how to earn it.</p><div class="bd" id="bd" style="margin-top:10px"></div></details>
   <div class="links"><button id="share" type="button">Share my best streak</button><button id="snd" type="button"></button><button id="rmem" type="button">Reset odds memory</button><button id="reset" type="button">Reset daily play</button></div><button id="about" type="button" class="aboutlink">About the developer</button>
-  <details class="info" id="bkbox"><summary>Backup &amp; restore</summary><p class="small">Moving to a new icon? Tap Copy backup, paste it somewhere safe (Notes works), then paste it back here after re-adding the app. <span style="opacity:.6">Version 41</span></p><textarea id="bkt" rows="3" placeholder="Backup code shows here. To restore, paste a code here." style="width:100%;box-sizing:border-box;margin-top:8px;padding:8px;border-radius:10px;border:1px solid rgba(232,163,23,.5);background:rgba(0,0,0,.35);color:inherit;font:16px monospace"></textarea><div class="links"><button id="bkc" type="button">Copy backup</button><button id="bkr" type="button">Restore from code</button></div></details>
+  <details class="info" id="bkbox"><summary>Backup &amp; restore</summary><p class="small">Moving to a new icon? Tap Copy backup, paste it somewhere safe (Notes works), then paste it back here after re-adding the app. <span style="opacity:.6">Version 42</span></p><textarea id="bkt" rows="3" placeholder="Backup code shows here. To restore, paste a code here." style="width:100%;box-sizing:border-box;margin-top:8px;padding:8px;border-radius:10px;border:1px solid rgba(232,163,23,.5);background:rgba(0,0,0,.35);color:inherit;font:16px monospace"></textarea><div class="links"><button id="bkc" type="button">Copy backup</button><button id="bkr" type="button">Restore from code</button></div></details>
 </main>
 <div id="ov" hidden><img id="shimg" alt="Your best streak card"><p>Press and hold the image to save or share it.</p><div><button id="shs" type="button">Share</button> <button id="cls" type="button">Close</button></div></div>
 <div id="fx" aria-hidden="true"></div>
