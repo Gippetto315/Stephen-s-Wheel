@@ -361,7 +361,7 @@ html:root{color-scheme:dark!important}
   <div class="info">
     <p class="big" id="streak"></p>
     <p id="pts"></p>
-    <p class="small" id="best"></p><p id="bestg" style="font-weight:700;color:#f2b632;margin:4px 0 0"></p>
+    <p class="small" id="best"></p><p id="bestd" style="font-weight:700;color:#f2b632;margin:4px 0 0"></p><p id="bestg" style="font-weight:700;color:#f2b632;margin:4px 0 0"></p>
     <p class="small">History odds show what the past looks like. The wheel itself starts fresh every spin.</p>
   </div>
   <div class="info"><p class="big">All time: <span id="ltn">0</span> spins since day one</p><div class="row2"><div class="card r"><div class="n" id="lrn">0</div><div class="p" id="lrp"></div></div><div class="card b"><div class="n" id="lbn">0</div><div class="p" id="lbp"></div></div><div class="card g"><div class="n" id="lgn">0</div><div class="p" id="lgp"></div></div></div><p class="small">These never reset. The reset buttons only clear current play.</p></div>
@@ -372,7 +372,7 @@ html:root{color-scheme:dark!important}
   <div class="links"><button id="rline" type="button">Reset line</button></div>
   <details class="info" id="bdbox" style="display:block"><summary id="bdh">Badges</summary><p class="bdn" style="margin:10px 0 0;font-size:13px;color:var(--muted)">Only <b>Called It</b>, <b>5 calls in a row</b>, <b>10 calls in a row</b>, <b>500 points</b>, <b>High Roller</b> and <b>Perfect Round</b> need you to pick a color before spinning. Tap any badge to see how to earn it.</p><div class="bd" id="bd" style="margin-top:10px"></div></details>
   <div class="links"><button id="share" type="button">Share my best streak</button><button id="snd" type="button"></button><button id="rmem" type="button">Reset odds memory</button><button id="reset" type="button">Reset daily play</button></div><button id="about" type="button" class="aboutlink">About the developer</button>
-  <details class="info" id="bkbox"><summary>Backup &amp; restore</summary><p class="small">Moving to a new icon? Tap Copy backup, paste it somewhere safe (Notes works), then paste it back here after re-adding the app. <span style="opacity:.6">Version 45</span></p><textarea id="bkt" rows="3" placeholder="Backup code shows here. To restore, paste a code here." style="width:100%;box-sizing:border-box;margin-top:8px;padding:8px;border-radius:10px;border:1px solid rgba(232,163,23,.5);background:rgba(0,0,0,.35);color:inherit;font:16px monospace"></textarea><div class="links"><button id="bkc" type="button">Copy backup</button><button id="bkr" type="button">Restore from code</button></div></details>
+  <details class="info" id="bkbox"><summary>Backup &amp; restore</summary><p class="small">Moving to a new icon? Tap Copy backup, paste it somewhere safe (Notes works), then paste it back here after re-adding the app. <span style="opacity:.6">Version 46</span></p><textarea id="bkt" rows="3" placeholder="Backup code shows here. To restore, paste a code here." style="width:100%;box-sizing:border-box;margin-top:8px;padding:8px;border-radius:10px;border:1px solid rgba(232,163,23,.5);background:rgba(0,0,0,.35);color:inherit;font:16px monospace"></textarea><div class="links"><button id="bkc" type="button">Copy backup</button><button id="bkr" type="button">Restore from code</button></div></details>
 </main>
 <div id="ov" hidden><img id="shimg" alt="Your best streak card"><p>Press and hold the image to save or share it.</p><div><button id="shs" type="button">Share</button> <button id="cls" type="button">Close</button></div></div>
 <div id="fx" aria-hidden="true"></div>
@@ -591,7 +591,7 @@ function render(){
   });
   $("streak").textContent=t&&s.color?"Streak: "+s.streak+" "+nm(s.color)+" in a row"+(s.streak>1?", a 1 in "+fmt.format(Math.pow(1/P[s.color],s.streak))+" run":""):(t?"Fresh start":"No spins yet");
   $("pts").textContent="Points: "+s.pts+". Calls won: "+s.wins+" of "+s.calls+(s.cs?", call streak "+s.cs:"")+".";
-  $("best").textContent=t?"Longest streak: "+s.best+" "+nm(s.bestColor)+". Best call streak: "+s.bestCs+".":"";$("bestg").textContent=s.gbest?"Best 10-guess round: "+s.gbest.toLocaleString()+" points"+(s.gbestH?" ("+s.gbestH+" of 10 right)":""):"";
+  $("best").textContent=t?"Longest streak: "+s.best+" "+nm(s.bestColor)+". Best call streak: "+s.bestCs+".":"";$("bestd").textContent=(s.dn||0)?"Daily rounds: "+s.dn+". Best Daily: "+[10,25,100].map(n=>n+" spins "+(dbg(n)?dbg(n).toLocaleString():"-")).join(", "):"";$("bestg").textContent=s.gbest?"Best 10-guess round: "+s.gbest.toLocaleString()+" points"+(s.gbestH?" ("+s.gbestH+" of 10 right)":""):"";
   fut(t);gui();$("nreal").textContent="The wheel’s real odds never change: red 45.45%, black 45.45%, green 9.10% every spin.";
   {const T=life.n;$("ltn").textContent=T.toLocaleString();["r","b","g"].forEach(c=>{$("l"+c+"n").textContent=life[c].toLocaleString();$("l"+c+"p").textContent=nm(c)[0].toUpperCase()+nm(c).slice(1)+" "+(T?(life[c]/T*100).toFixed(1):"0.0")+"%"})}
   {const L0=s.mode==="daily"?dchk().streak:t?s.streak:0;$("fx").className=L0>=10?"fx10":L0>=7?"fx7":L0>=5?"fx5":L0>=3?"fx3":""}
@@ -669,7 +669,7 @@ const STK=[];STK[3]="HEATING UP";STK[4]="GETTING SPICY";STK[5]="HOT STREAK";STK[
 function end(i){
   spinning=false;lock(false);gspin();
   const c=col(i),dly=!!(pend&&pend.d);
-  if(!dly){s[c]++;life.n++;life[c]++;
+  {s[c]++;life.n++;life[c]++;
   if(s.color===c)s.streak++;else{s.color=c;s.streak=1}
   if(s.streak>s.best){s.best=s.streak;s.bestColor=c}
   if(c==="g"&&s.streak>(s.bestG||0))s.bestG=s.streak;
@@ -677,11 +677,11 @@ function end(i){
   {const was=s.log.length;s.log=(s.log+c).slice(-5000);if(was>=5000)s.cr=Math.max(0,(s.cr||0)-1)}
   if(typeof s.all!=="string"||!s.all)s.all=s.log;else s.all+=c}
   let cm="";
-  if(pend){const g=dly?s.daily:s.game;g.left--;if(dly)g.res+=pend.c===c?"1":"0";if(g.color===c)g.streak=(g.streak||0)+1;else{g.color=c;g.streak=1}if(pend.c===c){const m=gmult(),gain=Math.round(pend.pts);if(c==="g"&&!dly)s.calledG=1;g.combo=(g.combo||0)+1;g.hits++;s.ws=0;g.score+=gain;cm="Called "+nm(c)+" at "+pend.pct+"%: +"+gain.toLocaleString()+" points"+(m>1?" (combo x"+m+")":"")+"!"}else{g.combo=0;s.ws=(s.ws||0)+1;cm="Missed. "+nm(pend.c)+" was at "+pend.pct+"%."}
+  if(pend){const g=dly?s.daily:s.game;g.left--;if(dly)g.res+=pend.c===c?"1":"0";if(g.color===c)g.streak=(g.streak||0)+1;else{g.color=c;g.streak=1}if(pend.c===c){const m=gmult(),gain=Math.round(pend.pts);if(c==="g"&&!dly)s.calledG=1;if(c==="g"&&dly)s.calledG=1;g.combo=(g.combo||0)+1;g.hits++;s.ws=0;g.score+=gain;cm="Called "+nm(c)+" at "+pend.pct+"%: +"+gain.toLocaleString()+" points"+(m>1?" (combo x"+m+")":"")+"!"}else{g.combo=0;s.ws=(s.ws||0)+1;cm="Missed. "+nm(pend.c)+" was at "+pend.pct+"%."}
     if(g.left<=0){const gn=g.n||10;g.bonus=g.hits*20+(g.hits===gn?50*gn:0);g.score+=g.bonus;if(dly){s.dn=(s.dn||0)+1;const pb=dbg(gn);if(g.score>pb){dbs(gn,g.score);g.newBest=pb>0}}else{if(g.hits===10)s.perfect=true;if(g.score>(s.gbest||0)){s.gbest=g.score;s.gbestH=g.hits;g.newBest=true}}setTimeout(()=>{pop("#e8a317");toast((dly?"Daily done: ":"Round over: ")+g.score.toLocaleString()+" points"+(g.newBest?", new best!":""))},900)}
     pend=null}else if(pick){s.calls++;if(pick===c){s.wins++;s.ws=0;if(c==="g")s.calledG=1;s.cs++;s.bestCs=Math.max(s.bestCs,s.cs);const g=(c==="g"?50:10)+5*(s.cs-1);s.pts+=g;cm="Called it! +"+g+" points"}else{s.cs=0;s.ws=(s.ws||0)+1;cm="Missed it. You called "+nm(pick)+"."}}
   pick=null;[...$("calls").children].forEach(x=>x.classList.remove("sel"));
-  const fresh=dly?[]:BD.filter(([id,l,f])=>!s.badges.includes(id)&&f(s));
+  const fresh=BD.filter(([id,l,f])=>!s.badges.includes(id)&&f(s));
   fresh.forEach(b=>s.badges.push(b[0]));
   save();render();
   if(cm&&!s.ws==0&&s.ws%10===0)setTimeout(loser,1300);
@@ -726,7 +726,7 @@ function dinfo(){
   if(document.getElementById("cfm"))return;
   const o=document.createElement("div");o.id="cfm";const p=document.createElement("div");p.className="cfp";
   const h=document.createElement("h2");h.textContent="Daily Round";const u=document.createElement("ul");
-  ["Pick 10, 25 or 100 spins. Everyone who plays today gets the same spins, in the same order.","Pick a color before each spin. Right guesses score, and long shots and combos pay more.","You get one try at each length per day. New rounds show up at midnight.","When you finish, share your score and see who called it best.","These spins stay out of your stats and badges."].forEach(t=>{const l=document.createElement("li");l.textContent=t;u.appendChild(l)});
+  ["Pick 10, 25 or 100 spins. Everyone who plays today gets the same spins, in the same order.","Pick a color before each spin. Right guesses score, and long shots and combos pay more.","You get one try at each length per day. New rounds show up at midnight.","When you finish, share your score and see who called it best.","These spins count toward your stats and badges. Scores are kept separate."].forEach(t=>{const l=document.createElement("li");l.textContent=t;u.appendChild(l)});
   const y=document.createElement("button");y.textContent="Got it";y.className="cy";const close=()=>o.remove();y.onclick=close;o.onclick=e=>{if(e.target===o)close()};
   const r=document.createElement("div");r.className="cfr";r.appendChild(y);p.append(h,u,r);o.appendChild(p);document.body.appendChild(o);y.focus();
 }
